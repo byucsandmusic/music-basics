@@ -11,7 +11,7 @@ export const languages = {
   },
   module2: {
     title: {
-      EN: 'Rhythmn'
+      EN: 'Rhythm'
     },
   },
   module3: {
