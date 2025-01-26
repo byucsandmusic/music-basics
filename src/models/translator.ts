@@ -20,12 +20,12 @@ export default class Translator {
   }
 
   /**
-   * @param path an array of strings pointing to the desired text in languages
+   * @param path a list of strings denoting the path to the desired text in languages
    * @returns the desired text in the current language,
    * the desired text in English if the current language is invalid,
    * or undefined if the path is incorrect
    */
-  get(path:Array<string>) {
+  get(...path:string[]) {
     let temp = languages
     for (const key of path) {
       temp = temp[key]
