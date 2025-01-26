@@ -1,6 +1,6 @@
 import { languages } from './languages.ts'
 
-class Translator {
+export default class Translator {
   language:string = ''
 
   constructor(language:string) {
