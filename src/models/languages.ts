@@ -19,6 +19,11 @@ export const languages = {
       EN: 'SATB'
     },
   },
+  dummy: {
+    title: {
+      EN: 'Demo'
+    }
+  },
   general: {
 
   },
