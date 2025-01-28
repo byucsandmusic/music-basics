@@ -1,27 +1,27 @@
 export const languages = {
   home: {
     title: {
-      EN: 'Music App'
+      EN: 'Music App',
     },
   },
   module1: {
     title: {
-      EN: 'Basics'
+      EN: 'Basics',
     },
   },
   module2: {
     title: {
-      EN: 'Rhythm'
+      EN: 'Rhythm',
     },
   },
   module3: {
     title: {
-      EN: 'SATB'
+      EN: 'SATB',
     },
   },
   dummy: {
     title: {
-      EN: 'Demo'
+      EN: 'Demo',
     }
   },
   general: {
