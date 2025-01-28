@@ -1,17 +1,24 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import HomePage from './components/HomePage.vue'
+import Translator from './models/translator'
+
+export default {
+  components: {
+    HomePage
+  },
+  data() {
+    return {
+      translator: new Translator('EN')
+    }
+  }
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <meta>
+    <title>{{ translator.get('home', 'title') }}</title>
+  </meta>
+  <HomePage :translator="translator"></HomePage>
 </template>
 
 <style scoped>
