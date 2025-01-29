@@ -25,6 +25,8 @@ export const languages = {
     }
   },
   general: {
-
+    home: {
+      EN: 'Home'
+    }
   },
 }
