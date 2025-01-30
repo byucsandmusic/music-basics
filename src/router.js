@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 
 import HomePage from './components/HomePage.vue'
 import DummyModule from './components/DummyModule.vue'
@@ -9,7 +9,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
 
