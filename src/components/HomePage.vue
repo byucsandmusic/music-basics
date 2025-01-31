@@ -1,11 +1,13 @@
-<script>
+<script lang="ts">
 import Translator from '../models/translator'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
+    name: 'HomePage',
     props: {
         translator: Translator,
     },
-}
+})
 </script>
 
 <template>
@@ -16,3 +18,5 @@ export default {
         <button>{{ translator.get('module3', 'title') }}</button>
     </div>
 </template>
+
+<style scoped></style>

@@ -4,8 +4,10 @@ import HomePage from './components/HomePage.vue'
 import Translator from './models/translator'
 import RouterMenu from './components/RouterMenu.vue'
 import useNestedMenuItems from './nestedMenuItems'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
+    name: 'App',
     setup() {
         const translator = new Translator('EN')
         const nestedMenuItems = useNestedMenuItems(translator)
@@ -16,7 +18,7 @@ export default {
         RouterDropdown: RouterMenu,
         HomePage,
     },
-}
+})
 </script>
 
 <template>

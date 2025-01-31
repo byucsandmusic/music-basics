@@ -1,11 +1,13 @@
 <script lang="ts">
 import Translator from '../models/translator'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
+    name: 'DummyModule',
     props: {
         translator: Translator,
     },
-}
+})
 </script>
 
 <template>
@@ -17,3 +19,5 @@ export default {
         />
     </RouterView>
 </template>
+
+<style scoped></style>
