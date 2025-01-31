@@ -1,16 +1,20 @@
-<script>
+<script lang="ts">
 import { RouterView } from 'vue-router'
 import HomePage from './components/HomePage.vue'
 import Translator from './models/translator'
+import RouterMenu from "./components/RouterMenu.vue";
+import useNestedMenuItems from "./nestedMenuItems";
 
 export default {
-  components: {
-    HomePage,
+  setup() {
+    const translator = new Translator('EN')
+    const nestedMenuItems = useNestedMenuItems(translator);
+
+    return { translator, nestedMenuItems }
   },
-  data() {
-    return {
-      translator: new Translator('EN'),
-    }
+  components: {
+    RouterDropdown: RouterMenu,
+    HomePage,
   },
 }
 </script>
@@ -24,7 +28,7 @@ export default {
         <li><RouterLink to="/">{{ translator.get('module1', 'title') }}</RouterLink></li>
         <li><RouterLink to="/">{{ translator.get('module2', 'title') }}</RouterLink></li>
         <li><RouterLink to="/">{{ translator.get('module3', 'title') }}</RouterLink></li>
-        <li><RouterLink to="/dummy">{{ translator.get('dummy', 'title') }}</RouterLink></li>
+        <li><RouterDropdown :links="nestedMenuItems.dummy" :title="translator.get('dummy', 'title')"/></li>
       </ul>
     </nav>
     <RouterView v-slot="{ Component }">
