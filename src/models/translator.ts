@@ -5,9 +5,10 @@ export default class Translator {
 
     /**
      * A translator that can retrieve text from the language.ts file based on the set language
-     * @param language a string representing the language to be used by the translator
+     * @param language a string representing the language to be used by the translator;
+     * if nothing is provided the translator will retrieve English text
      */
-    constructor(language: string) {
+    constructor(language?: string) {
         this.language = language
     }
 
@@ -31,6 +32,6 @@ export default class Translator {
             temp = temp[key]
             if (temp === undefined) return temp
         }
-        return temp[this.language] || temp['EN']
+        return temp[this.language] || temp['ENG']
     }
 }

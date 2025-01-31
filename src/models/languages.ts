@@ -1,40 +1,41 @@
+// The language codes in this file have been defined by this resource: https://iso639-3.sil.org/code_tables/639/data
 export const languages = {
     home: {
         title: {
-            EN: 'Music App',
+            ENG: 'Music App',
         },
     },
     module1: {
         title: {
-            EN: 'Basics',
+            ENG: 'Basics',
         },
     },
     module2: {
         title: {
-            EN: 'Rhythm',
+            ENG: 'Rhythm',
         },
     },
     module3: {
         title: {
-            EN: 'SATB',
+            ENG: 'SATB',
         },
     },
     dummy: {
         title: {
-            EN: 'Demo',
+            ENG: 'Demo',
         },
     },
     general: {
         home: {
-            EN: 'Home',
+            ENG: 'Home',
         },
         interactive: {
             title: {
-                EN: 'Interactive Page',
+                ENG: 'Interactive Page',
             },
         },
         loremIpsum: {
-            EN:
+            ENG:
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore' +
                 'et dolore\n magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut' +
                 'aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse' +

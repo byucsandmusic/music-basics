@@ -9,7 +9,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     name: 'App',
     setup() {
-        const translator = new Translator('EN')
+        const translator = new Translator()
         const nestedMenuItems = useNestedMenuItems(translator)
 
         return { translator, nestedMenuItems }
@@ -17,6 +17,13 @@ export default defineComponent({
     components: {
         RouterDropdown: RouterMenu,
         HomePage,
+    },
+    watch: {
+        '$route.query.lang'(newLanguage: string) {
+            if (newLanguage) {
+                this.translator.setLanguage(newLanguage.toUpperCase())
+            }
+        },
     },
 })
 </script>
