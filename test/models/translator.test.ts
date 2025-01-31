@@ -1,5 +1,6 @@
 // Set up mocks
-jest.mock("../../src/models/languages", () => ({
+import Translator from '../../src/models/translator'
+vi.mock("../../src/models/languages", () => ({
   languages: {
     home: {
       title: {
@@ -8,9 +9,6 @@ jest.mock("../../src/models/languages", () => ({
     },
   },
 }))
-
-// This must come after the mocks so that it uses our mocked languages file
-import Translator from '../../src/models/translator'
 
 describe('Translator Tests', () => {
   test('Should retrieve text when a valid language is provided and the path is correct', () => {
