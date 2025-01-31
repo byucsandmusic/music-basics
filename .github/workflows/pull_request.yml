@@ -19,3 +19,16 @@ jobs:
 
             - name: Run Tests
               run: npm test
+
+    prettier:
+        name: Run Prettier Checkstyle
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Install Depenencies
+              run: npm ci
+
+            - name: Run Prettier
+              run: npx prettier --check .
