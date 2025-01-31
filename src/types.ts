@@ -1,6 +1,6 @@
 export interface DropdownItem {
-    id: string | number,
-    title: string,
+    id: string | number
+    title: string
 }
 
 export interface LinkItem extends DropdownItem {

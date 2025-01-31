@@ -4,9 +4,9 @@ import vue from '@vitejs/plugin-vue'
 // https://vite.dev/config/
 /// <reference types="vitest/config" />
 export default defineConfig({
-  plugins: [vue()],
-  base: '/byu-cs-music-capstone/',
-  server: {
-    historyApiFallback: true
-  }
+    plugins: [vue()],
+    base: '/byu-cs-music-capstone/',
+    server: {
+        historyApiFallback: true,
+    },
 })

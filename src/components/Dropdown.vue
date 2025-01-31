@@ -1,6 +1,6 @@
 <script lang="ts">
-import {defineComponent, PropType} from 'vue'
-import {DropdownItem} from "../types";
+import { defineComponent, PropType } from 'vue'
+import { DropdownItem } from '../types'
 
 /**
  * This component can either be used as a normal dropdown, or for a nested menu. If used as a normal dropdown,
@@ -9,44 +9,50 @@ import {DropdownItem} from "../types";
  * @prop title if a title is passed in, the component will function as a nested menu
  */
 export default defineComponent({
-  name: "Dropdown",
-  props: {
-    items: {
-      type: Array as PropType<DropdownItem[]>,
-      required: true
+    name: 'Dropdown',
+    props: {
+        items: {
+            type: Array as PropType<DropdownItem[]>,
+            required: true,
+        },
+        title: {
+            type: String,
+            default: '',
+        },
     },
-    title: {
-      type: String,
-      default: ''
+    data() {
+        return {
+            displayTitle: this.items[0]?.title ?? '',
+        }
     },
-  },
-  data() {
-    return {
-      displayTitle: this.items[0]?.title ?? '',
-    }
-  },
-  methods: {
-    toggleSelected(title: string) {
-      this.displayTitle = title
-    }
-  },
-});
+    methods: {
+        toggleSelected(title: string) {
+            this.displayTitle = title
+        },
+    },
+})
 </script>
 
 <template>
-<details class="dropdown">
-  <summary>{{ title || displayTitle }}</summary>
-  <ul>
-    <li v-for="item in items" :key="item.id" @click="toggleSelected(item.title)">
-      <slot name="itemSlot" :currentItem="item">
-        <!-- this link to nowhere is part of the hover styling through PicoCSS, this could be removed
+    <details class="dropdown">
+        <summary>{{ title || displayTitle }}</summary>
+        <ul>
+            <li
+                v-for="item in items"
+                :key="item.id"
+                @click="toggleSelected(item.title)"
+            >
+                <slot
+                    name="itemSlot"
+                    :currentItem="item"
+                >
+                    <!-- this link to nowhere is part of the hover styling through PicoCSS, this could be removed
               later if we change the styling architecture in this project -->
-        <a href="#">{{item.title}}</a>
-      </slot>
-    </li>
-  </ul>
-</details>
+                    <a href="#">{{ item.title }}</a>
+                </slot>
+            </li>
+        </ul>
+    </details>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

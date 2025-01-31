@@ -1,19 +1,20 @@
 <script lang="ts">
-import {defineComponent} from 'vue'
-import Translator from "../models/translator";
+import { defineComponent } from 'vue'
+import Translator from '../models/translator'
 
 export default defineComponent({
-  name: "InteractivePage",
-  props: {
-    translator: Translator,
-  },
+    name: 'InteractivePage',
+    props: {
+        translator: Translator,
+    },
 })
 </script>
 
 <template>
-  <img alt="" src="../assets/hymns/HeIsBornTheChristChild.png" />
+    <img
+        alt=""
+        src="../assets/hymns/HeIsBornTheChristChild.png"
+    />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
