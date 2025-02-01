@@ -8,5 +8,24 @@ export default defineConfig({
     base: '/byu-cs-music-capstone/',
     server: {
         historyApiFallback: true,
+        warmup: {
+            clientFiles: [
+                './src/App.vue',
+                './src/models/translator.ts',
+                './src/nestedMenuItems.ts',
+            ],
+        },
+    },
+    resolve: {
+        extensions: [
+            '.ts',
+            '.vue',
+            '.json',
+            '.mts',
+            '.tsx',
+            '.mjs',
+            '.js',
+            '.jsx',
+        ],
     },
 })

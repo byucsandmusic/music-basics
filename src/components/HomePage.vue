@@ -1,5 +1,5 @@
 <script lang="ts">
-import Translator from '../models/translator'
+import Translator from '../models/translator.ts'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
