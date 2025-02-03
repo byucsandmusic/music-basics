@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "esModuleInterop": true,
-        "types": ["vitest/globals"],
-        "allowImportingTsExtensions": true
+        "types": ["vitest/globals"]
     }
 }

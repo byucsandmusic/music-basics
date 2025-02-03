@@ -1,4 +1,4 @@
-import Translator from './models/translator.ts'
+import Translator from './models/translator'
 
 export default function useNestedMenuItems(translator: Translator) {
     return {

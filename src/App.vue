@@ -1,9 +1,9 @@
 <script lang="ts">
 import { RouterView } from 'vue-router'
 import Home from './pages/Home.vue'
-import Translator from './models/translator.ts'
+import Translator from './models/translator'
 import RouterMenu from './components/RouterMenu.vue'
-import useNestedMenuItems from './nestedMenuItems.ts'
+import useNestedMenuItems from './nestedMenuItems'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
