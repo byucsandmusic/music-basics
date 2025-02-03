@@ -51,6 +51,13 @@ onDocReady(() => {
 
         function moveWithMouse(moveEvent: MouseEvent) {
             draggedElement.style.transform = `translate(${-(initX - moveEvent.pageX)}px, ${-(initY - moveEvent.pageY)}px)`
+            const target = findParentWithClass(
+                moveEvent.target as HTMLElement,
+                'dragTarget'
+            )
+            if (target !== null)
+                draggedElement.classList.add('hovering-over-valid-target')
+            else draggedElement.classList.remove('hovering-over-valid-target')
             if (moveEvent.buttons % 2 !== 1) mouseReleased(moveEvent)
         }
 
@@ -60,7 +67,10 @@ onDocReady(() => {
                 'dragTarget'
             )
             document.removeEventListener('mousemove', moveWithMouse)
-            draggedElement.classList.remove('dragging')
+            draggedElement.classList.remove(
+                'dragging',
+                'hovering-over-valid-target'
+            )
             if (target === null) {
                 //If a dragTarget was not ended on
                 draggedElement.style.transform = ''
@@ -97,7 +107,11 @@ section
 
 .dragging
     pointer-events: none
-    transition: none !important
+    transition: opacity 0.2s !important
+
+.hovering-over-valid-target
+    opacity: 0.5
+
 .draggable
     display: inline-block
     border-radius: 10px
@@ -106,7 +120,7 @@ section
     background-color: white
     transform: translate(0px, 0px)
     user-select: none
-    transition: transform 0.2s
+    transition: transform 0.2s, opacity 0.2s
     > *
         pointer-events: none
 
