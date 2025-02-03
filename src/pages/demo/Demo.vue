@@ -1,9 +1,9 @@
 <script lang="ts">
-import Translator from '../models/translator'
+import Translator from '../../models/translator'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'DummyModule',
+    name: 'Demo',
     props: {
         translator: Translator,
     },

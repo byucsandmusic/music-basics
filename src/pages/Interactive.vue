@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 import Translator from '../models/translator'
 
 export default defineComponent({
-    name: 'InteractivePage',
+    name: 'Interactive',
     props: {
         translator: Translator,
     },

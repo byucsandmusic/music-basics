@@ -1,6 +1,6 @@
 <script lang="ts">
 import { RouterView } from 'vue-router'
-import HomePage from './components/HomePage.vue'
+import Home from './pages/Home.vue'
 import Translator from './models/translator.ts'
 import RouterMenu from './components/RouterMenu.vue'
 import useNestedMenuItems from './nestedMenuItems.ts'
@@ -16,7 +16,7 @@ export default defineComponent({
     },
     components: {
         RouterDropdown: RouterMenu,
-        HomePage,
+        HomePage: Home,
     },
     watch: {
         '$route.query.lang'(newLanguage: string) {
