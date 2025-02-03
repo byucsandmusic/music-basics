@@ -92,8 +92,12 @@ onDocReady(() => {
             <span class="draggable">
                 This is draggable <img src="https://picsum.photos/200" />
             </span>
+            <span class="draggable">
+                This, too is draggable <img src="https://picsum.photos/200" />
+            </span>
         </div>
         <div class="targets">
+            <span class="dragTarget"></span>
             <span class="dragTarget"></span>
         </div>
     </section>
@@ -128,5 +132,6 @@ section
     display: block
     width: 100px
     height: 100px
+    outline: 1px solid black
     background-color: #b0bec5
 </style>
