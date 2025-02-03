@@ -12,6 +12,7 @@
         "format": "prettier --write ."
     },
     "dependencies": {
+        "abcjs": "^6.4.4",
         "npm": "^11.1.0",
         "vue": "^3.5.13",
         "vue-router": "^4.5.0"
