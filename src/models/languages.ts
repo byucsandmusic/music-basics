@@ -34,6 +34,11 @@ export const languages = {
                 ENG: 'Interactive Page',
             },
         },
+        dragAndDrop: {
+            title: {
+                ENG: 'Drag and Drop',
+            },
+        },
         loremIpsum: {
             ENG:
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore' +

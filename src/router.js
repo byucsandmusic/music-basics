@@ -33,6 +33,10 @@ const routes = [
                 path: 'tap-along',
                 component: TapAlong,
             },
+            {
+                path: 'dragAndDrop',
+                component: DragAndDrop,
+            },
         ],
     },
 ]
