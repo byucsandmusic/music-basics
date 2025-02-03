@@ -20,13 +20,16 @@ export default defineComponent({
                     let measure = 0;
                     measure <
                     Math.max(
-                        this.music.treble?.length,
-                        this.music.bass?.length
+                        this.music.treble?.length || 0,
+                        this.music.bass?.length || 0
                     );
                     measure++
                 ) {
-                    if (this.music.treble?.length > measure)
+                    if (this.music.treble?.length > measure) {
                         notation += `V:1\n${this.music.treble[measure]}\n`
+                    } else if (this.music.bass?.length > measure) {
+                        notation += `V:1 clef=bass\n${this.music.bass[measure]}\n`
+                    }
                     if (this.music.verses?.length) {
                         for (
                             let verse = 0;
@@ -38,7 +41,7 @@ export default defineComponent({
                             }
                         }
                     }
-                    if (this.music.bass?.length > measure)
+                    if (this.music.treble?.length > measure && this.music.bass?.length > measure)
                         notation += `V:2 clef=bass\n${this.music.bass[measure]}\n`
                 }
             }
