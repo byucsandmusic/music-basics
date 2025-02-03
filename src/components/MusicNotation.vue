@@ -41,7 +41,10 @@ export default defineComponent({
                             }
                         }
                     }
-                    if (this.music.treble?.length > measure && this.music.bass?.length > measure)
+                    if (
+                        this.music.treble?.length > measure &&
+                        this.music.bass?.length > measure
+                    )
                         notation += `V:2 clef=bass\n${this.music.bass[measure]}\n`
                 }
             }
