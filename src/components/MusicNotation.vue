@@ -15,6 +15,7 @@ export default defineComponent({
             if (this.music.title) notation += `T:${this.music.title}\n`
             if (this.music.meter) notation += `M:${this.music.meter}\n`
             if (this.music.beat) notation += `L:${this.music.beat}\n`
+            if (this.music.tempo) notation += `Q:${this.music.tempo}\n`
             if (this.music.key) notation += `K:${this.music.key}\n`
             if (this.music.treble?.length || this.music.bass?.length) {
                 for (
