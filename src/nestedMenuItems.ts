@@ -2,15 +2,15 @@ import Translator from './models/translator'
 
 export default function useNestedMenuItems(translator: Translator) {
     return {
-        dummy: [
+        demo: [
             {
                 id: 1,
-                href: '/dummy/home',
+                href: '/demo/home',
                 title: translator.get('general', 'home'),
             },
             {
                 id: 2,
-                href: '/dummy/interact',
+                href: '/demo/interact',
                 title: translator.get('general', 'interactive', 'title'),
             },
         ],

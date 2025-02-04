@@ -8,9 +8,10 @@ import ModuleHome from './pages/ModuleHome.vue'
 const routes = [
     { path: '/', component: Home, alias: '/home' },
     {
-        path: '/dummy',
+        path: '/demo',
         component: Demo,
         children: [
+            { path: '', redirect: '/demo/home' },
             { path: 'home', component: ModuleHome },
             {
                 path: 'interact',

@@ -11,7 +11,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <h1>{{ translator.get('dummy', 'title') }}</h1>
+    <h1>{{ translator.get('demo', 'title') }}</h1>
     <RouterView #="{ Component }">
         <component
             :is="Component"

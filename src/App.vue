@@ -55,8 +55,8 @@ export default defineComponent({
                 </li>
                 <li>
                     <RouterDropdown
-                        :links="nestedMenuItems.dummy"
-                        :title="translator.get('dummy', 'title')"
+                        :links="nestedMenuItems.demo"
+                        :title="translator.get('demo', 'title')"
                     />
                 </li>
             </ul>

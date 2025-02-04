@@ -20,7 +20,7 @@ export const languages = {
             ENG: 'SATB',
         },
     },
-    dummy: {
+    demo: {
         title: {
             ENG: 'Demo',
         },
