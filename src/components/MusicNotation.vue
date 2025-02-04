@@ -8,6 +8,7 @@ export default defineComponent({
     name: 'MusicNotation',
     props: {
         music: Object as PropType<Music>,
+        displayMidiPlayer: Boolean,
     },
     methods: {
         constructNotation() {
@@ -60,26 +61,28 @@ export default defineComponent({
             { selectionColor: '#2694cf', responsive: 'resize' }
         )
 
-        const visualObj: abcjs.TuneObject = tuneArray[0]
-        const synthControl: abcjs.SynthObjectController =
-            new abcjs.synth.SynthController()
-        synthControl.load('#midi-player', null, {
-            displayLoop: true,
-            displayRestart: true,
-            displayPlay: true,
-            displayProgress: true,
-        })
-        try {
-            const midiBuffer: abcjs.MidiBuffer = new abcjs.synth.CreateSynth()
-            midiBuffer
-                .init({
-                    visualObj,
-                })
-                .then(() => {
-                    if (visualObj) synthControl.setTune(visualObj, false)
-                })
-        } catch (e) {
-            console.error('An error occurred:', e)
+        if (this.displayMidiPlayer) {
+            const visualObj: abcjs.TuneObject = tuneArray[0]
+            const synthControl: abcjs.SynthObjectController =
+                new abcjs.synth.SynthController()
+            synthControl.load('#midi-player', null, {
+                displayLoop: true,
+                displayRestart: true,
+                displayPlay: true,
+                displayProgress: true,
+            })
+            try {
+                const midiBuffer: abcjs.MidiBuffer = new abcjs.synth.CreateSynth()
+                midiBuffer
+                    .init({
+                        visualObj,
+                    })
+                    .then(() => {
+                        if (visualObj) synthControl.setTune(visualObj, false)
+                    })
+            } catch (e) {
+                console.error('An error occurred:', e)
+            }
         }
     },
 })
