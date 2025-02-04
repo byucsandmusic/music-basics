@@ -2,6 +2,7 @@
 import { defineComponent, PropType } from 'vue'
 import abcjs from 'abcjs'
 import { Music } from '../models/music'
+import 'abcjs/abcjs-audio.css'
 
 export default defineComponent({
     name: 'MusicNotation',
@@ -52,18 +53,41 @@ export default defineComponent({
         },
     },
     mounted() {
-        abcjs.renderAbc(
+        const tuneArray: abcjs.TuneObjectArray = abcjs.renderAbc(
             this.$refs.notationContainer,
             this.constructNotation(),
-            { selectionColor: '#2694cf' }
+            { selectionColor: '#2694cf', responsive: 'resize' }
         )
+
+        const visualObj: abcjs.TuneObject = tuneArray[0]
+        const synthControl: abcjs.SynthObjectController =
+            new abcjs.synth.SynthController()
+        synthControl.load('#midi-player', null, {
+            displayLoop: true,
+            displayRestart: true,
+            displayPlay: true,
+            displayProgress: true,
+        })
+        try {
+            const midiBuffer: abcjs.MidiBuffer = new abcjs.synth.CreateSynth()
+            midiBuffer
+                .init({
+                    visualObj,
+                })
+                .then(() => {
+                    if (visualObj) synthControl.setTune(visualObj, false)
+                })
+        } catch (e) {
+            console.error('An error occurred:', e)
+        }
     },
 })
 </script>
 
 <template>
-    <div>
+    <div class="container">
         <div ref="notationContainer"></div>
+        <div id="midi-player"></div>
     </div>
 </template>
 
