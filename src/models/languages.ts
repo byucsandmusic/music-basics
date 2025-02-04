@@ -42,5 +42,13 @@ export const languages = {
                 'cillum dolore eu fugiat nulla pariatur.\n    Excepteur sint occaecat cupidatat non proident, sunt in' +
                 'culpa qui officia deserunt mollit anim id est laborum.',
         },
+        notFound: {
+            header: {
+                ENG: 'Page not found',
+            },
+            body: {
+                ENG: 'Redirecting...',
+            },
+        },
     },
 }

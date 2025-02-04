@@ -7,7 +7,6 @@ export default defineConfig({
     plugins: [vue()],
     base: '/byu-cs-music-capstone/',
     server: {
-        historyApiFallback: true,
         warmup: {
             clientFiles: [
                 './src/App.vue',

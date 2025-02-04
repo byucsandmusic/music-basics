@@ -4,8 +4,10 @@ import Home from './pages/Home.vue'
 import Demo from './pages/demo/Demo.vue'
 import Interactive from './pages/Interactive.vue'
 import ModuleHome from './pages/ModuleHome.vue'
+import NotFound from './pages/NotFound.vue'
 
 const routes = [
+    { path: '/:pathMatch(.*)*', component: NotFound },
     { path: '/', component: Home, alias: '/home' },
     {
         path: '/demo',
