@@ -1,25 +1,6 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import MusicNotation from '../../src/components/MusicNotation.vue'
 import { Music } from '../../src/models/music'
-import { vi } from 'vitest'
-
-vi.mock('abcjs', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('abcjs')>()
-
-    return {
-        ...actual, // Preserve actual exports
-        renderAbc: vi.fn(() => [{}]), // Mock the ABC rendering function
-        synth: {
-            SynthController: vi.fn().mockImplementation(() => ({
-                load: vi.fn(),
-                setTune: vi.fn(),
-            })),
-            CreateSynth: vi.fn().mockImplementation(() => ({
-                init: vi.fn().mockResolvedValue(undefined),
-            })),
-        },
-    }
-})
 
 let wrapper
 const defaultMusicObj: Music = {
@@ -37,7 +18,7 @@ const defaultProps = {
     displayMidiPlayer: false,
 }
 
-const createWrapper = (props = defaultProps) => mount(MusicNotation, { props })
+const createWrapper = (props = defaultProps) => shallowMount(MusicNotation, { props })
 
 afterAll(() => {
     if (wrapper) {
