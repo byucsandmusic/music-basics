@@ -13,6 +13,11 @@ export default function useNestedMenuItems(translator: Translator) {
                 href: '/demo/interact',
                 title: translator.get('general', 'interactive', 'title'),
             },
+            {
+                id: 3,
+                href: '/demo/music-notation',
+                title: translator.get('general', 'musicNotation', 'title'),
+            },
         ],
     }
 }
