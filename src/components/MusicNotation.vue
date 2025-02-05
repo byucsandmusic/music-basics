@@ -55,24 +55,25 @@ export default defineComponent({
         },
     },
     mounted() {
-        const tuneArray: abcjs.TuneObjectArray = abcjs.renderAbc(
-            this.$refs.notationContainer,
-            this.constructNotation(),
-            { selectionColor: '#2694cf', responsive: 'resize' }
-        )
+        try {
+            const tuneArray: abcjs.TuneObjectArray = abcjs.renderAbc(
+                this.$refs.notationContainer,
+                this.constructNotation(),
+                { selectionColor: '#2694cf', responsive: 'resize' }
+            )
 
-        if (this.displayMidiPlayer) {
-            const visualObj: abcjs.TuneObject = tuneArray[0]
-            const synthControl: abcjs.SynthObjectController =
-                new abcjs.synth.SynthController()
-            synthControl.load('#midi-player', null, {
-                displayLoop: true,
-                displayRestart: true,
-                displayPlay: true,
-                displayProgress: true,
-            })
-            try {
-                const midiBuffer: abcjs.MidiBuffer = new abcjs.synth.CreateSynth()
+            if (this.displayMidiPlayer && tuneArray.length > 0) {
+                const visualObj: abcjs.TuneObject = tuneArray[0]
+                const synthControl: abcjs.SynthObjectController =
+                    new abcjs.synth.SynthController()
+                synthControl.load('#midi-player', null, {
+                    displayLoop: true,
+                    displayRestart: true,
+                    displayPlay: true,
+                    displayProgress: true,
+                })
+                const midiBuffer: abcjs.MidiBuffer =
+                    new abcjs.synth.CreateSynth()
                 midiBuffer
                     .init({
                         visualObj,
@@ -80,9 +81,9 @@ export default defineComponent({
                     .then(() => {
                         if (visualObj) synthControl.setTune(visualObj, false)
                     })
-            } catch (e) {
-                console.error('An error occurred:', e)
             }
+        } catch (err) {
+            console.error('Error in MusicNotation.mounted():', err)
         }
     },
 })
