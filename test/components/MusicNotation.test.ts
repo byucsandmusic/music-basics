@@ -18,7 +18,8 @@ const defaultProps = {
     displayMidiPlayer: false,
 }
 
-const createWrapper = (props = defaultProps) => shallowMount(MusicNotation, { props })
+const createWrapper = (props = defaultProps) =>
+    shallowMount(MusicNotation, { props })
 
 afterAll(() => {
     if (wrapper) {

@@ -3,12 +3,14 @@ import { defineComponent, PropType } from 'vue'
 import abcjs from 'abcjs'
 import { Music } from '../models/music'
 import 'abcjs/abcjs-audio.css'
+import Translator from '../models/translator'
 
 export default defineComponent({
     name: 'MusicNotation',
     props: {
         music: Object as PropType<Music>,
         displayMidiPlayer: Boolean,
+        translator: Translator,
     },
     methods: {
         constructNotation() {
@@ -83,7 +85,11 @@ export default defineComponent({
                     })
             }
         } catch (err) {
-            console.error('Error in MusicNotation.mounted():', err)
+            this.$refs.midiPlayer.innerText = this.translator.get(
+                'general',
+                'error',
+                'midiPlayer'
+            )
         }
     },
 })
@@ -92,7 +98,10 @@ export default defineComponent({
 <template>
     <div class="container">
         <div ref="notationContainer"></div>
-        <div id="midi-player"></div>
+        <div
+            ref="midiPlayer"
+            id="midi-player"
+        ></div>
     </div>
 </template>
 

@@ -26,6 +26,11 @@ export const languages = {
         },
     },
     general: {
+        error: {
+            midiPlayer: {
+                ENG: 'Error: Unable to load midi player',
+            },
+        },
         home: {
             ENG: 'Home',
         },
