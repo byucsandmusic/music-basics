@@ -88,14 +88,17 @@ export default defineComponent({
                                 document
                                     .querySelectorAll('.abcjs-note_selected')
                                     .forEach((el: SVGElement) => {
-                                        el.classList.remove('abcjs-note_selected')
+                                        el.classList.remove(
+                                            'abcjs-note_selected'
+                                        )
                                         el.style.fill = '' // Reset highlighting
                                     })
 
                                 // Apply highlight to current note
                                 event.elements.forEach((el: SVGElement) => {
                                     el[0].classList.add('abcjs-note_selected')
-                                    el[0].style.fill = this.highlightColor || '#2694cf'
+                                    el[0].style.fill =
+                                        this.highlightColor || '#2694cf'
                                 })
                             }
                         },
