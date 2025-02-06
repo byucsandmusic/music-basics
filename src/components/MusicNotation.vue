@@ -77,7 +77,7 @@ export default defineComponent({
 
                 let cursor = null
                 if (this.highlightNotes) {
-                    // 🔥 Add Note Highlighting During Playback
+                    // Add Note Highlighting During Playback
                     cursor = {
                         onStart: () => {
                             console.log('Playback started')
@@ -91,7 +91,7 @@ export default defineComponent({
                                         el.classList.remove(
                                             'abcjs-note_selected'
                                         )
-                                        el.style.fill = '' // Reset highlighting
+                                        el.style.fill = ''
                                     })
 
                                 // Apply highlight to current note
@@ -108,7 +108,7 @@ export default defineComponent({
                                 .querySelectorAll('.abcjs-note_selected')
                                 .forEach((el: SVGElement) => {
                                     el.classList.remove('abcjs-note_selected')
-                                    el.style.fill = '' // Reset highlighting
+                                    el.style.fill = ''
                                 })
                         },
                     }
