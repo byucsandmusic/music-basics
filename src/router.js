@@ -36,6 +36,12 @@ const routes = [
                             'EGEG|GFDF|BBA3/A/|G3z|',
                             'EGEG|cAF3/D/|FFED|C3z|]',
                         ],
+                        // bass: [
+                        //     'E,E,/E,/F,G,|E,3G,|c,3/c,/B,A,|G,3G,|',
+                        //     'G,E,E,G,|G,F,F,3/E,/|E,D,B,A,|G,3z|',
+                        //     'E,G,E,G,|G,F,D,F,|B,B,A,3/A,/|G,3z|',
+                        //     'E,G,E,G,|c,A,F,3/D,/|F,F,E,D,|C,3z|]',
+                        // ],
                         verses: [
                             [
                                 'I am a child of God, And he has sent me here, Has',
@@ -50,6 +56,7 @@ const routes = [
                         ],
                     },
                     displayMidiPlayer: true,
+                    highlightNotes: true,
                 },
             },
         ],

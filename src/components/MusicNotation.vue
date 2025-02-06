@@ -10,6 +10,8 @@ export default defineComponent({
     props: {
         music: Object as PropType<Music>,
         displayMidiPlayer: Boolean,
+        highlightNotes: Boolean,
+        highlightColor: String,
         translator: Translator,
     },
     methods: {
@@ -61,14 +63,54 @@ export default defineComponent({
             const tuneArray: abcjs.TuneObjectArray = abcjs.renderAbc(
                 this.$refs.notationContainer,
                 this.constructNotation(),
-                { selectionColor: '#2694cf', responsive: 'resize' }
+                {
+                    selectionColor: this.highlightColor || '#2694cf',
+                    responsive: 'resize',
+                    add_classes: true,
+                }
             )
 
             if (this.displayMidiPlayer && tuneArray.length > 0) {
                 const visualObj: abcjs.TuneObject = tuneArray[0]
                 const synthControl: abcjs.SynthObjectController =
                     new abcjs.synth.SynthController()
-                synthControl.load('#midi-player', null, {
+
+                let cursor = null
+                if (this.highlightNotes) {
+                    // 🔥 Add Note Highlighting During Playback
+                    cursor = {
+                        onStart: () => {
+                            console.log('Playback started')
+                        },
+                        onEvent: (event: any) => {
+                            if (event && event.elements) {
+                                // Remove previous highlights
+                                document
+                                    .querySelectorAll('.abcjs-note_selected')
+                                    .forEach((el: SVGElement) => {
+                                        el.classList.remove('abcjs-note_selected')
+                                        el.style.fill = '' // Reset highlighting
+                                    })
+
+                                // Apply highlight to current note
+                                event.elements.forEach((el: SVGElement) => {
+                                    el[0].classList.add('abcjs-note_selected')
+                                    el[0].style.fill = this.highlightColor || '#2694cf'
+                                })
+                            }
+                        },
+                        onFinished: () => {
+                            console.log('Playback finished')
+                            document
+                                .querySelectorAll('.abcjs-note_selected')
+                                .forEach((el: SVGElement) => {
+                                    el.classList.remove('abcjs-note_selected')
+                                    el.style.fill = '' // Reset highlighting
+                                })
+                        },
+                    }
+                }
+                synthControl.load('#midi-player', cursor, {
                     displayLoop: true,
                     displayRestart: true,
                     displayPlay: true,
