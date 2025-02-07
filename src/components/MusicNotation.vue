@@ -4,6 +4,7 @@ import abcjs from 'abcjs'
 import { Music } from '../models/music'
 import 'abcjs/abcjs-audio.css'
 import Translator from '../models/translator'
+import { Cursor } from '../models/types'
 
 export default defineComponent({
     name: 'MusicNotation',
@@ -12,7 +13,10 @@ export default defineComponent({
         displayMidiPlayer: Boolean,
         highlightNotes: Boolean,
         highlightColor: String,
-        translator: Translator,
+        translator: {
+            type: Translator,
+            required: true,
+        },
     },
     methods: {
         constructNotation() {
@@ -75,7 +79,7 @@ export default defineComponent({
                 const synthControl: abcjs.SynthObjectController =
                     new abcjs.synth.SynthController()
 
-                let cursor = null
+                let cursor: Cursor | null = null
                 if (this.highlightNotes) {
                     // Add Note Highlighting During Playback
                     cursor = {

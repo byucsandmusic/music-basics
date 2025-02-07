@@ -5,7 +5,10 @@ import Translator from '../models/translator'
 export default defineComponent({
     name: 'ModuleHome',
     props: {
-        translator: Translator,
+        translator: {
+            type: Translator,
+            required: true,
+        },
     },
 })
 </script>

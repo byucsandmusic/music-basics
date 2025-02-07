@@ -9,7 +9,7 @@ export default class Translator {
      * if nothing is provided the translator will retrieve English text
      */
     constructor(language?: string) {
-        this.language = language
+        this.language = language ?? 'ENG'
     }
 
     /**
@@ -30,7 +30,7 @@ export default class Translator {
         let temp = languages
         for (const key of path) {
             temp = temp[key]
-            if (temp === undefined) return temp
+            if (temp === undefined) return ''
         }
         return temp[this.language] || temp['ENG']
     }

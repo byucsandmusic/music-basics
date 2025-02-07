@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { LinkItem } from '../types'
+import { LinkItem } from '../models/types'
 import Dropdown from './Dropdown.vue'
 
 /**

@@ -5,7 +5,10 @@ import Translator from '../models/translator'
 export default defineComponent({
     name: 'NotFound',
     props: {
-        translator: Translator,
+        translator: {
+            type: Translator,
+            required: true,
+        },
     },
     mounted() {
         setTimeout(() => this.$router.push('/home'), 1000)

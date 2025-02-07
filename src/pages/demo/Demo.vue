@@ -1,11 +1,14 @@
 <script lang="ts">
-import Translator from '../../models/translator'
 import { defineComponent } from 'vue'
+import Translator from '../../models/translator'
 
 export default defineComponent({
     name: 'Demo',
     props: {
-        translator: Translator,
+        translator: {
+            type: Translator,
+            required: true,
+        },
     },
 })
 </script>

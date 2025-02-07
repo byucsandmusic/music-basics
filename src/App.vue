@@ -1,5 +1,4 @@
 <script lang="ts">
-import { RouterView } from 'vue-router'
 import Home from './pages/Home.vue'
 import Translator from './models/translator'
 import RouterMenu from './components/RouterMenu.vue'

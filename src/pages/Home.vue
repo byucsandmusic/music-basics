@@ -5,7 +5,10 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     name: 'Home',
     props: {
-        translator: Translator,
+        translator: {
+            type: Translator,
+            required: true,
+        },
     },
 })
 </script>

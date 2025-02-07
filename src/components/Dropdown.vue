@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { DropdownItem } from '../types'
+import { DropdownItem } from '../models/types'
 
 /**
  * This component can either be used as a normal dropdown, or for a nested menu. If used as a normal dropdown,

@@ -6,3 +6,9 @@ export interface DropdownItem {
 export interface LinkItem extends DropdownItem {
     href: string
 }
+
+export type Cursor = {
+    onStart: () => void
+    onEvent: (event: any) => void
+    onFinished: () => void
+}
