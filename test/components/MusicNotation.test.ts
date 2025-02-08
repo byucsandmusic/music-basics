@@ -85,7 +85,7 @@ describe('construct notation method', () => {
         wrapper = createWrapper(musicProp)
         const notation: string = wrapper.vm.constructNotation()
         expect(notation).toBe(
-            'V:1\nC\nw:One\nw:Three\nV:2 clef=bass\nC\nV:1\nD\nw:Two\nw:Four\nV:2 clef=bass\nD\n'
+            'V:1\nC\nw:1.~One\nw:2.~Three\nV:2 clef=bass\nC\nV:1\nD\nw:Two\nw:Four\nV:2 clef=bass\nD\n'
         )
     })
 
