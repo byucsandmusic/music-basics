@@ -48,7 +48,11 @@ export default defineComponent({
                             verse++
                         ) {
                             if (this.music.verses[verse].length > measure) {
-                                const verseCount = this.music.verses.length > 1 && measure === 0 ? `${verse + 1}.~` : ''
+                                const verseCount =
+                                    this.music.verses.length > 1 &&
+                                    measure === 0
+                                        ? `${verse + 1}.~`
+                                        : ''
                                 notation += `w:${verseCount}${this.music.verses[verse][measure]}\n`
                             }
                         }
