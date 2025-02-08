@@ -1,6 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
 import MusicNotation from '../../src/components/MusicNotation.vue'
 import { Music } from '../../src/models/music'
+import Translator from '../../src/models/translator'
 
 let wrapper
 const defaultMusicObj: Music = {
@@ -13,13 +14,15 @@ const defaultMusicObj: Music = {
     bass: ['C'],
     verses: [['Lyric']],
 }
-const defaultProps = {
-    music: defaultMusicObj,
-    displayMidiPlayer: false,
-}
 
-const createWrapper = (props = defaultProps) =>
-    shallowMount(MusicNotation, { props })
+const createWrapper = (music?: Music) =>
+    shallowMount(MusicNotation, {
+        props: {
+            music: music ?? defaultMusicObj,
+            displayMidiPlayer: false,
+            translator: new Translator(),
+        },
+    })
 
 afterAll(() => {
     if (wrapper) {
@@ -42,10 +45,7 @@ describe('construct notation method', () => {
             bass: ['C'],
             verses: [['Lyric']],
         }
-        wrapper = createWrapper({
-            music: musicProp,
-            displayMidiPlayer: false,
-        })
+        wrapper = createWrapper(musicProp)
         const notation: string = wrapper.vm.constructNotation()
         expect(notation).toBe('V:1 clef=bass\nC\nw:Lyric\n')
     })
@@ -56,10 +56,7 @@ describe('construct notation method', () => {
             bass: ['C'],
             verses: [['Lyric']],
         }
-        wrapper = createWrapper({
-            music: musicProp,
-            displayMidiPlayer: false,
-        })
+        wrapper = createWrapper(musicProp)
         const notation: string = wrapper.vm.constructNotation()
         expect(notation).toBe('V:1 clef=bass\nC\nw:Lyric\n')
     })
@@ -69,10 +66,7 @@ describe('construct notation method', () => {
             treble: ['C', 'D'],
             bass: ['C', 'D'],
         }
-        wrapper = createWrapper({
-            music: musicProp,
-            displayMidiPlayer: false,
-        })
+        wrapper = createWrapper(musicProp)
         const notation: string = wrapper.vm.constructNotation()
         expect(notation).toBe(
             'V:1\nC\nV:2 clef=bass\nC\nV:1\nD\nV:2 clef=bass\nD\n'
@@ -88,10 +82,7 @@ describe('construct notation method', () => {
                 ['Three', 'Four'],
             ],
         }
-        wrapper = createWrapper({
-            music: musicProp,
-            displayMidiPlayer: false,
-        })
+        wrapper = createWrapper(musicProp)
         const notation: string = wrapper.vm.constructNotation()
         expect(notation).toBe(
             'V:1\nC\nw:One\nw:Three\nV:2 clef=bass\nC\nV:1\nD\nw:Two\nw:Four\nV:2 clef=bass\nD\n'

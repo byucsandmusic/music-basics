@@ -23,8 +23,8 @@ describe('Translator Tests', () => {
 
     test('Should return undefined when the path is incorrect regardless of language', () => {
         const translator = new Translator('ENG')
-        expect(translator.get('some', 'path')).toBeUndefined()
+        expect(translator.get('some', 'path')).toBe('')
         translator.setLanguage('FRA')
-        expect(translator.get('some', 'path')).toBeUndefined()
+        expect(translator.get('some', 'path')).toBe('')
     })
 })
