@@ -34,6 +34,8 @@ function getCurrentTranslate(element: HTMLElement) {
 
 //TODO consider changing these to a class
 //TODO look into methods of getting touch events that work with safari
+//TODO have drag items and targets generated from data
+//TODO add callbacks for when items are dragged into targets
 interface InteractionEvent {
     offsetX: number
     offsetY: number
