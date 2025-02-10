@@ -32,58 +32,151 @@ function getCurrentTranslate(element: HTMLElement) {
     }
 }
 
-//TODO ensure that this works properly on mobile devices
+//TODO consider changing these to a class
+//TODO look into methods of getting touch events that work with safari
+interface InteractionEvent {
+    offsetX: number
+    offsetY: number
+    pageX: number
+    pageY: number
+    target: HTMLElement
+    isBeingHeld: boolean
+}
+
+function parseMouseEvent(e: MouseEvent): InteractionEvent {
+    return {
+        offsetX: e.offsetX,
+        offsetY: e.offsetY,
+        pageX: e.pageX,
+        pageY: e.pageY,
+        target: e.target as HTMLElement,
+        isBeingHeld: e.buttons % 2 == 1,
+    }
+}
+
+function parseTouchEvent(e: TouchEvent): InteractionEvent {
+    return {
+        offsetX: e.changedTouches[0].clientX,
+        offsetY: e.changedTouches[0].clientY,
+        pageX: e.changedTouches[0].pageX,
+        pageY: e.changedTouches[0].pageY,
+        target: e.target as HTMLElement,
+        isBeingHeld: true,
+    }
+}
+
+function addInputIndependentEventListener(
+    element: HTMLElement,
+    mouseEvent: string,
+    touchEvent: string,
+    handler: Function,
+    controller?: AbortController
+) {
+    element.addEventListener(
+        mouseEvent,
+        (e: MouseEvent) => {
+            handler(parseMouseEvent(e))
+        },
+        { signal: controller?.signal }
+    )
+    element.addEventListener(
+        touchEvent,
+        (e: TouchEvent) => {
+            handler(parseTouchEvent(e))
+        },
+        { signal: controller?.signal }
+    )
+}
+
 onDocReady(() => {
-    const draggables = document.querySelector('.draggables')
-    draggables.addEventListener('mousedown', (e: MouseEvent) => {
-        const startingOffsetX = e.offsetX,
-            startingOffsetY = e.offsetY
-        const draggedElement = findParentWithClass(
-            e.target as HTMLElement,
-            'draggable'
-        )
-        const currentTranslate = getCurrentTranslate(draggedElement)
-        const initX = e.pageX - currentTranslate.x,
-            initY = e.pageY - currentTranslate.y
-
-        console.log(currentTranslate)
-        draggedElement.classList.add('dragging')
-
-        function moveWithMouse(moveEvent: MouseEvent) {
-            draggedElement.style.transform = `translate(${-(initX - moveEvent.pageX)}px, ${-(initY - moveEvent.pageY)}px)`
-            const target = findParentWithClass(
-                moveEvent.target as HTMLElement,
-                'dragTarget'
-            )
-            if (target !== null)
-                draggedElement.classList.add('hovering-over-valid-target')
-            else draggedElement.classList.remove('hovering-over-valid-target')
-            if (moveEvent.buttons % 2 !== 1) mouseReleased(moveEvent)
-        }
-
-        function mouseReleased(releaseEvent: MouseEvent) {
-            const target = findParentWithClass(
-                releaseEvent.target as HTMLElement,
-                'dragTarget'
-            )
-            document.removeEventListener('mousemove', moveWithMouse)
-            draggedElement.classList.remove(
-                'dragging',
-                'hovering-over-valid-target'
-            )
-            if (target === null) {
-                //If a dragTarget was not ended on
-                draggedElement.style.transform = ''
-                return
-            } else {
-                console.log(releaseEvent)
-                draggedElement.style.transform = `translate(${-(initX - releaseEvent.pageX - startingOffsetX + releaseEvent.offsetX)}px, ${-(initY - releaseEvent.pageY - startingOffsetY + releaseEvent.offsetY)}px)`
-            }
-        }
-
-        document.addEventListener('mousemove', moveWithMouse)
-    })
+    const draggables = document.querySelector('.draggables') as HTMLElement
+    addInputIndependentEventListener(
+        draggables,
+        'mousedown',
+        'touchstart',
+        dragStart
+    )
 })
+
+function dragStart(e: InteractionEvent) {
+    //Initialize data for drag event
+    const startingOffsetX = e.offsetX,
+        startingOffsetY = e.offsetY
+    const draggedElement = findParentWithClass(
+        e.target as HTMLElement,
+        'draggable'
+    )
+    if (!draggedElement)
+        throw new Error('Dragged element has no draggable parent')
+
+    const currentTranslate = getCurrentTranslate(draggedElement)
+    const initX = e.pageX - currentTranslate.x,
+        initY = e.pageY - currentTranslate.y
+
+    //Apply dragged class
+    draggedElement.classList.add('dragging')
+    const controller = new AbortController()
+    addInputIndependentEventListener(
+        document as unknown as HTMLElement,
+        'mousemove',
+        'touchmove',
+        moveWithUser,
+        controller
+    )
+    document.addEventListener(
+        'touchend',
+        (e: TouchEvent) => {
+            let touch = e.changedTouches[0]
+            let target = document.elementFromPoint(touch.pageX, touch.pageY)
+
+            released({
+                offsetX: 0,
+                offsetY: 0,
+                pageX: touch.pageX,
+                pageY: touch.pageY,
+                target: target as HTMLElement,
+                isBeingHeld: false,
+            })
+        },
+        { once: true }
+    )
+
+    function moveWithUser(moveEvent: InteractionEvent) {
+        if (!draggedElement)
+            throw new Error('Dragged element has no draggable parent')
+        draggedElement.style.transform = `translate(${-(initX - moveEvent.pageX)}px, ${-(initY - moveEvent.pageY)}px)`
+        const target = findParentWithClass(
+            moveEvent.target as HTMLElement,
+            'dragTarget'
+        )
+        if (target !== null)
+            draggedElement.classList.add('hovering-over-valid-target')
+        else draggedElement.classList.remove('hovering-over-valid-target')
+        if (!moveEvent.isBeingHeld) released(moveEvent)
+    }
+
+    function released(releaseEvent: InteractionEvent) {
+        if (!draggedElement)
+            throw new Error('Dragged element has no draggable parent')
+        const target = findParentWithClass(
+            releaseEvent.target as HTMLElement,
+            'dragTarget'
+        )
+        controller.abort()
+
+        draggedElement.classList.remove(
+            'dragging',
+            'hovering-over-valid-target'
+        )
+        if (target === null) {
+            //If a dragTarget was not ended on
+            draggedElement.style.transform = ''
+            return
+        } else {
+            draggedElement.style.transform = `translate(${-(draggedElement.offsetLeft - target.offsetLeft)}px, ${-(draggedElement.offsetTop - target.offsetTop)}px)`
+        }
+    }
+}
 </script>
 
 <template>
