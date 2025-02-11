@@ -14,9 +14,9 @@ export default function useNestedMenuItems(translator: Translator) {
                 title: translator.get('general', 'interactive', 'title'),
             },
             {
-                id: '/demo/music-notation',
-                href: '/demo/music-notation',
-                title: translator.get('general', 'musicNotation', 'title'),
+                id: '/demo/sing-along',
+                href: '/demo/sing-along',
+                title: translator.get('general', 'singAlong', 'title'),
             },
         ],
     }

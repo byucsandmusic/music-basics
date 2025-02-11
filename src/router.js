@@ -4,7 +4,7 @@ import Home from './pages/Home.vue'
 import Demo from './pages/demo/Demo.vue'
 import Interactive from './pages/Interactive.vue'
 import ModuleHome from './pages/ModuleHome.vue'
-import MusicNotation from './components/MusicNotation.vue'
+import SingAlong from './components/SingAlong.vue'
 import NotFound from './pages/NotFound.vue'
 
 const routes = [
@@ -21,8 +21,8 @@ const routes = [
                 component: Interactive,
             },
             {
-                path: 'music-notation',
-                component: MusicNotation,
+                path: 'sing-along',
+                component: SingAlong,
                 props: {
                     music: {
                         title: 'I Am a Child of God',
@@ -55,8 +55,6 @@ const routes = [
                             ],
                         ],
                     },
-                    displayMidiPlayer: true,
-                    highlightNotes: true,
                 },
             },
         ],
