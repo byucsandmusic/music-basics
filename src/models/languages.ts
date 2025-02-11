@@ -57,5 +57,13 @@ export const languages = {
                 ENG: 'Redirecting...',
             },
         },
+        singAlong: {
+            title: {
+                ENG: 'Sing Along Activity',
+            },
+            description: {
+                ENG: "Sing along with the lyrics while matching the pitch of each note as it's played!",
+            },
+        },
     },
 }
