@@ -29,6 +29,7 @@ export default defineComponent({
         :music="music"
         :translator="translator"
         :display-midi-player="true"
+        :midi-on-top="true"
         :highlight-notes="true"
     />
 </template>
