@@ -26,11 +26,6 @@ export const languages = {
         },
     },
     general: {
-        error: {
-            midiPlayer: {
-                ENG: 'Error: Unable to load midi player',
-            },
-        },
         home: {
             ENG: 'Home',
         },
@@ -48,8 +43,10 @@ export const languages = {
                 'culpa qui officia deserunt mollit anim id est laborum.',
         },
         musicNotation: {
-            title: {
-                ENG: 'Music Notation',
+            error: {
+                midiPlayer: {
+                    ENG: 'Error: Unable to load midi player',
+                }
             },
         },
         notFound: {

@@ -141,6 +141,7 @@ export default defineComponent({
         } catch (err) {
             this.$refs.midiPlayer.innerText = this.translator.get(
                 'general',
+                'musicNotation',
                 'error',
                 'midiPlayer'
             )
