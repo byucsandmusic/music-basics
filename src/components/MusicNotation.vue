@@ -14,6 +14,7 @@ export default defineComponent({
             required: true,
         },
         displayMidiPlayer: Boolean,
+        midiOnTop: Boolean,
         highlightNotes: Boolean,
         highlightColor: String,
         translator: {
@@ -155,8 +156,14 @@ export default defineComponent({
 
 <template>
     <div class="container">
+        <div
+            v-if="midiOnTop"
+            ref="midiPlayer"
+            id="midi-player"
+        ></div>
         <div ref="notationContainer"></div>
         <div
+            v-if="!midiOnTop"
             ref="midiPlayer"
             id="midi-player"
         ></div>
