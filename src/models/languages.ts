@@ -46,7 +46,7 @@ export const languages = {
             error: {
                 midiPlayer: {
                     ENG: 'Error: Unable to load midi player',
-                }
+                },
             },
         },
         notFound: {
