@@ -9,7 +9,10 @@ import { Cursor } from '../models/types'
 export default defineComponent({
     name: 'MusicNotation',
     props: {
-        music: Object as PropType<Music>,
+        music: {
+            type: Object as PropType<Music>,
+            required: true,
+        },
         displayMidiPlayer: Boolean,
         highlightNotes: Boolean,
         highlightColor: String,
