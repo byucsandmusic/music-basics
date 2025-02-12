@@ -1,15 +1,22 @@
 <script lang="ts">
 import Translator from '../models/translator'
-import { defineComponent } from 'vue'
-import onDocReady from '../utils/domUtils'
+import { defineComponent, onMounted } from 'vue'
 
 export default defineComponent({
     name: 'DragAndDrop',
     props: {
         translator: Translator,
     },
+    mounted: () => {
+        const draggables = document.querySelector('.draggables') as HTMLElement
+        addInputIndependentEventListener(
+            draggables,
+            'mousedown',
+            'touchstart',
+            dragStart
+        )
+    },
 })
-
 function findParentWithClass(
     element: HTMLElement,
     goalClass: string
@@ -90,16 +97,6 @@ function addInputIndependentEventListener(
     )
 }
 
-onDocReady(() => {
-    const draggables = document.querySelector('.draggables') as HTMLElement
-    addInputIndependentEventListener(
-        draggables,
-        'mousedown',
-        'touchstart',
-        dragStart
-    )
-})
-
 function dragStart(e: InteractionEvent) {
     //Initialize data for drag event
     const startingOffsetX = e.offsetX,
@@ -140,9 +137,11 @@ function dragStart(e: InteractionEvent) {
                 isBeingHeld: false,
             })
         },
-        { once: true }
+        { once: true, signal: controller.signal }
     )
-
+    document.addEventListener('mouseup', (e: MouseEvent) =>
+        released(parseMouseEvent(e))
+    )
     function moveWithUser(moveEvent: InteractionEvent) {
         if (!draggedElement)
             throw new Error('Dragged element has no draggable parent')
