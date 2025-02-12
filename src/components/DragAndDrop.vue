@@ -43,6 +43,7 @@ function getCurrentTranslate(element: HTMLElement) {
 //TODO look into methods of getting touch events that work with safari
 //TODO have drag items and targets generated from data
 //TODO add callbacks for when items are dragged into targets
+//TODO make it not scroll on drag on mobile
 interface InteractionEvent {
     offsetX: number
     offsetY: number
@@ -141,7 +142,7 @@ function dragStart(e: InteractionEvent) {
     )
     document.addEventListener('mouseup', (e: MouseEvent) =>
         released(parseMouseEvent(e))
-    )
+    , {signal: controller.signal})
     function moveWithUser(moveEvent: InteractionEvent) {
         if (!draggedElement)
             throw new Error('Dragged element has no draggable parent')
