@@ -4,17 +4,17 @@ export default function useNestedMenuItems(translator: Translator) {
     return {
         demo: [
             {
-                id: 1,
+                id: '/demo/home',
                 href: '/demo/home',
                 title: translator.get('general', 'home'),
             },
             {
-                id: 2,
+                id: '/demo/interact',
                 href: '/demo/interact',
                 title: translator.get('general', 'interactive', 'title'),
             },
             {
-                id: 3,
+                id: '/demo/music-notation',
                 href: '/demo/music-notation',
                 title: translator.get('general', 'musicNotation', 'title'),
             },
