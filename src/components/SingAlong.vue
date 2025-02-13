@@ -28,9 +28,9 @@ export default defineComponent({
     <MusicNotation
         :music="music"
         :translator="translator"
-        :display-midi-player="true"
-        :midi-on-top="true"
-        :highlight-notes="true"
+        display-midi-player
+        midi-on-top
+        highlight-notes
     />
 </template>
 
