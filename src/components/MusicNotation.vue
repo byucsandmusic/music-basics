@@ -170,4 +170,15 @@ export default defineComponent({
     </div>
 </template>
 
-<style scoped></style>
+<style>
+.abcjs-inline-audio {
+    height: 100%;
+}
+
+.abcjs-inline-audio .abcjs-btn {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 0;
+}
+</style>
