@@ -15,7 +15,6 @@ export default defineComponent({
         },
         displayMidiPlayer: Boolean,
         midiOnTop: Boolean,
-        highlightNotes: Boolean,
         highlightColor: String,
         translator: {
             type: Translator,
@@ -77,7 +76,7 @@ export default defineComponent({
                 this.$refs.notationContainer,
                 this.constructNotation(),
                 {
-                    selectionColor: this.highlightColor || '#2694cf',
+                    selectionColor: '#000',
                     responsive: 'resize',
                     add_classes: true,
                 }
@@ -89,43 +88,37 @@ export default defineComponent({
                     new abcjs.synth.SynthController()
 
                 let cursor: Cursor | null = null
-                if (this.highlightNotes) {
-                    // Add Note Highlighting During Playback
-                    cursor = {
-                        onStart: () => {
-                            console.log('Playback started')
-                        },
-                        onEvent: (event: any) => {
-                            if (event && event.elements) {
-                                // Remove previous highlights
-                                document
-                                    .querySelectorAll('.abcjs-note_selected')
-                                    .forEach((el: SVGElement) => {
-                                        el.classList.remove(
-                                            'abcjs-note_selected'
-                                        )
-                                        el.style.fill = ''
-                                    })
 
-                                // Apply highlight to current note
-                                event.elements.forEach((el: SVGElement) => {
-                                    el[0].classList.add('abcjs-note_selected')
-                                    el[0].style.fill =
-                                        this.highlightColor || '#2694cf'
-                                })
-                            }
-                        },
-                        onFinished: () => {
-                            console.log('Playback finished')
+                // Add Note Highlighting During Playback
+                cursor = {
+                    onStart: () => {
+                        console.log('Playback started')
+                    },
+                    onEvent: (event: any) => {
+                        if (event && event.elements) {
+                            // Remove previous highlights
                             document
                                 .querySelectorAll('.abcjs-note_selected')
                                 .forEach((el: SVGElement) => {
                                     el.classList.remove('abcjs-note_selected')
-                                    el.style.fill = ''
                                 })
-                        },
-                    }
+
+                            // Apply highlight to current note
+                            event.elements.forEach((el: SVGElement) => {
+                                el[0].classList.add('abcjs-note_selected')
+                            })
+                        }
+                    },
+                    onFinished: () => {
+                        console.log('Playback finished')
+                        document
+                            .querySelectorAll('.abcjs-note_selected')
+                            .forEach((el: SVGElement) => {
+                                el.classList.remove('abcjs-note_selected')
+                            })
+                    },
                 }
+
                 synthControl.load('#midi-player', cursor, {
                     displayLoop: true,
                     displayRestart: true,
@@ -171,6 +164,10 @@ export default defineComponent({
 </template>
 
 <style>
+.abcjs-note_selected {
+    fill: v-bind(highlightColor);
+}
+
 .abcjs-inline-audio {
     height: 100%;
 }
