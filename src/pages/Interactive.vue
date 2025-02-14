@@ -45,33 +45,33 @@ export default defineComponent({
 
                 switch (title) {
                     case this.translator.get(...args, 'tempo'):
-                        return adjustRect(64, 64, 81, 12)
+                        return adjustRect(57, 56, 81, 12)
                     case this.translator.get(...args, 'title'):
-                        return adjustRect(35, 116, 275, 20)
+                        return adjustRect(28, 110, 282, 20)
                     case this.translator.get(...args, 'scriptures'):
-                        return adjustRect(54, 213, 82, 10)
+                        return adjustRect(48, 209, 82, 10)
                     case this.translator.get(...args, 'guitar'):
-                        return adjustRect(74, 372, 15, 13)
+                        return adjustRect(67, 372, 15, 13)
                     case this.translator.get(...args, 'introStart'):
-                        return adjustRect(82, 75, 10, 10)
+                        return adjustRect(75, 64, 10, 10)
                     case this.translator.get(...args, 'introEnd'):
-                        return adjustRect(220, 459, 10, 10)
+                        return adjustRect(214, 464, 10, 10)
                     case this.translator.get(...args, 'timeSig'):
-                        return adjustRect(94, 65, 15, 20)
+                        return adjustRect(86, 55, 13, 20)
                     case this.translator.get(...args, 'key'):
-                        return adjustRect(94, 53, 11, 20)
+                        return adjustRect(86, 43, 9, 20)
                     case this.translator.get(...args, 'verseInfo'):
-                        return adjustRect(116, 54, 25, 10)
+                        return adjustRect(110, 42, 25, 10)
                     case this.translator.get(...args, 'perform'):
-                        return adjustRect(671, 33, 166, 10)
+                        return adjustRect(671, 23, 169, 10)
                     case this.translator.get(...args, 'text'):
-                        return adjustRect(691, 33, 164, 10)
+                        return adjustRect(689, 23, 167, 10)
                     case this.translator.get(...args, 'music'):
-                        return adjustRect(701, 33, 163, 20)
+                        return adjustRect(701, 23, 166, 20)
                     case this.translator.get(...args, 'copyright'):
-                        return adjustRect(721, 34, 96, 8)
+                        return adjustRect(722, 24, 96, 8)
                     case this.translator.get(...args, 'tune'):
-                        return adjustRect(711, 198, 35, 10)
+                        return adjustRect(711, 193, 35, 10)
                     default:
                         return this.imageRect
                 }
@@ -104,7 +104,7 @@ export default defineComponent({
         ref="image"
     >
         <img
-            src="/src/assets/hymns/HeIsBornTheChristChild.png"
+            src="/src/assets/hymns/HeIsBornTheDivineChristChild.jpeg"
             alt="hymn"
             class="image"
         />
