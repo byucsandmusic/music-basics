@@ -23,33 +23,31 @@ export default defineComponent({
         Draggable,
         DragTarget,
     },
+    //todo prevent multiple draggables in one target
     data() {
         return {
-            correctness: {},
+            buckets: {
+                eighth: null,
+                quarter: null,
+                half: null,
+                whole: null,
+            },
         }
     },
     methods: {
         //todo clean up this logic and look into having props generate draggables and targets, as well as the logic to handle them.
         handleRelease(e: DragReleaseEvent) {
-            const acceptable = [
-                'eighth-draggable,eighth-target',
-                'quarter-draggable,quarter-target',
-                'half-draggable,half-target',
-                'whole-draggable,whole-target',
-            ]
-            if (e.dest == null) {
-                this.correctness = CorrectnessValues.NOT_ANSWERED
-                return
+            console.log(this.buckets)
+
+            let priorBucket: string | null = null
+            for (const [key, val] of Object.entries(this.buckets)) {
+                if (val == e.source.split('-')[0]) priorBucket = key
             }
 
-            let len = e.dest.split('-')[0]
-            if (acceptable.includes(e.source + ',' + e.dest)) {
-                console.log('valid combo')
-                this.correctness[len] = CorrectnessValues.TRUE
-            } else {
-                console.log('invalid combo')
-                this.correctness[len] = CorrectnessValues.FALSE
-            }
+            if (priorBucket != null) this.buckets[priorBucket] = null
+            if (e.dest == null) return
+            this.buckets[e.dest.split('-')[0]] = e.source.split('-')[0]
+            console.log(this.buckets)
         },
     },
 })
@@ -80,8 +78,10 @@ export default defineComponent({
             >
                 <span
                     :class="{
-                        isCorrect: correctness[len] == 1,
-                        isIncorrect: correctness[len] == 0,
+                        //todo clean this up
+                        isCorrect: buckets[len] == len && buckets[len] != null,
+                        isIncorrect:
+                            buckets[len] != len && buckets[len] != null,
                     }"
                     class="correctnessIndicator"
                 ></span>

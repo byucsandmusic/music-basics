@@ -4,6 +4,6 @@
         "types": ["vitest/globals"],
         "strictNullChecks": true,
         "target": "es2022",
-        "lib": ["es6", "dom", "es2016"]
+        "lib": ["es6", "dom", "es2017"]
     }
 }
