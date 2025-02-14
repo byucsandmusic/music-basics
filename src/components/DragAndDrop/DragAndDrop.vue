@@ -1,20 +1,14 @@
 <script lang="ts">
 import Translator from '../../models/translator'
-import { defineComponent, ref, useTemplateRef } from 'vue'
+import { defineComponent, useTemplateRef } from 'vue'
 //TODO add callbacks for when items are dragged into targets
-let config
+//TODO see if you can set the selectors to look for drag components instead of classes to avoid polluting the class namespace
 let el
+let emitEvent
 
-export interface DraggableItem {
-    content: string
-    label: string
-    id: string
-}
-
-export interface DragAction {
+export interface DragReleaseEvent {
     source: string
-    dest: string
-    callback: () => void
+    dest: string | null
 }
 
 interface InteractionEvent {
@@ -30,8 +24,9 @@ export default defineComponent({
     props: {
         translator: Translator,
     },
-    setup: () => {
+    setup: (props, { emit }) => {
         el = useTemplateRef('el')
+        emitEvent = emit
     },
     mounted: () => {
         addInputIndependentEventListener(
@@ -41,27 +36,9 @@ export default defineComponent({
             dragStart
         )
     },
-    data: () => {
-        config = {
-            callback: (source: string, dest: string) => {
-                return handleDrag(source, dest, [])
-            },
-        }
-        return config
-    },
-})
 
-// This may slow down with huge amounts of targets and sources, but I don't anticipate needing to fix this
-function handleDrag(source: string, dest: string, actions: DragAction[]) {
-    console.log(source, dest)
-    for (let action of actions) {
-        if (action.source == source && action.dest == dest) {
-            action.callback()
-            return true
-        }
-    }
-    return false
-}
+    emits: ['dragReleased'],
+})
 
 function findParentWithClass(
     element: HTMLElement,
@@ -188,6 +165,7 @@ function dragStart(e: InteractionEvent) {
     function moveWithUser(moveEvent: InteractionEvent) {
         if (!draggedElement)
             throw new Error('Dragged element has no draggable parent')
+        window.getSelection()?.removeAllRanges()
         draggedElement.style.transform = `translate(${-(initX - moveEvent.pageX)}px, ${-(initY - moveEvent.pageY)}px)`
         const target = findParentWithClass(
             moveEvent.target as HTMLElement,
@@ -216,10 +194,16 @@ function dragStart(e: InteractionEvent) {
         if (target === null) {
             //If a dragTarget was not ended on
             draggedElement.style.transform = ''
-            return
+            emitEvent('dragReleased', {
+                source: draggedElement.id,
+                dest: null,
+            } as DragReleaseEvent)
         } else {
             draggedElement.style.transform = `translate(${-(draggedElement.offsetLeft - target.offsetLeft)}px, ${-(draggedElement.offsetTop - target.offsetTop)}px)`
-            config.callback(draggedElement.id, target.id)
+            emitEvent('dragReleased', {
+                source: draggedElement.id,
+                dest: target.id,
+            } as DragReleaseEvent)
         }
     }
 }
@@ -274,5 +258,4 @@ section
     width: 100px
     height: 100px
     outline: 1px solid black
-    background-color: #b0bec5
 </style>
