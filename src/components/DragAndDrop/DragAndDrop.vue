@@ -1,22 +1,68 @@
 <script lang="ts">
-import Translator from '../models/translator'
-import { defineComponent, onMounted } from 'vue'
+import Translator from '../../models/translator'
+import { defineComponent, ref, useTemplateRef } from 'vue'
+//TODO add callbacks for when items are dragged into targets
+let config
+let el
 
+export interface DraggableItem {
+    content: string
+    label: string
+    id: string
+}
+
+export interface DragAction {
+    source: string
+    dest: string
+    callback: () => void
+}
+
+interface InteractionEvent {
+    offsetX: number
+    offsetY: number
+    pageX: number
+    pageY: number
+    target: HTMLElement
+    isBeingHeld: boolean
+}
 export default defineComponent({
     name: 'DragAndDrop',
     props: {
         translator: Translator,
     },
+    setup: () => {
+        el = useTemplateRef('el')
+    },
     mounted: () => {
-        const draggables = document.querySelector('.draggables') as HTMLElement
         addInputIndependentEventListener(
-            draggables,
+            el.value,
             'mousedown',
             'touchstart',
             dragStart
         )
     },
+    data: () => {
+        config = {
+            callback: (source: string, dest: string) => {
+                return handleDrag(source, dest, [])
+            },
+        }
+        return config
+    },
 })
+
+// This may slow down with huge amounts of targets and sources, but I don't anticipate needing to fix this
+function handleDrag(source: string, dest: string, actions: DragAction[]) {
+    console.log(source, dest)
+    for (let action of actions) {
+        if (action.source == source && action.dest == dest) {
+            action.callback()
+            return true
+        }
+    }
+    return false
+}
+
 function findParentWithClass(
     element: HTMLElement,
     goalClass: string
@@ -39,17 +85,7 @@ function getCurrentTranslate(element: HTMLElement) {
     }
 }
 
-//TODO have drag items and targets generated from data
-//TODO add callbacks for when items are dragged into targets
-interface InteractionEvent {
-    offsetX: number
-    offsetY: number
-    pageX: number
-    pageY: number
-    target: HTMLElement
-    isBeingHeld: boolean
-}
-
+//Parses a mouse event into the InteractionEvent interface
 function parseMouseEvent(e: MouseEvent): InteractionEvent {
     return {
         offsetX: e.offsetX,
@@ -61,6 +97,7 @@ function parseMouseEvent(e: MouseEvent): InteractionEvent {
     }
 }
 
+//Parses a touch event into the InteractionEvent interface
 function parseTouchEvent(e: TouchEvent): InteractionEvent {
     return {
         offsetX: e.changedTouches[0].clientX,
@@ -72,6 +109,7 @@ function parseTouchEvent(e: TouchEvent): InteractionEvent {
     }
 }
 
+//Adds an event listener for a mouse and touch event
 function addInputIndependentEventListener(
     element: HTMLElement,
     mouseEvent: string,
@@ -97,8 +135,6 @@ function addInputIndependentEventListener(
 
 function dragStart(e: InteractionEvent) {
     //Initialize data for drag event
-    const startingOffsetX = e.offsetX,
-        startingOffsetY = e.offsetY
     const draggedElement = findParentWithClass(
         e.target as HTMLElement,
         'draggable'
@@ -111,7 +147,11 @@ function dragStart(e: InteractionEvent) {
 
     //Apply dragged class
     draggedElement.classList.add('dragging')
+
+    //Create controller to cancel unneeded event listeners
     const controller = new AbortController()
+
+    //Handle mouse or finger move inputs, putting them into moveWithUser
     addInputIndependentEventListener(
         document as unknown as HTMLElement,
         'mousemove',
@@ -119,6 +159,8 @@ function dragStart(e: InteractionEvent) {
         moveWithUser,
         controller
     )
+
+    //Handle mouse / finger being lifted
     document.addEventListener(
         'touchend',
         (e: TouchEvent) => {
@@ -141,6 +183,8 @@ function dragStart(e: InteractionEvent) {
         (e: MouseEvent) => released(parseMouseEvent(e)),
         { signal: controller.signal }
     )
+
+    //Move the dragged element with the user's finger / cursor
     function moveWithUser(moveEvent: InteractionEvent) {
         if (!draggedElement)
             throw new Error('Dragged element has no draggable parent')
@@ -155,6 +199,7 @@ function dragStart(e: InteractionEvent) {
         if (!moveEvent.isBeingHeld) released(moveEvent)
     }
 
+    //Align element to its new position and trigger callbacks when it is released
     function released(releaseEvent: InteractionEvent) {
         if (!draggedElement)
             throw new Error('Dragged element has no draggable parent')
@@ -174,42 +219,38 @@ function dragStart(e: InteractionEvent) {
             return
         } else {
             draggedElement.style.transform = `translate(${-(draggedElement.offsetLeft - target.offsetLeft)}px, ${-(draggedElement.offsetTop - target.offsetTop)}px)`
+            config.callback(draggedElement.id, target.id)
         }
     }
 }
 </script>
 
 <template>
-    <section>
-        <div class="draggables">
-            <span class="draggable">
-                This is draggable <img src="https://picsum.photos/200" />
-            </span>
-            <span class="draggable">
-                This, too is draggable <img src="https://picsum.photos/200" />
-            </span>
-        </div>
-        <div class="targets">
-            <span class="dragTarget"></span>
-            <span class="dragTarget"></span>
-        </div>
+    <section ref="el">
+        <slot></slot>
     </section>
 </template>
 
-<style lang="sass" scoped>
+<style lang="sass">
+//todo eventually, you may wish to make this scoped and bring some styles to the child components
 section
     color: black
     background-color: white
     padding: 10px
+    display: flex
+    flex-flow: column nowrap
 
 .dragging
     pointer-events: none
     transition: opacity 0.2s !important
+    z-index: 100 !important
 
 .hovering-over-valid-target
     opacity: 0.5
 
 .draggable
+    z-index: 0
+    position: relative
     display: inline-block
     border-radius: 10px
     padding: 10px
@@ -217,11 +258,16 @@ section
     background-color: white
     transform: translate(0px, 0px)
     user-select: none
-    transition: transform 0.2s, opacity 0.2s
+    transition: transform 0.2s, opacity 0.2s, z-index 0.2s
     touch-action: none
+    width: 100px
+    height: 100px
     *
         touch-action: none
-        pointer-events: none
+
+.labeledItem
+    display: inline-flex
+    flex-flow: column
 
 .dragTarget
     display: block

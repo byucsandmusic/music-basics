@@ -37,7 +37,7 @@ const routes = [
             },
             {
                 path: 'drag-and-drop',
-                component: DragAndDrop,
+                component: DragAndDropDemo,
             },
         ],
     },

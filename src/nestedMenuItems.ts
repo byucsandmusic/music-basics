@@ -25,7 +25,7 @@ export default function useNestedMenuItems(translator: Translator) {
                 title: translator.get('general', 'tapAlong', 'title'),
             },
             {
-                id: 4,
+                id: '/demo/drag-and-drop',
                 href: '/demo/drag-and-drop',
                 title: translator.get('general', 'dragAndDrop', 'title'),
             },
