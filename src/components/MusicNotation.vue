@@ -76,14 +76,8 @@ export default defineComponent({
             }
             return notation
         },
-        clickListener(
-            abcElem,
-            tuneNumber,
-            classes,
-            analysis,
-            drag,
-            mouseEvent
-        ) {
+        clickListener(abcElem) {
+            console.log(typeof abcElem)
             if (this.midiBuffer && this.synthControl) {
                 this.midiBuffer.seek(abcElem?.currentTrackMilliseconds)
 
