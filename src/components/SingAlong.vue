@@ -28,7 +28,7 @@ export default defineComponent({
     <MusicNotation
         :music="music"
         :translator="translator"
-        :highlightColor="'#ff9d00'"
+        highlightColor="#ff9d00"
         display-midi-player
         midi-on-top
     />
