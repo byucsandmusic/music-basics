@@ -163,19 +163,16 @@ export default defineComponent({
     </div>
 </template>
 
-<style>
-.abcjs-note_selected {
-    fill: v-bind(highlightColor);
-}
+<style lang="sass">
+.abcjs-note_selected
+    fill: v-bind(highlightColor)
 
-.abcjs-inline-audio {
-    height: 100%;
-}
+.abcjs-inline-audio
+    height: 100%
 
-.abcjs-inline-audio .abcjs-btn {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin-bottom: 0;
-}
+.abcjs-inline-audio .abcjs-btn
+    display: flex
+    align-items: center
+    height: 100%
+    margin-bottom: 0
 </style>
