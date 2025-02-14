@@ -7,12 +7,6 @@ import DragAndDrop, {
 import Draggable from '../../components/DragAndDrop/Draggable.vue'
 import DragTarget from '../../components/DragAndDrop/DragTarget.vue'
 
-const CorrectnessValues = {
-    FALSE: 0,
-    TRUE: 1,
-    NOT_ANSWERED: 2,
-}
-
 export default defineComponent({
     name: 'DragAndDropDemo',
     props: {
