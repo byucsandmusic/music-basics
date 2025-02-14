@@ -9,6 +9,61 @@ export const languages = {
         title: {
             ENG: 'Basics',
         },
+        interactive: {
+            title: {
+                ENG: 'Interactive Page',
+            },
+            tooltips: {
+                list: {
+                    ENG:
+                        'Title/Tempo range/Scriptures/Guitar chords/Introduction brackets (start)/Introduction brackets (end)/' +
+                        'Time signature/Key signature/Verse or refrain information/Performance notes/Text credits/' +
+                        'Music credits/Copyright information/Tune name',
+                },
+                title: {
+                    ENG: 'Title',
+                },
+                tempo: {
+                    ENG: 'Tempo range',
+                },
+                scriptures: {
+                    ENG: 'Scriptures',
+                },
+                guitar: {
+                    ENG: 'Guitar chords',
+                },
+                introStart: {
+                    ENG: 'Introduction brackets (start)',
+                },
+                introEnd: {
+                    ENG: 'Introduction brackets (end)',
+                },
+                timeSig: {
+                    ENG: 'Time signature',
+                },
+                key: {
+                    ENG: 'Key signature',
+                },
+                verseInfo: {
+                    ENG: 'Verse or refrain information',
+                },
+                perform: {
+                    ENG: 'Performance notes',
+                },
+                text: {
+                    ENG: 'Text credits',
+                },
+                music: {
+                    ENG: 'Music credits',
+                },
+                copyright: {
+                    ENG: 'Copyright information',
+                },
+                tune: {
+                    ENG: 'Tune name',
+                },
+            },
+        },
     },
     module2: {
         title: {
@@ -28,11 +83,6 @@ export const languages = {
     general: {
         home: {
             ENG: 'Home',
-        },
-        interactive: {
-            title: {
-                ENG: 'Interactive Page',
-            },
         },
         dragAndDrop: {
             title: {

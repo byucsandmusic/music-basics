@@ -12,3 +12,12 @@ export type Cursor = {
     onEvent: (event: any) => void
     onFinished: () => void
 }
+
+export interface BoundingRect {
+    top: number
+    bottom?: number
+    left: number
+    right?: number
+    width?: number
+    height?: number
+}
