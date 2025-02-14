@@ -76,7 +76,7 @@ export default defineComponent({
                 this.$refs.notationContainer,
                 this.constructNotation(),
                 {
-                    selectionColor: '#000',
+                    selectionColor: this.highlightColor,
                     responsive: 'resize',
                     add_classes: true,
                 }
@@ -101,6 +101,7 @@ export default defineComponent({
                                 .querySelectorAll('.abcjs-note_selected')
                                 .forEach((el: SVGElement) => {
                                     el.classList.remove('abcjs-note_selected')
+                                    el.removeAttribute('fill')
                                 })
 
                             // Apply highlight to current note
@@ -115,6 +116,7 @@ export default defineComponent({
                             .querySelectorAll('.abcjs-note_selected')
                             .forEach((el: SVGElement) => {
                                 el.classList.remove('abcjs-note_selected')
+                                el.removeAttribute('fill')
                             })
                     },
                 }
