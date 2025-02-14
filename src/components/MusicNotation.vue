@@ -13,6 +13,7 @@ export default defineComponent({
             type: Object as PropType<Music>,
             required: true,
         },
+        clickToPlay: Boolean,
         displayMidiPlayer: Boolean,
         midiOnTop: Boolean,
         highlightColor: String,
@@ -20,6 +21,12 @@ export default defineComponent({
             type: Translator,
             required: true,
         },
+    },
+    data() {
+        return {
+            midiBuffer: undefined as abcjs.MidiBuffer | undefined,
+            synthControl: undefined as abcjs.SynthObjectController | undefined,
+        }
     },
     methods: {
         constructNotation() {
@@ -69,6 +76,36 @@ export default defineComponent({
             }
             return notation
         },
+        clickListener(
+            abcElem,
+            tuneNumber,
+            classes,
+            analysis,
+            drag,
+            mouseEvent
+        ) {
+            if (this.midiBuffer && this.synthControl) {
+                this.midiBuffer.seek(abcElem?.currentTrackMilliseconds)
+
+                if (this.clickToPlay) {
+                    const lastClicked = abcElem.midiPitches
+                    if (!lastClicked) return
+    
+                    abcjs.synth
+                        .playEvent(
+                            lastClicked,
+                            abcElem.midiGraceNotePitches,
+                            this.synthControl.visualObj.millisecondsPerMeasure()
+                        )
+                        .then(function (response) {
+                            console.log('note played')
+                        })
+                        .catch(function (error) {
+                            console.log('error playing note', error)
+                        })
+                }
+            }
+        },
     },
     mounted() {
         try {
@@ -79,12 +116,13 @@ export default defineComponent({
                     selectionColor: this.highlightColor,
                     responsive: 'resize',
                     add_classes: true,
+                    clickListener: this.clickListener,
                 }
             )
 
             if (this.displayMidiPlayer && tuneArray.length > 0) {
                 const visualObj: abcjs.TuneObject = tuneArray[0]
-                const synthControl: abcjs.SynthObjectController =
+                this.synthControl =
                     new abcjs.synth.SynthController()
 
                 let cursor: Cursor | null = null
@@ -121,20 +159,19 @@ export default defineComponent({
                     },
                 }
 
-                synthControl.load('#midi-player', cursor, {
+                this.synthControl.load('#midi-player', cursor, {
                     displayLoop: true,
                     displayRestart: true,
                     displayPlay: true,
                     displayProgress: true,
                 })
-                const midiBuffer: abcjs.MidiBuffer =
-                    new abcjs.synth.CreateSynth()
-                midiBuffer
+                this.midiBuffer = new abcjs.synth.CreateSynth()
+                this.midiBuffer
                     .init({
                         visualObj,
                     })
                     .then(() => {
-                        if (visualObj) synthControl.setTune(visualObj, false)
+                        if (visualObj) this.synthControl.setTune(visualObj, false)
                     })
             }
         } catch (err) {

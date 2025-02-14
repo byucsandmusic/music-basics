@@ -29,6 +29,7 @@ export default defineComponent({
         :music="music"
         :translator="translator"
         highlightColor="#ff9d00"
+        click-to-play
         display-midi-player
         midi-on-top
     />
