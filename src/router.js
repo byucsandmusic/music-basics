@@ -6,7 +6,7 @@ import Interactive from './pages/Interactive.vue'
 import ModuleHome from './pages/ModuleHome.vue'
 import SingAlong from './components/SingAlong.vue'
 import NotFound from './pages/NotFound.vue'
-
+import TapAlong from './components/TapAlong.vue'
 import { songs } from './models/songs.ts'
 
 const routes = [
@@ -28,6 +28,10 @@ const routes = [
                 props: {
                     music: songs.i_am_a_child_of_god,
                 },
+            },
+            {
+                path: 'tap-along',
+                component: TapAlong,
             },
         ],
     },

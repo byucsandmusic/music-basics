@@ -65,5 +65,53 @@ export const languages = {
                 ENG: "Sing along with the lyrics while matching the pitch of each note as it's played!",
             },
         },
+        tapAlong: {
+            title: {
+                ENG: 'Tap Along',
+            },
+            play: {
+                ENG: 'Play',
+            },
+            reset: {
+                ENG: 'Reset',
+            },
+            instructions: {
+                intro: {
+                    ENG: 'Click PLAY to begin!',
+                },
+                beat: {
+                    ENG: 'Here is the beat... ',
+                },
+                rhythm: {
+                    ENG: 'Now listen to the rhythm',
+                },
+                prep: {
+                    ENG: 'Your turn after 4... ',
+                },
+                go: {
+                    ENG: 'Go!',
+                },
+                succeeded: {
+                    ENG: 'Nice job!',
+                },
+                almost: {
+                    ENG: 'So close, try again!',
+                },
+                failed: {
+                    ENG: 'Not quite, try again!',
+                },
+            },
+            input: {
+                instructions: {
+                    ENG: 'Enter Rhythm (comma-separated and equal to 4 beats):',
+                },
+                enter: {
+                    ENG: 'Enter',
+                },
+                errorMessage: {
+                    ENG: 'Make sure the rhythm adds up to 4 beats!',
+                },
+            },
+        },
     },
 }

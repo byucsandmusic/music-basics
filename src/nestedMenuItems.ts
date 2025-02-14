@@ -18,6 +18,11 @@ export default function useNestedMenuItems(translator: Translator) {
                 href: '/demo/sing-along',
                 title: translator.get('general', 'singAlong', 'title'),
             },
+            {
+                id: '/demo/tap-along',
+                href: '/demo/tap-along',
+                title: translator.get('general', 'tapAlong', 'title'),
+            },
         ],
     }
 }
