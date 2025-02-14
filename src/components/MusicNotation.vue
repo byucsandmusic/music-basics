@@ -90,7 +90,7 @@ export default defineComponent({
                 if (this.clickToPlay) {
                     const lastClicked = abcElem.midiPitches
                     if (!lastClicked) return
-    
+
                     abcjs.synth
                         .playEvent(
                             lastClicked,
@@ -122,8 +122,7 @@ export default defineComponent({
 
             if (this.displayMidiPlayer && tuneArray.length > 0) {
                 const visualObj: abcjs.TuneObject = tuneArray[0]
-                this.synthControl =
-                    new abcjs.synth.SynthController()
+                this.synthControl = new abcjs.synth.SynthController()
 
                 let cursor: Cursor | null = null
 
@@ -171,7 +170,8 @@ export default defineComponent({
                         visualObj,
                     })
                     .then(() => {
-                        if (visualObj) this.synthControl.setTune(visualObj, false)
+                        if (visualObj)
+                            this.synthControl.setTune(visualObj, false)
                     })
             }
         } catch (err) {
