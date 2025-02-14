@@ -12,7 +12,7 @@ export default function useNestedMenuItems(translator: Translator) {
             {
                 id: '/demo/interact',
                 href: '/demo/interact',
-                title: translator.get('general', 'interactive', 'title'),
+                title: translator.get('module1', 'interactive', 'title'),
             },
             {
                 id: '/demo/sing-along',
