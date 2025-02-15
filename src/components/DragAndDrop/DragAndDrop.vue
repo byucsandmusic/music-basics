@@ -136,7 +136,7 @@ function dragStart(e: InteractionEvent) {
         moveWithUser,
         controller
     )
-
+    //todo move items on screen resize as necessary
     //Handle mouse / finger being lifted
     document.addEventListener(
         'touchend',
