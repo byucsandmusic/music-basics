@@ -7,6 +7,7 @@ import ModuleHome from './pages/ModuleHome.vue'
 import SingAlong from './components/SingAlong.vue'
 import NotFound from './pages/NotFound.vue'
 import DragAndDropDemo from './pages/demo/DragAndDropDemo.vue'
+import TapAlong from './components/TapAlong.vue'
 import { songs } from './models/songs.ts'
 
 const routes = [
