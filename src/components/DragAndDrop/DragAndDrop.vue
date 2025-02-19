@@ -20,6 +20,17 @@ interface InteractionEvent {
     isBeingHeld: boolean
 }
 
+/**
+ * usage:
+ *     This component can take children. Of its descendants, those that are the component types Draggable and DragTarget have special behavior. Draggables can be dragged into drag targets.
+ *     To set what happens when a drag event happens, use the onRelease prop.
+ *     To set what draggables can be put into what drag targets, use the validBucket prop.
+ * props:
+ *     onRelease: a function taking from and to strings and the state being a map with all previously used targets as keys, with their currently held draggables as values
+ *     validBucket: a function taking from and to strings, and returning a boolean representing the validity of the source, target pair
+ *
+ *     Both of these props are optional, with the default behavior accepting all source, target pairs and doing nothing on release.
+ */
 export default defineComponent({
     name: 'DragAndDrop',
     props: {
