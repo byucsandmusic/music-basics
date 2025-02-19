@@ -1,10 +1,10 @@
 <script lang="ts">
 import Translator from '../../models/translator'
-import { defineComponent, useTemplateRef } from 'vue'
+import { defineComponent, useTemplateRef, PropType } from 'vue'
 //TODO add callbacks for when items are dragged into targets
 //TODO see if you can set the selectors to look for drag components instead of classes to avoid polluting the class namespace
-let el
-let emitEvent
+let el, onRelease, validBucket
+const buckets = new Map<string, string | null>()
 
 export interface DragReleaseEvent {
     source: string
@@ -19,14 +19,37 @@ interface InteractionEvent {
     target: HTMLElement
     isBeingHeld: boolean
 }
+
 export default defineComponent({
     name: 'DragAndDrop',
     props: {
-        translator: Translator,
+        translator: { type: Translator },
+        onRelease: {
+            type: Function as PropType<
+                (
+                    from: string,
+                    to: string | null,
+                    state: Map<string, string | null>
+                ) => void
+            >,
+            default: () => {},
+        },
+        validBucket: {
+            type: Function as PropType<(from: string, to: string) => boolean>,
+            default: () => {
+                return true
+            },
+        },
     },
-    setup: (props, { emit }) => {
+    data() {
+        return {
+            buckets: buckets,
+        }
+    },
+    setup: (props) => {
         el = useTemplateRef('el')
-        emitEvent = emit
+        onRelease = props.onRelease
+        validBucket = props.validBucket
     },
     mounted: () => {
         addInputIndependentEventListener(
@@ -191,19 +214,39 @@ function dragStart(e: InteractionEvent) {
             'dragging',
             'hovering-over-valid-target'
         )
+        function getBucket(id: string) {
+            let prior: string | null = null
+            for (let [key, val] of buckets.entries()) {
+                if (val == draggedElement?.id) {
+                    prior = key
+                    break
+                }
+            }
+            return prior
+        }
+        function invalidRelease() {
+            draggedElement!.style.transform = ''
+            const prior = getBucket(draggedElement!.id)
+            if (prior) buckets.set(prior, null)
+            onRelease(draggedElement!.id, null, new Map(buckets))
+        }
         if (target === null) {
             //If a dragTarget was not ended on
-            draggedElement.style.transform = ''
-            emitEvent('dragReleased', {
-                source: draggedElement.id,
-                dest: null,
-            } as DragReleaseEvent)
+            invalidRelease()
+            onRelease(draggedElement!.id, null, new Map(buckets))
         } else {
-            draggedElement.style.transform = `translate(${-(draggedElement.offsetLeft - target.offsetLeft)}px, ${-(draggedElement.offsetTop - target.offsetTop)}px)`
-            emitEvent('dragReleased', {
-                source: draggedElement.id,
-                dest: target.id,
-            } as DragReleaseEvent)
+            if (
+                validBucket(draggedElement.id, target.id) &&
+                !buckets.get(target.id)
+            ) {
+                draggedElement.style.transform = `translate(${-(draggedElement.offsetLeft - target.offsetLeft)}px, ${-(draggedElement.offsetTop - target.offsetTop)}px)`
+                const prior = getBucket(draggedElement!.id)
+                if (prior) buckets.set(prior, null)
+                buckets.set(target!.id, draggedElement!.id)
+                onRelease(draggedElement.id, target.id, new Map(buckets))
+            } else {
+                invalidRelease()
+            }
         }
     }
 }

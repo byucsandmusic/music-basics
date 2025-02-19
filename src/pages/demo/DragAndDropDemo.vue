@@ -1,11 +1,9 @@
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 import Translator from '../../models/translator'
-import DragAndDrop, {
-    DragReleaseEvent,
-} from '../../components/DragAndDrop/DragAndDrop.vue'
 import Draggable from '../../components/DragAndDrop/Draggable.vue'
 import DragTarget from '../../components/DragAndDrop/DragTarget.vue'
+import DragAndDrop from '../../components/DragAndDrop/DragAndDrop.vue'
 
 export default defineComponent({
     name: 'DragAndDropDemo',
@@ -17,38 +15,25 @@ export default defineComponent({
         Draggable,
         DragTarget,
     },
-    //todo prevent multiple draggables in one target
     data() {
-        return {
-            buckets: {
-                eighth: null,
-                quarter: null,
-                half: null,
-                whole: null,
-            },
-        }
+        return { buckets: new Map() }
     },
     methods: {
-        //todo clean up this logic and look into having props generate draggables and targets, as well as the logic to handle them.
-        handleRelease(e: DragReleaseEvent) {
-            console.log(this.buckets)
-
-            let priorBucket: string | null = null
-            for (const [key, val] of Object.entries(this.buckets)) {
-                if (val == e.source.split('-')[0]) priorBucket = key
-            }
-
-            if (priorBucket != null) this.buckets[priorBucket] = null
-            if (e.dest == null) return
-            this.buckets[e.dest.split('-')[0]] = e.source.split('-')[0]
-            console.log(this.buckets)
+        onRelease(from, to, state) {
+            this.buckets = state
+        },
+        validBucket(from, to) {
+            return to.includes(from.split('-')[0])
         },
     },
 })
 </script>
 
 <template>
-    <DragAndDrop @dragReleased="handleRelease">
+    <DragAndDrop
+        :onRelease="onRelease"
+        :validBucket="validBucket"
+    >
         Move items into the correct spots!
         <div class="draggables">
             <Draggable id="eighth-draggable">
@@ -72,10 +57,8 @@ export default defineComponent({
             >
                 <span
                     :class="{
-                        //todo clean this up
-                        isCorrect: buckets[len] == len && buckets[len] != null,
-                        isIncorrect:
-                            buckets[len] != len && buckets[len] != null,
+                        // //todo clean this up
+                        isCorrect: buckets.get(len + '-target'),
                     }"
                     class="correctnessIndicator"
                 ></span>
