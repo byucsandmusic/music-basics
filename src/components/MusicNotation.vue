@@ -13,10 +13,26 @@ export default defineComponent({
             type: Object as PropType<Music>,
             required: true,
         },
-        clickToPlay: Boolean,
-        displayMidiPlayer: Boolean,
-        midiOnTop: Boolean,
-        highlightColor: String,
+        clickToPlay: {
+            type: Boolean,
+            default: false,
+        },
+        displaySheetMusic: {
+            type: Boolean,
+            default: true,
+        },
+        displayMidiPlayer: {
+            type: Boolean,
+            default: false,
+        },
+        midiOnTop: {
+            type: Boolean,
+            default: false,
+        },
+        highlightColor: {
+            type: String,
+            default: '#ff9d00',
+        },
         translator: {
             type: Translator,
             required: true,
@@ -187,7 +203,7 @@ export default defineComponent({
             ref="midiPlayer"
             id="midi-player"
         ></div>
-        <div ref="notationContainer"></div>
+        <div :hidden="!displaySheetMusic" ref="notationContainer"></div>
         <div
             v-if="!midiOnTop"
             ref="midiPlayer"
