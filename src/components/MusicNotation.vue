@@ -203,7 +203,10 @@ export default defineComponent({
             ref="midiPlayer"
             id="midi-player"
         ></div>
-        <div :hidden="!displaySheetMusic" ref="notationContainer"></div>
+        <div
+            :hidden="!displaySheetMusic"
+            ref="notationContainer"
+        ></div>
         <div
             v-if="!midiOnTop"
             ref="midiPlayer"
