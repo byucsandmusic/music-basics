@@ -27,9 +27,9 @@ export default defineComponent({
                 }))
 
             items[3]['link'] =
-                'https://www.churchofjesuschrist.org/study/scriptures/nt/luke/2?lang=eng&id=p6-p14#p6'
-            items[4]['link'] =
                 'https://www.churchofjesuschrist.org/study/scriptures/ot/isa/9?lang=eng&id=p6#p6'
+            items[4]['link'] =
+                'https://www.churchofjesuschrist.org/study/scriptures/nt/luke/2?lang=eng&id=p6-p14#p6'
 
             return items
         },
