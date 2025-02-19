@@ -16,51 +16,103 @@ export const languages = {
             tooltips: {
                 list: {
                     ENG:
-                        'Title/Tempo range/Scriptures/Guitar chords/Introduction brackets (start)/Introduction brackets (end)/' +
-                        'Time signature/Key signature/Verse or refrain information/Performance notes/Text credits/' +
-                        'Music credits/Copyright information/Tune name',
+                        'title/tempo/guitar/isaiah/john/introStart/introEnd/timeSig/key/' +
+                        'verseInfo/perform/text/music/copyright/tune/fermata/toRefrain/' +
+                        'slur/treble/bass',
                 },
                 title: {
-                    ENG: 'Title',
+                    title: {
+                        ENG: 'Title',
+                    },
                 },
                 tempo: {
-                    ENG: 'Tempo range',
-                },
-                scriptures: {
-                    ENG: 'Scriptures',
+                    title: {
+                        ENG: 'Tempo range',
+                    },
                 },
                 guitar: {
-                    ENG: 'Guitar chords',
+                    title: {
+                        ENG: 'Guitar chords',
+                    },
+                },
+                isaiah: {
+                    title: {
+                        ENG: 'Isaiah 9:6',
+                    },
+                },
+                john: {
+                    title: {
+                        ENG: 'John 2:6-14',
+                    },
                 },
                 introStart: {
-                    ENG: 'Introduction brackets (start)',
+                    title: {
+                        ENG: 'Introduction brackets (start)',
+                    },
                 },
                 introEnd: {
-                    ENG: 'Introduction brackets (end)',
+                    title: {
+                        ENG: 'Introduction brackets (end)',
+                    },
                 },
                 timeSig: {
-                    ENG: 'Time signature',
+                    title: {
+                        ENG: 'Time signature',
+                    },
                 },
                 key: {
-                    ENG: 'Key signature',
+                    title: {
+                        ENG: 'Key signature',
+                    },
                 },
                 verseInfo: {
-                    ENG: 'Verse or refrain information',
+                    title: {
+                        ENG: 'Verse or refrain information',
+                    },
                 },
                 perform: {
-                    ENG: 'Performance notes',
+                    title: {
+                        ENG: 'Performance notes',
+                    },
                 },
                 text: {
-                    ENG: 'Text credits',
+                    title: {
+                        ENG: 'Text credits',
+                    },
                 },
                 music: {
-                    ENG: 'Music credits',
+                    title: {
+                        ENG: 'Music credits',
+                    },
                 },
                 copyright: {
-                    ENG: 'Copyright information',
+                    title: {
+                        ENG: 'Copyright information',
+                    },
                 },
                 tune: {
-                    ENG: 'Tune name',
+                    title: {
+                        ENG: 'Tune name',
+                    },
+                },
+                fermata: {
+                    title: {
+                        ENG: 'Fermata',
+                    },
+                },
+                toRefrain: {
+                    title: {
+                        ENG: 'To refrain',
+                    },
+                },
+                slur: {
+                    title: { ENG: 'Slur' },
+                },
+                treble: {
+                    title: { ENG: 'Treble clef' },
+                },
+                bass: {
+                    title: { ENG: 'Bass clef' },
                 },
             },
         },

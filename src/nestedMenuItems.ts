@@ -1,4 +1,3 @@
-import { languages } from './models/languages'
 import Translator from './models/translator'
 
 export default function useNestedMenuItems(translator: Translator) {

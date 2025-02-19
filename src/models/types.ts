@@ -15,9 +15,9 @@ export type Cursor = {
 
 export interface BoundingRect {
     top: number
-    bottom?: number
     left: number
+    width: number
+    height: number
+    bottom?: number
     right?: number
-    width?: number
-    height?: number
 }
