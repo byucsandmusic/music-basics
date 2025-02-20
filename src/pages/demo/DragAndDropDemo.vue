@@ -16,11 +16,26 @@ export default defineComponent({
         DragTarget,
     },
     data() {
-        return { buckets: new Map() }
+        return {
+            buckets: new Map(),
+            textIndicator: 'Drag an image into its matching square!',
+        }
     },
     methods: {
         onRelease(from, to, state) {
             this.buckets = state
+            switch (from + to) {
+                case 'eighth-draggableeighth-target':
+                case 'quarter-draggablequarter-target':
+                case 'half-draggablehalf-target':
+                case 'whole-draggablewhole-target':
+                    this.textIndicator = 'Correct!'
+                    break
+
+                default:
+                    this.textIndicator = `Sorry, those note(s) are not ${to.split('-')[0]} notes`
+                    break
+            }
         },
         validBucket(from, to) {
             return to.includes(from.split('-')[0])
@@ -68,6 +83,7 @@ export default defineComponent({
                 </span>
             </span>
         </div>
+        <span>{{ $data.textIndicator }}</span>
     </DragAndDrop>
 </template>
 

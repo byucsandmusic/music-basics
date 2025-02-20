@@ -239,7 +239,7 @@ function dragStart(e: InteractionEvent) {
             draggedElement!.style.transform = ''
             const prior = getBucket(draggedElement!.id)
             if (prior) buckets.set(prior, null)
-            onRelease(draggedElement!.id, null, new Map(buckets))
+            onRelease(draggedElement!.id, target?.id, new Map(buckets))
         }
         if (target === null) {
             //If a dragTarget was not ended on
