@@ -34,10 +34,10 @@ export default defineComponent({
 
                 default:
                     if (to)
-                        this.textIndicator = `Sorry, those note(s) are not ${to.split('-')[0]} notes.`
+                        this.textIndicator = `Sorry, this isn't a ${to.split('-')[0]} note. Try again!`
                     else
                         this.textIndicator =
-                            'Please drop the notes into a valid target.'
+                            'Please drop the notes into a valid slot.'
                     break
             }
         },
@@ -85,7 +85,7 @@ export default defineComponent({
                     </span>
                 </span>
             </div>
-            <span>{{ $data.textIndicator }}</span>
+            <span>{{ textIndicator }}</span>
         </DragAndDrop>
     </section>
 </template>
