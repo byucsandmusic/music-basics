@@ -17,6 +17,55 @@ export default defineComponent({
             type: Boolean,
             default: false,
         },
+        /**
+         * @description A cursor object based on https://paulrosen.github.io/abcjs/audio/synthesized-sound.html#cursorcontrol-object
+         * used to control specific playback functions: onStart, onBeat, onFinished, and onEvent. If you pass in this prop you overwrite the default
+         * functionality of the cursor, which allows you to have fine-tuned control over playback.
+         */
+        cursor: {
+            type: Object as PropType<Cursor>,
+            default: {
+                onStart: () => {
+                    console.log('Playback started')
+                },
+                onEvent: (event: any) => {
+                    console.log(event)
+                    if (event && event.elements) {
+                        // Remove previous highlights
+                        document
+                            .querySelectorAll(
+                                '.abcjs-note_played, .abcjs-note_selected'
+                            )
+                            .forEach((el: SVGElement) => {
+                                el.classList.remove(
+                                    'abcjs-note_played',
+                                    'abcjs-note_selected'
+                                )
+                                el.removeAttribute('fill')
+                            })
+
+                        // Apply highlight to current note
+                        event.elements.forEach((el: SVGElement) => {
+                            el[0].classList.add('abcjs-note_played')
+                        })
+                    }
+                },
+                onFinished: () => {
+                    console.log('Playback finished')
+                    document
+                        .querySelectorAll(
+                            '.abcjs-note_played, .abcjs-note_selected'
+                        )
+                        .forEach((el: SVGElement) => {
+                            el.classList.remove(
+                                'abcjs-note_played',
+                                'abcjs-note_selected'
+                            )
+                            el.removeAttribute('fill')
+                        })
+                },
+            },
+        },
         displaySheetMusic: {
             type: Boolean,
             default: true,
@@ -130,45 +179,11 @@ export default defineComponent({
                 }
             )
 
-            if (this.displayMidiPlayer && tuneArray.length > 0) {
+            if (tuneArray.length > 0) {
                 const visualObj: abcjs.TuneObject = tuneArray[0]
                 this.synthControl = new abcjs.synth.SynthController()
 
-                let cursor: Cursor | null = null
-
-                // Add Note Highlighting During Playback
-                cursor = {
-                    onStart: () => {
-                        console.log('Playback started')
-                    },
-                    onEvent: (event: any) => {
-                        if (event && event.elements) {
-                            // Remove previous highlights
-                            document
-                                .querySelectorAll('.abcjs-note_selected')
-                                .forEach((el: SVGElement) => {
-                                    el.classList.remove('abcjs-note_selected')
-                                    el.removeAttribute('fill')
-                                })
-
-                            // Apply highlight to current note
-                            event.elements.forEach((el: SVGElement) => {
-                                el[0].classList.add('abcjs-note_selected')
-                            })
-                        }
-                    },
-                    onFinished: () => {
-                        console.log('Playback finished')
-                        document
-                            .querySelectorAll('.abcjs-note_selected')
-                            .forEach((el: SVGElement) => {
-                                el.classList.remove('abcjs-note_selected')
-                                el.removeAttribute('fill')
-                            })
-                    },
-                }
-
-                this.synthControl.load('#midi-player', cursor, {
+                this.synthControl.load('#midi-player', this.cursor, {
                     displayLoop: true,
                     displayRestart: true,
                     displayPlay: true,
@@ -200,6 +215,7 @@ export default defineComponent({
     <div class="container">
         <div
             v-if="midiOnTop"
+            :hidden="!displayMidiPlayer"
             ref="midiPlayer"
             id="midi-player"
         ></div>
@@ -209,6 +225,7 @@ export default defineComponent({
         ></div>
         <div
             v-if="!midiOnTop"
+            :hidden="!displayMidiPlayer"
             ref="midiPlayer"
             id="midi-player"
         ></div>
@@ -216,7 +233,7 @@ export default defineComponent({
 </template>
 
 <style lang="sass">
-.abcjs-note_selected
+.abcjs-note_played
     fill: v-bind(highlightColor)
 
 .abcjs-inline-audio
