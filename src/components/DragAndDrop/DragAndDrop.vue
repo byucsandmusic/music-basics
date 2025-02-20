@@ -1,8 +1,6 @@
 <script lang="ts">
 import Translator from '../../models/translator'
 import { defineComponent, useTemplateRef, PropType } from 'vue'
-//TODO add callbacks for when items are dragged into targets
-//TODO see if you can set the selectors to look for drag components instead of classes to avoid polluting the class namespace
 let el, onRelease, validBucket
 const buckets = new Map<string, string | null>()
 
@@ -23,6 +21,14 @@ interface InteractionEvent {
 /**
  * usage:
  *     This component can take children. Of its descendants, those that are the component types Draggable and DragTarget have special behavior. Draggables can be dragged into drag targets.
+ *     Draggables and their targets are identified by their html ids.
+ *     Avoid nesting draggables, targets, or DragAndDrop components, I don't know what happens but it's probably not good.
+ *     This component uses a number of classes. It is best to avoid them in your own code, so as to not have any odd collisions. To be able to style them yourself, here they are:
+ *         .hovering-over-valid-target: Only applied while currently being dragged over a valid target
+ *         .draggable: Applied to all draggable elements, used in Draggable.vue to make draggables
+ *         .dragTarget: Applied to all drag targets in DragTarget.vue
+ *         .dragging: Applied to draggables currently being dragged.
+ *     The styles contained in this component are fairly minimal to allow for more customization. To see the styles needed for a fully functional component, see DragAndDropDemo.vue
  *     To set what happens when a drag event happens, use the onRelease prop.
  *     To set what draggables can be put into what drag targets, use the validBucket prop.
  * props:
@@ -170,7 +176,8 @@ function dragStart(e: InteractionEvent) {
         moveWithUser,
         controller
     )
-    //todo move items on screen resize as necessary
+
+    //todo make items on screen resize and reposition as necessary when a window is resized
     //Handle mouse / finger being lifted
     document.addEventListener(
         'touchend',
@@ -270,46 +277,19 @@ function dragStart(e: InteractionEvent) {
 </template>
 
 <style lang="sass">
-//todo eventually, you may wish to make this scoped and bring some styles to the child components
-section
-    color: black
-    background-color: white
-    padding: 10px
-    display: flex
-    flex-flow: column nowrap
-
 .dragging
     pointer-events: none
-    transition: opacity 0.2s !important
     z-index: 100 !important
-
-.hovering-over-valid-target
-    opacity: 0.5
 
 .draggable
     z-index: 0
     position: relative
-    display: inline-block
-    border-radius: 10px
-    padding: 10px
-    outline: black 1px solid
-    background-color: white
+
     transform: translate(0px, 0px)
     user-select: none
     transition: transform 0.2s, opacity 0.2s, z-index 0.2s
     touch-action: none
-    width: 100px
-    height: 100px
+
     *
         touch-action: none
-
-.labeledItem
-    display: inline-flex
-    flex-flow: column
-
-.dragTarget
-    display: block
-    width: 100px
-    height: 100px
-    outline: 1px solid black
 </style>

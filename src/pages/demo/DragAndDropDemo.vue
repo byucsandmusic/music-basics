@@ -45,52 +45,63 @@ export default defineComponent({
 </script>
 
 <template>
-    <DragAndDrop
-        :onRelease="onRelease"
-        :validBucket="validBucket"
-    >
-        Move items into the correct spots!
-        <div class="draggables">
-            <Draggable id="eighth-draggable">
-                <img src="/src/assets/dragAndDrop/eighthNote.webp" />
-            </Draggable>
-            <Draggable id="quarter-draggable">
-                <img src="/src/assets/dragAndDrop/quarterNote.webp" />
-            </Draggable>
-            <Draggable id="half-draggable">
-                <img src="/src/assets/dragAndDrop/halfNote.webp" />
-            </Draggable>
-            <Draggable id="whole-draggable">
-                <img src="/src/assets/dragAndDrop/wholeNote.webp" />
-            </Draggable>
-        </div>
-        <span style="height: 100px"></span>
-        <div class="targets">
-            <span
-                class="targetContainer"
-                v-for="len in ['eighth', 'quarter', 'half', 'whole']"
-            >
+    <section>
+        <DragAndDrop
+            :onRelease="onRelease"
+            :validBucket="validBucket"
+        >
+            Move items into the correct spots!
+            <div class="draggables">
+                <Draggable id="eighth-draggable">
+                    <img src="/src/assets/dragAndDrop/eighthNote.webp" />
+                </Draggable>
+                <Draggable id="quarter-draggable">
+                    <img src="/src/assets/dragAndDrop/quarterNote.webp" />
+                </Draggable>
+                <Draggable id="half-draggable">
+                    <img src="/src/assets/dragAndDrop/halfNote.webp" />
+                </Draggable>
+                <Draggable id="whole-draggable">
+                    <img src="/src/assets/dragAndDrop/wholeNote.webp" />
+                </Draggable>
+            </div>
+            <span style="height: 100px"></span>
+            <div class="targets">
                 <span
-                    :class="{
-                        // //todo clean this up
-                        isCorrect: buckets.get(len + '-target'),
-                    }"
-                    class="correctnessIndicator"
-                ></span>
-                <span>
-                    {{ len }}
-                    <DragTarget :id="`${len}-target`"></DragTarget>
+                    class="targetContainer"
+                    v-for="len in ['eighth', 'quarter', 'half', 'whole']"
+                >
+                    <span
+                        :class="{ isCorrect: buckets.get(len + '-target') }"
+                        class="correctnessIndicator"
+                    ></span>
+                    <span>
+                        {{ len }}
+                        <DragTarget :id="`${len}-target`"></DragTarget>
+                    </span>
                 </span>
-            </span>
-        </div>
-        <span>{{ $data.textIndicator }}</span>
-    </DragAndDrop>
+            </div>
+            <span>{{ $data.textIndicator }}</span>
+        </DragAndDrop>
+    </section>
 </template>
 
-<style lang="sass" scoped>
+<style lang="sass">
+section
+    color: black
+    background-color: white
+    padding: 10px
+    display: flex
+    flex-flow: column nowrap
 .draggables
     display: flex
     flex-flow: row wrap
+
+.dragging
+    transition: opacity 0.2s !important
+
+.hovering-over-valid-target
+    opacity: 0.5
 
 .targets
     display: flex
@@ -110,6 +121,22 @@ export default defineComponent({
     align-self: flex-end
     outline: black 1px solid
     background-color: #EEEEEE
+
+.draggable
+    display: inline-block
+    border-radius: 10px
+    padding: 10px
+    outline: black 1px solid
+    background-color: white
+    width: 100px
+    height: 100px
+
+.dragTarget
+    display: block
+    width: 100px
+    height: 100px
+    outline: 1px solid black
+
 
 .isCorrect
     background-color: #43A047
