@@ -33,7 +33,11 @@ export default defineComponent({
                     break
 
                 default:
-                    this.textIndicator = `Sorry, those note(s) are not ${to.split('-')[0]} notes`
+                    if (to)
+                        this.textIndicator = `Sorry, those note(s) are not ${to.split('-')[0]} notes.`
+                    else
+                        this.textIndicator =
+                            'Please drop the notes into a valid target.'
                     break
             }
         },
