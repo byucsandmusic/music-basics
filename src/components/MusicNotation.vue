@@ -165,6 +165,13 @@ export default defineComponent({
                 }
             }
         },
+        playPause() {
+            this.synthControl.play()
+        },
+        restart() {
+            if (this.synthControl.isStarted) this.synthControl.play()
+            this.synthControl.restart()
+        },
     },
     mounted() {
         try {
