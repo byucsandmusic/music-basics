@@ -2,9 +2,10 @@
 import { defineComponent } from 'vue'
 import Translator from '../models/translator'
 import MusicNotation from './MusicNotation.vue'
+import { Cursor } from '../models/types'
 
 export default defineComponent({
-    name: 'TapAlong',
+    name: 'TapAlong2',
     props: {
         translator: {
             type: Translator,
@@ -31,18 +32,24 @@ export default defineComponent({
                 'instructions',
                 'intro'
             ),
-            countdown: '',
-            expectedTapsData: [],
-            expectedTaps: [],
-            currentNoteIndex: 0,
             canTap: false,
-            tapResults: [],
             startTime: 0,
             tolerance: 200,
             bpm: 60,
             rhythmInput: '',
             tempRhythm: [1, 1, 1, 1],
             errorMessage: '',
+            currentNoteIndex: 0,
+            rhythmElements: [],
+            rhythmTimes: [],
+            countdown: '',
+            tapResults: [],
+            currentBeat: 0,
+            metronomeCursor: {
+                onStart: this.onStart.bind(this),
+                onEvent: this.onEvent.bind(this),
+                onFinished: this.onFinished.bind(this),
+            } as Cursor,
         }
     },
 
@@ -54,6 +61,28 @@ export default defineComponent({
     },
 
     methods: {
+        // --- Metronome Cursor functions ---
+        onStart() {
+            console.log('Playback started')
+            this.currentBeat = 0
+        },
+        onEvent() {
+            this.currentBeat += 1
+            if (this.currentBeat == 5) {
+                console.log('Beat 5 reached')
+                // Play example
+                this.playExample()
+            }
+            if (this.currentBeat == 13) {
+                console.log('Measure 13 reached')
+                this.canTap = true
+            }
+        },
+        onFinished() {
+            this.finish()
+        },
+        // -------------------------
+
         async play() {
             this.playKey++
             let curKey = this.playKey
@@ -65,27 +94,10 @@ export default defineComponent({
             )
             console.log('playing')
 
-            // Create expected input
-            this.expectedTapsData = [...this.tempRhythm]
-            this.expectedTaps = []
             const beatDuration = (60 / this.bpm) * 1000
 
-            // Convert timing data into actual time offsets
-            for (let i = 0; i < this.expectedTapsData.length; i++) {
-                this.expectedTapsData[i] =
-                    this.expectedTapsData[i] * beatDuration
-            }
-            console.log(this.expectedTapsData)
-
-            // Precompute expected tap times
-            let accumulatedTime = Date.now() + 12 * beatDuration
-            this.expectedTaps.push(accumulatedTime)
-            for (let i = 1; i < this.expectedTapsData.length; i++) {
-                accumulatedTime += this.expectedTapsData[i - 1]
-                this.expectedTaps.push(accumulatedTime)
-            }
-
             // Start Metronome (in parallel)
+            this.startMetronome()
             if (!this.playing || curKey != this.playKey) return
             this.instructionsText = this.translator.get(
                 'general',
@@ -94,11 +106,7 @@ export default defineComponent({
                 'beat'
             )
             console.log('Starting metronome...')
-            this.runMetronome(beatDuration, curKey)
-            this.showCountdown(beatDuration, curKey)
-            await this.delay(4 * beatDuration)
             if (!this.playing || curKey != this.playKey) return
-            this.countdown = ''
 
             // Play example 4 beats
             console.log('Playing example...')
@@ -108,7 +116,6 @@ export default defineComponent({
                 'instructions',
                 'rhythm'
             )
-            await this.playExample()
 
             // Wait for 4 beats for prep
             if (!this.playing || curKey != this.playKey) return
@@ -118,10 +125,7 @@ export default defineComponent({
                 'instructions',
                 'prep'
             )
-            this.showCountdown(beatDuration, curKey)
-            await this.delay(4 * beatDuration)
             if (!this.playing || curKey != this.playKey) return
-            this.countdown = ''
 
             // Allow tapping after the example plays
             if (!this.playing || curKey != this.playKey) return
@@ -131,85 +135,33 @@ export default defineComponent({
                 'instructions',
                 'go'
             )
+            this.tapResults.fill(0)
             this.canTap = true
-            this.currentNoteIndex = 0
-            this.tapResults = Array(this.expectedTapsData.length).fill(0)
             console.log('User can start tapping!')
-            await this.delay(4 * beatDuration)
-            if (!this.playing || curKey != this.playKey) return
-            this.finish()
         },
 
-        async runMetronome(beatDuration, curKey) {
-            let count = 0
-            const audioContext = new window.AudioContext() // TEMP: For placeholder sound
-            while (this.playing && curKey == this.playKey) {
-                console.log(`Metronome beat ${(count % 4) + 1}`)
-                // TODO: Play metronome sound
-                this.playBeep(audioContext, 'low') // TEMP: Placeholder sound
-                await this.delay(beatDuration)
-                count++
-            }
-        },
-
-        playBeep(audioContext, pitch) {
-            const oscillator = audioContext.createOscillator()
-            const gainNode = audioContext.createGain()
-
-            oscillator.connect(gainNode)
-            gainNode.connect(audioContext.destination)
-
-            oscillator.type = 'sine' // Sine wave sound
-            if (pitch == 'low') {
-                oscillator.frequency.setValueAtTime(
-                    440,
-                    audioContext.currentTime
-                ) // Frequency (440Hz = A4 note)
+        startMetronome() {
+            console.log('Playing metronome...')
+            if (this.$refs.metronomeMusicNotation) {
+                ;(this.$refs.metronomeMusicNotation as any).playPause()
             } else {
-                oscillator.frequency.setValueAtTime(
-                    880,
-                    audioContext.currentTime
-                ) // Frequency (440Hz = A4 note)
-            }
-            oscillator.start()
-
-            gainNode.gain.setValueAtTime(1, audioContext.currentTime) // Volume
-            gainNode.gain.linearRampToValueAtTime(
-                0,
-                audioContext.currentTime + 0.1
-            ) // Fade out
-            oscillator.stop(audioContext.currentTime + 0.1) // Stop after a short duration
-        },
-
-        async playExample() {
-            const audioContext = new window.AudioContext() // TEMP: For placeholder sound
-            for (let i = 0; i < this.expectedTapsData.length; i++) {
-                if (!this.playing) break
-                console.log(`Example Note ${i + 1} played`)
-                // TODO: Play note sound
-                this.playBeep(audioContext, 'high') // Placeholder sound
-                await this.delay(this.expectedTapsData[i])
+                console.error(
+                    'MetronomeMusicNotation component is not available'
+                )
             }
         },
 
-        async showCountdown(beatDuration, curKey) {
-            for (let i = 1; i < 5; i++) {
-                if (!this.playing || curKey != this.playKey) break
-                this.countdown = i
-                await this.delay(beatDuration)
+        playExample() {
+            console.log('Playing example rhythm...')
+            if (this.$refs.rhythmMusicNotation) {
+                ;(this.$refs.rhythmMusicNotation as any).playPause()
+            } else {
+                console.error('RhythmMusicNotation component is not available')
             }
-        },
-
-        delay(ms) {
-            return new Promise((resolve) => setTimeout(resolve, ms))
         },
 
         reset() {
             this.playing = false
-            if (this.delayCancel) {
-                this.delayCancel()
-                this.delayCancel = null
-            }
             this.playButtonText = this.translator.get(
                 'general',
                 'tapAlong',
@@ -229,13 +181,9 @@ export default defineComponent({
         tap() {
             if (!this.canTap || !this.playing) return
 
-            const currentTapTime = Date.now()
-            const expectedTime = this.expectedTaps[this.currentNoteIndex]
+            const currentTapTime = Date.now() - this.startTime
+            const expectedTime = this.rhythmTimes[this.currentNoteIndex]
             const difference = Math.abs(currentTapTime - expectedTime)
-
-            console.log(
-                `Tapped at: ${currentTapTime}, Expected time: ${expectedTime}, Difference: ${difference}`
-            )
 
             // Check if the tap is within tolerance range
             if (difference <= this.tolerance) {
@@ -324,6 +272,7 @@ export default defineComponent({
             }
         },
     },
+
     setup() {
         const defaultMusic = {
             title: 'Quarter Notes',
@@ -331,7 +280,13 @@ export default defineComponent({
             beat: '1/4',
             treble: ['BBBB'],
         }
-        return { defaultMusic }
+        const metronome = {
+            title: 'Metronome',
+            meter: '4/4',
+            beat: '1/4',
+            treble: ['EEEE|EEEE|EEEE|EEEE'],
+        }
+        return { defaultMusic, metronome }
     },
 })
 </script>
@@ -361,8 +316,19 @@ export default defineComponent({
         </p>
     </div>
     <MusicNotation
+        ref="metronomeMusicNotation"
+        :music="metronome"
+        :displayMidiPlayer="false"
+        :displaySheetMusic="false"
+        :cursor="metronomeCursor"
+        :translator="translator"
+    ></MusicNotation>
+    <MusicNotation
+        ref="rhythmMusicNotation"
         :music="defaultMusic"
         :displayMidiPlayer="false"
+        :displaySheetMusic="true"
+        :translator="translator"
     ></MusicNotation>
     <div class="header-container">
         <h3>{{ instructionsText }}</h3>

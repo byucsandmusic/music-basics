@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound.vue'
 import DragAndDropDemo from './pages/demo/DragAndDropDemo.vue'
 import TapAlong from './components/TapAlong.vue'
 import { songs } from './models/songs.ts'
+import TapAlong2 from './components/TapAlong2.vue'
 
 const routes = [
     { path: '/:pathMatch(.*)*', component: NotFound },
@@ -29,7 +30,7 @@ const routes = [
             },
             {
                 path: 'tap-along',
-                component: TapAlong,
+                component: TapAlong2,
             },
             {
                 path: 'drag-and-drop',
