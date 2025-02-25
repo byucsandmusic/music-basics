@@ -165,12 +165,14 @@ export default defineComponent({
                 }
             }
         },
-        playPause() {
-            this.synthControl.play()
+        async playPause() {
+            await this.synthControl.play()
         },
-        restart() {
-            if (this.synthControl.isStarted) this.synthControl.play()
-            this.synthControl.restart()
+        async restart() {
+            if (this.synthControl.isStarted) {
+                await this.synthControl.play()
+            }
+            await this.synthControl.restart()
         },
     },
     mounted() {
