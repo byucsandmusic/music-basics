@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import MusicNotation from '../../src/components/MusicNotation.vue'
-import { Music } from '../../src/models/music'
+import { Music } from '../../src/models/types'
 import Translator from '../../src/models/translator'
 
 let wrapper

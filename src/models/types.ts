@@ -21,3 +21,15 @@ export interface BoundingRect {
     bottom?: number
     right?: number
 }
+
+export type Music = {
+    title?: string
+    meter?: string
+    beat?: string
+    tempo?: string
+    key?: string
+    instrument?: number
+    treble?: string[]
+    bass?: string[]
+    verses?: string[][]
+}

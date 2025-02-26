@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import Translator from '../models/translator'
-import { Music } from '../models/music'
+import { Music } from '../models/types'
 import MusicNotation from './MusicNotation.vue'
 
 export default defineComponent({

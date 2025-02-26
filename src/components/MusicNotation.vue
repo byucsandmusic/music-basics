@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import abcjs from 'abcjs'
-import { Music } from '../models/music'
+import { Music } from '../models/types'
 import 'abcjs/abcjs-audio.css'
 import Translator from '../models/translator'
 import { Cursor } from '../models/types'
@@ -96,6 +96,8 @@ export default defineComponent({
     methods: {
         constructNotation() {
             let notation: string = ''
+            if (this.music.instrument)
+                notation += `%%MIDI program ${this.music.instrument}\n`
             if (this.music.title) notation += `T:${this.music.title}\n`
             if (this.music.meter) notation += `M:${this.music.meter}\n`
             if (this.music.beat) notation += `L:${this.music.beat}\n`
