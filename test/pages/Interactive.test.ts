@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
-import Interactive from '../../src/pages/Interactive/Interactive.vue'
+import Interactive from '../../src/pages/Interactive.vue'
 import Translator from '../../src/models/translator'
-import Tooltip from '../../src/components/Interactive/Tooltip.vue'
+import ClickableArea from '../../src/components/Interactive/ClickableArea.vue'
 
 let wrapper
 const defaultProps = {
@@ -20,7 +20,7 @@ const createWrapper = (props = defaultProps) =>
             },
         },
         stubs: {
-            Tooltip,
+            Tooltip: ClickableArea,
         },
     })
 

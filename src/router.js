@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './pages/Home.vue'
 import Demo from './pages/demo/Demo.vue'
-import Interactive from './pages/Interactive/Interactive.vue'
+import Interactive from './pages/Interactive.vue'
 import ModuleHome from './pages/ModuleHome.vue'
 import SingAlong from './components/SingAlong.vue'
 import NotFound from './pages/NotFound.vue'

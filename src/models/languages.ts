@@ -1,4 +1,7 @@
 // The language codes in this file have been defined by this resource: https://iso639-3.sil.org/code_tables/639/data
+import { defineComponent } from 'vue'
+import App from '../App.vue'
+
 export const languages = {
     home: {
         title: {
@@ -16,7 +19,7 @@ export const languages = {
             tooltips: {
                 list: {
                     ENG:
-                        'title/tempo/guitar/isaiah/john/introStart/introEnd/timeSig/key/' +
+                        'title/tempo/guitar/isaiah/luke/introStart/introEnd/timeSig/key/' +
                         'verseInfo/perform/text/music/copyright/tune/fermata/toRefrain/' +
                         'slur/treble/bass',
                 },
@@ -39,10 +42,39 @@ export const languages = {
                     title: {
                         ENG: 'Isaiah 9:6',
                     },
+                    body: {
+                        ENG:
+                            '<a ' +
+                            'href="https://www.churchofjesuschrist.org/study/scriptures/ot/isa/9?lang=eng&id=p6#p6"' +
+                            '>Isaiah 9:6</a><br/>' +
+                            '6 For unto us a child is born, unto us a son is given: and the government shall ' +
+                            'be upon his shoulder: and his name shall be called Wonderful, Counsellor, ' +
+                            'The mighty God, The everlasting Father, The Prince of Peace.',
+                    },
                 },
-                john: {
+                luke: {
                     title: {
-                        ENG: 'John 2:6-14',
+                        ENG: 'Luke 2:6-14',
+                    },
+                    body: {
+                        ENG:
+                            '<a ' +
+                            'href="https://www.churchofjesuschrist.org/study/scriptures/nt/luke/2?lang=eng&id=p6-p14#p6"' +
+                            '>Luke 2:6-14</a><br/>' +
+                            '6 And so it was, that, while they were there, the days were accomplished ' +
+                            'that she should be delivered.<br/><br/>7 And she brought forth her firstborn son, ' +
+                            'and wrapped him in swaddling clothes, and laid him in a manger; because ' +
+                            'there was no room for them in the inn.<br/><br/>8 And there were in the same ' +
+                            'country shepherds abiding in the field, keeping watch over their flock ' +
+                            'by night.<br/><br/>9 And, lo, the angel of the Lord came upon them, and the ' +
+                            'glory of the Lord shone round about them: and they were sore afraid.<br/><br/>' +
+                            '10 And the angel said unto them, Fear not: for, behold, I bring you good ' +
+                            'tidings of great joy, which shall be to all people.<br/><br/>11 For unto you is ' +
+                            'born this day in the city of David a Saviour, which is Christ the Lord.<br/><br/>' +
+                            '12 And this shall be a sign unto you; Ye shall find the babe wrapped in ' +
+                            'swaddling clothes, lying in a manger.<br/><br/>13 And suddenly there was with ' +
+                            'the angel a multitude of the heavenly host praising God, and saying,<br/><br/>' +
+                            '14 Glory to God in the highest, and on earth peace, good will toward men.',
                     },
                 },
                 introStart: {

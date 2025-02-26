@@ -1,62 +1,43 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { type BoundingRect } from '../../models/types'
+import { BoundingRect } from '../../models/types'
+import CloseIcon from '../CloseIcon.vue'
+import { InteractiveItem } from '../../models/interactiveItem'
 
 export default defineComponent({
     name: 'Tooltip',
-    emits: ['close-others'],
+    components: { CloseIcon },
+    emits: ['toggle'],
     props: {
-        body: {
-            type: String,
-            default: '',
-        },
         clickableRect: {
             type: Object as PropType<BoundingRect>,
             required: true,
         },
-        id: {
-            type: String,
+        item: {
+            type: Object as PropType<InteractiveItem>,
             required: true,
-        },
-        link: {
-            type: String,
-            default: '',
-        },
-        title: {
-            type: String,
-            default: '',
         },
     },
     data() {
         return {
-            toggled: false,
             tooltipRect: {} as BoundingRect,
         }
     },
     computed: {
-        tooltipTop() {
-            return `calc(${this.clickableRect.top}% - ${this.tooltipRect.height}px - 6px)`
-        },
         tooltipLeft() {
             return `calc(${this.clickableRect.left}% + ${this.clickableRect.width / 2}% - ${this.tooltipRect.width / 2}px)`
         },
+        tooltipTop() {
+            return `calc(${this.clickableRect.top}% - ${this.tooltipRect.height}px - 6px)`
+        },
+        triangleLeft() {
+            return `calc(${this.tooltipRect.width / 2}px - 3px)`
+        },
+        triangleTop() {
+            return `calc(${this.tooltipTop}px + ${this.tooltipRect.height}px)`
+        },
     },
     methods: {
-        handleClick() {
-            if (this.link?.length) {
-                window.location.href = this.link
-            } else {
-                if (!this.toggled) {
-                    this.$emit('close-others', this.id)
-                }
-
-                this.toggled = !this.toggled
-
-                if (this.toggled) {
-                    this.$nextTick(() => this.calcTooltipPlacement())
-                }
-            }
-        },
         calcTooltipPlacement() {
             this.tooltipRect = (({ top, left, width, height }) => ({
                 top,
@@ -65,87 +46,37 @@ export default defineComponent({
                 height,
             }))(this.$refs.tooltip.getBoundingClientRect())
         },
-        getBoundingClientRect() {
-            return
+        handleClick() {
+            this.$emit('toggle')
         },
-        close() {
-            this.toggled = false
-        },
+    },
+    mounted() {
+        this.calcTooltipPlacement()
     },
 })
 </script>
 
 <template>
-    <div>
+    <div
+        ref="tooltip"
+        class="tooltip"
+    >
         <div
-            :style="`
-            top: ${clickableRect.top}%;
-            left: ${clickableRect.left}%;
-            width: ${clickableRect.width}%;
-            height: ${clickableRect.height}%;
-            `"
-            class="clicky"
-            @click="handleClick"
-        ></div>
-        <Transition>
+            ref="tooltip"
+            class="tooltip-body"
+        >
+            <CloseIcon @close="handleClick" />
             <div
-                v-if="toggled"
-                class="tooltip"
-            >
-                <div
-                    class="tooltip-body"
-                    ref="tooltip"
-                >
-                    <div
-                        @click="handleClick"
-                        class="x"
-                    >
-                        x
-                    </div>
-                    <div class="tooltip-text">
-                        <div :class="{ title: !!body.length }">{{ title }}</div>
-                        <div v-if="body.length">{{ body }}</div>
-                    </div>
-                </div>
+                class="tooltip-text"
+                v-html="item.title"
+            ></div>
+        </div>
 
-                <div class="triangle-bottom"></div>
-            </div>
-        </Transition>
-        <div
-            v-if="toggled"
-            @click="close"
-            class="click-away"
-        />
+        <div class="triangle-bottom"></div>
     </div>
 </template>
 
 <style scoped lang="sass">
-.clicky
-    background: rgba(170, 241, 255, 0.32)
-    border: 1px dashed rgba(147, 208, 255, 0.9)
-    position: absolute
-    cursor: pointer
-
-.clicky:hover
-    background: rgba(170, 241, 255, 0.55)
-    border: 1px solid rgba(147, 208, 255, 0.99)
-
-.tooltip-body
-    background: #92c5dc
-    padding: min(0.5rem, 5%)
-    color: black
-    cursor: default
-    border-radius: 30px
-    flex-direction: row
-    display: flex
-    z-index: 10
-    margin-bottom: 0
-    min-width: 4rem
-    filter: drop-shadow(1px 2px 6px #a9a9a9)
-
-.title
-    font-weight: bold
-
 .tooltip
     display: flex
     top: v-bind(tooltipTop)
@@ -154,46 +85,45 @@ export default defineComponent({
     margin: 0
     position: absolute
 
+.tooltip-body
+    background: $accent-color
+    padding: min(0.5rem, 5%)
+    color: $secondary-text
+    cursor: default
+    border-radius: 30px
+    flex-direction: row
+    display: flex
+    z-index: 10
+    margin-bottom: 0
+    min-width: fit-content
+    filter: drop-shadow(1px 2px 6px #a9a9a9)
+
 .tooltip-text
     flex-direction: row
+    margin: 0.3rem
 
-.x
-    cursor: pointer
-    margin-left: 10px
-    margin-right: 0.2rem
-    font-size: small
-    align-self: start
-
-.triangle-top,
 .triangle-bottom
     width: 0
     height: 0
     border-left: 6px solid transparent
     border-right: 6px solid transparent
-    border-top: 6px solid #92c5dc
+    border-top: 6px solid $accent-color
     margin-top: 0
-    place-self: center
+    position: relative
+    top: v-bind(triangleTop)
+    left: v-bind(triangleLeft)
     z-index: 10
     filter: drop-shadow(1px 2px 6px #a9a9a9)
 
-.triangle-top
-    transform: rotate(180deg)
+@media (prefers-color-scheme: dark)
+    .tooltip-body
+        background: $accent-color-dark
+        color: $primary-text
 
-.click-away
-    width: 100%
-    height: 100%
-    position: fixed
-    top: 0
-    left: 0
-    z-index: 0
+    .triangle-bottom
+        border-top: 6px solid $accent-color-dark
 
-.v-enter-active
-    transition: all 0.3s ease-out
-.v-leave-active
-    transition: all 0.4s ease-out
-
-.v-enter-from
-    transform: translateY(10%)
-.v-leave-to
-    transform: translateY(5%)
+@media (max-width: 425px)
+    .tooltip-text
+        font-size: small
 </style>

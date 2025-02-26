@@ -1,23 +1,28 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Translator from '../../models/translator'
-import Tooltip from '../../components/Interactive/Tooltip.vue'
-import { BoundingRect } from '../../models/types'
+import Translator from '../models/translator'
+import { BoundingRect } from '../models/types'
+import ClickableArea from '../components/Interactive/ClickableArea.vue'
 
 const args = ['module1', 'interactive', 'tooltips']
 
 export default defineComponent({
     name: 'Interactive',
-    components: { Tooltip },
+    components: { ClickableArea },
     props: {
         translator: {
             type: Translator,
             required: true,
         },
     },
+    data() {
+        return {
+            imgRect: {} as BoundingRect,
+        }
+    },
     computed: {
         clickables() {
-            const items = this.translator
+            return this.translator
                 .get(...args, 'list')
                 .split('/')
                 .map((key: string) => ({
@@ -25,16 +30,18 @@ export default defineComponent({
                     title: this.translator.get(...args, key, 'title'),
                     body: this.translator.get(...args, key, 'body'),
                 }))
-
-            items[3]['link'] =
-                'https://www.churchofjesuschrist.org/study/scriptures/ot/isa/9?lang=eng&id=p6#p6'
-            items[4]['link'] =
-                'https://www.churchofjesuschrist.org/study/scriptures/nt/luke/2?lang=eng&id=p6-p14#p6'
-
-            return items
         },
     },
     methods: {
+        closeOtherTooltips(keyToKeep: string): void {
+            Object.keys(this.$refs)
+                .filter(
+                    (key) =>
+                        key.includes('tooltip') &&
+                        key !== `${keyToKeep}_tooltip`
+                )
+                .map((key) => this.$refs[key][0].close())
+        },
         getTooltipPlacement(title: string): BoundingRect {
             const makeRect = (
                 top: number,
@@ -46,7 +53,7 @@ export default defineComponent({
             switch (title) {
                 case this.translator.get(...args, 'title', 'title'):
                     return makeRect(3.5, 21.5, 56, 2.8)
-                case this.translator.get(...args, 'john', 'title'):
+                case this.translator.get(...args, 'luke', 'title'):
                     return makeRect(6.6, 41, 9, 1)
                 case this.translator.get(...args, 'isaiah', 'title'):
                     return makeRect(6.6, 50.5, 7.3, 1)
@@ -88,36 +95,27 @@ export default defineComponent({
                     return makeRect(0, 0, 0, 0)
             }
         },
-        closeOtherTooltips(keyToKeep: string) {
-            Object.keys(this.$refs)
-                .filter(
-                    (key) =>
-                        key.includes('tooltip') &&
-                        key !== `${keyToKeep}_tooltip`
-                )
-                .map((key) => this.$refs[key][0].close())
-        },
     },
 })
 </script>
 
 <template>
-    <div class="img-container">
-        <Tooltip
+    <div
+        ref="img-container"
+        class="img-container"
+    >
+        <ClickableArea
             v-for="item in clickables"
-            :body="item.body"
-            :clickableRect="getTooltipPlacement(item.title)"
-            :id="item.key"
-            :key="item.title"
-            :link="item.link"
+            :key="item.key"
             :ref="`${item.key}_tooltip`"
-            :title="item.title"
+            :clickableRect="getTooltipPlacement(item.title)"
+            :item="item"
             @close-others="closeOtherTooltips"
         />
         <img
             ref="image"
-            src="/src/assets/hymns/HeIsBornTheDivineChristChild.jpeg"
             alt="The Hymn: He Is Born, The Divine Christ Child"
+            src="/src/assets/hymns/HeIsBornTheDivineChristChild.jpeg"
         />
     </div>
 </template>
