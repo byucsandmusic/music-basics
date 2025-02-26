@@ -1,8 +1,47 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import Translator from '../models/translator'
 import MusicNotation from './MusicNotation.vue'
 import { Cursor } from '../models/types'
+import { Music } from '../models/types'
+
+/**
+ * usage:
+ *     TapAlong is a Vue 3 component that provides an interactive rhythm exercise where users tap along to a given rhythm.
+ *     The component handles a metronome and a rhythm track, guiding the user through a sequence of beats.
+ *     Tapping is validated based on timing accuracy, and results are displayed at the end of the exercise.
+ *
+ * props:
+ *     translator: An instance of the Translator class for handling multilingual text. Required.
+ *     rhythm: An object of type Music representing the rhythm to be played.
+ *
+ * data:
+ *    playing: Boolean indicating if the exercise is currently active.
+ *    playButtonText: Text for the play button, changes based on state.
+ *    instructionsText: Text providing instructions to the user.
+ *    canTap: Boolean indicating if the user can start tapping.
+ *    startTime: Timestamp when the user can start tapping.
+ *    tolerance: Time tolerance in milliseconds for tap accuracy.
+ *    currentNoteIndex: Index of the current note being played.
+ *    rhythmTimes: Array of timestamps for each note in the rhythm.
+ *    rhythmElements: Array of elements representing the rhythm notes.
+ *    countdownText: Text for the countdown before tapping starts.
+ *    tapResults: Array of results for each tap (1 for correct, 0 for incorrect).
+ *    currentBeat: Current beat in the metronome sequence.
+ *    metronomeCursor: Cursor object for controlling metronome playback.
+ *    rhythmCursor: Cursor object for controlling rhythm playback.
+ *
+ * methods:
+ *    play(): Starts the exercise and metronome.
+ *    startMetronome(): Begins metronome playback.
+ *    playExample(): Plays the example rhythm.
+ *    reset(): Resets the exercise and clears any visual feedback.
+ *    tap(): Handles user taps, validating timing accuracy.
+ *    finish(): Finalizes the exercise, evaluates user performance, and updates instructions.
+ *    handleKeyPress(event): Listens for spacebar presses to trigger tap actions.
+ *    clearRhythmFill(): Clears visual feedback from previous taps.
+ *
+ */
 
 export default defineComponent({
     name: 'TapAlong2',
@@ -12,8 +51,8 @@ export default defineComponent({
             required: true,
         },
         rhythm: {
-            type: Array,
-            default: [1, 1, 1, 1],
+            type: Object as PropType<Music>,
+            required: true,
         },
     },
     components: {
@@ -21,10 +60,7 @@ export default defineComponent({
     },
     data() {
         return {
-            playKey: 0,
-            tapped: false,
             playing: false,
-            delayCancel: null,
             playButtonText: this.translator.get('general', 'tapAlong', 'play'),
             instructionsText: this.translator.get(
                 'general',
@@ -35,20 +71,21 @@ export default defineComponent({
             canTap: false,
             startTime: 0,
             tolerance: 200,
-            bpm: 60,
-            rhythmInput: '',
-            tempRhythm: [1, 1, 1, 1],
-            errorMessage: '',
             currentNoteIndex: 0,
-            rhythmElements: [],
             rhythmTimes: [],
-            countdown: '',
+            rhythmElements: [],
+            countdownText: '',
             tapResults: [],
             currentBeat: 0,
             metronomeCursor: {
-                onStart: this.onStart.bind(this),
-                onEvent: this.onEvent.bind(this),
-                onFinished: this.onFinished.bind(this),
+                onStart: this.onMetronomeStart.bind(this),
+                onEvent: this.onMetronomeEvent.bind(this),
+                onFinished: this.onMetronomeFinished.bind(this),
+            } as Cursor,
+            rhythmCursor: {
+                onStart: this.onExampleStart.bind(this),
+                onEvent: this.onExampleEvent.bind(this),
+                onFinished: this.onExampleFinished.bind(this),
             } as Cursor,
         }
     },
@@ -62,88 +99,133 @@ export default defineComponent({
 
     methods: {
         // --- Metronome Cursor functions ---
-        onStart() {
+        onMetronomeStart() {
             console.log('Playback started')
             this.currentBeat = 0
+            this.tapResults = []
+            this.rhythmTimes = []
+            this.rhythmElements = []
         },
-        onEvent() {
+        onMetronomeEvent() {
+            if (!this.playing) return
             this.currentBeat += 1
             if (this.currentBeat == 5) {
-                console.log('Beat 5 reached')
                 // Play example
+                console.log('Playing example rhythm...')
                 this.playExample()
+                this.instructionsText = this.translator.get(
+                    'general',
+                    'tapAlong',
+                    'instructions',
+                    'rhythm'
+                )
+            }
+            if (this.currentBeat == 9) {
+                // Prep for tapping
+                console.log('Prepping for tapping...')
+                this.instructionsText = this.translator.get(
+                    'general',
+                    'tapAlong',
+                    'instructions',
+                    'prep'
+                )
+                this.countdownText = '4'
+            }
+            if (this.currentBeat == 10) {
+                this.countdownText = '3'
+            }
+            if (this.currentBeat == 11) {
+                this.countdownText = '2'
+            }
+            if (this.currentBeat == 12) {
+                this.countdownText = '1'
             }
             if (this.currentBeat == 13) {
-                console.log('Measure 13 reached')
+                // Allow tapping
+                console.log('Allowing tapping...')
+                this.startTime = Date.now()
+                this.currentNoteIndex = 0
                 this.canTap = true
+                this.countdownText = ''
+                this.instructionsText = this.translator.get(
+                    'general',
+                    'tapAlong',
+                    'instructions',
+                    'go'
+                )
             }
         },
-        onFinished() {
-            this.finish()
+        onMetronomeFinished() {
+            if (this.canTap) this.finish()
+        },
+        // -------------------------
+
+        // --- Example Cursor functions ---
+        onExampleStart() {
+            console.log('Example started')
+        },
+        onExampleEvent(event: any) {
+            if (event && event.elements) {
+                // Remove previous highlights
+                document
+                    .querySelectorAll(
+                        '.abcjs-note_played, .abcjs-note_selected'
+                    )
+                    .forEach((el: SVGElement) => {
+                        el.classList.remove(
+                            'abcjs-note_played',
+                            'abcjs-note_selected'
+                        )
+                        el.removeAttribute('fill')
+                    })
+
+                // Apply highlight to current note
+                event.elements.forEach((el: SVGElement) => {
+                    el[0].classList.add('abcjs-note_played')
+                    this.rhythmElements.push(el)
+                })
+                // Store the time of the note
+                this.rhythmTimes.push(event.milliseconds)
+            }
+        },
+        onExampleFinished() {
+            console.log('Example finished')
+            document
+                .querySelectorAll(
+                    '.abcjs-note_played, .abcjs-note_correct, .abcjs-note_incorrect'
+                )
+                .forEach((el: SVGElement) => {
+                    el.classList.remove(
+                        'abcjs-note_played',
+                        'abcjs-note_correct',
+                        'abcjs-note_incorrect'
+                    )
+                    el.removeAttribute('fill')
+                })
         },
         // -------------------------
 
         async play() {
-            this.playKey++
-            let curKey = this.playKey
+            this.clearRhythmFill()
             this.playing = true
             this.playButtonText = this.translator.get(
                 'general',
                 'tapAlong',
                 'reset'
             )
-            console.log('playing')
-
-            const beatDuration = (60 / this.bpm) * 1000
-
-            // Start Metronome (in parallel)
-            this.startMetronome()
-            if (!this.playing || curKey != this.playKey) return
-            this.instructionsText = this.translator.get(
-                'general',
-                'tapAlong',
-                'instructions',
-                'beat'
-            )
-            console.log('Starting metronome...')
-            if (!this.playing || curKey != this.playKey) return
-
-            // Play example 4 beats
-            console.log('Playing example...')
-            this.instructionsText = this.translator.get(
-                'general',
-                'tapAlong',
-                'instructions',
-                'rhythm'
-            )
-
-            // Wait for 4 beats for prep
-            if (!this.playing || curKey != this.playKey) return
-            this.instructionsText = this.translator.get(
-                'general',
-                'tapAlong',
-                'instructions',
-                'prep'
-            )
-            if (!this.playing || curKey != this.playKey) return
-
-            // Allow tapping after the example plays
-            if (!this.playing || curKey != this.playKey) return
-            this.instructionsText = this.translator.get(
-                'general',
-                'tapAlong',
-                'instructions',
-                'go'
-            )
-            this.tapResults.fill(0)
-            this.canTap = true
-            console.log('User can start tapping!')
+            await this.startMetronome()
         },
 
-        startMetronome() {
+        async startMetronome() {
             console.log('Playing metronome...')
             if (this.$refs.metronomeMusicNotation) {
-                ;(this.$refs.metronomeMusicNotation as any).playPause()
+                this.instructionsText = this.translator.get(
+                    'general',
+                    'tapAlong',
+                    'instructions',
+                    'beat'
+                )
+                await (this.$refs.metronomeMusicNotation as any).playPause()
             } else {
                 console.error(
                     'MetronomeMusicNotation component is not available'
@@ -151,10 +233,9 @@ export default defineComponent({
             }
         },
 
-        playExample() {
-            console.log('Playing example rhythm...')
+        async playExample() {
             if (this.$refs.rhythmMusicNotation) {
-                ;(this.$refs.rhythmMusicNotation as any).playPause()
+                await (this.$refs.rhythmMusicNotation as any).playPause()
             } else {
                 console.error('RhythmMusicNotation component is not available')
             }
@@ -174,8 +255,19 @@ export default defineComponent({
                 'instructions',
                 'intro'
             )
-            this.countdown = ''
-            // TODO: Perform reset visually
+            this.countdownText = ''
+            // Reseting music notations
+            if (this.$refs.metronomeMusicNotation) {
+                ;(this.$refs.metronomeMusicNotation as any).restart()
+            } else {
+                console.error('MetronomeMusicNotation component not available')
+            }
+            if (this.$refs.rhythmMusicNotation) {
+                ;(this.$refs.rhythmMusicNotation as any).restart()
+            } else {
+                console.error('RhythmMusicNotation component not available')
+            }
+            this.clearRhythmFill()
         },
 
         tap() {
@@ -184,12 +276,20 @@ export default defineComponent({
             const currentTapTime = Date.now() - this.startTime
             const expectedTime = this.rhythmTimes[this.currentNoteIndex]
             const difference = Math.abs(currentTapTime - expectedTime)
+            console.log('Difference:', difference)
 
             // Check if the tap is within tolerance range
             if (difference <= this.tolerance) {
-                this.tapResults[this.currentNoteIndex] = 1
+                this.tapResults.push(1)
+                this.rhythmElements[this.currentNoteIndex][0].classList.add(
+                    'abcjs-note_correct'
+                )
                 console.log('Correct tap!')
             } else {
+                this.tapResults.push(0)
+                this.rhythmElements[this.currentNoteIndex][0].classList.add(
+                    'abcjs-note_incorrect'
+                )
                 console.log('Incorrect tap')
             }
 
@@ -197,8 +297,20 @@ export default defineComponent({
             this.currentNoteIndex++
 
             // Check if there are more notes to tap for
-            if (this.currentNoteIndex >= this.expectedTaps.length) {
+            console.log(this.rhythmTimes.length)
+            if (this.currentNoteIndex >= this.rhythmTimes.length) {
                 this.finish()
+            }
+        },
+
+        clearRhythmFill() {
+            for (let i = 0; i < this.rhythmElements.length; i++) {
+                this.rhythmElements[i][0].classList.remove(
+                    'abcjs-note_played',
+                    'abcjs-note_correct',
+                    'abcjs-note_incorrect'
+                )
+                this.rhythmElements[i][0].removeAttribute('fill')
             }
         },
 
@@ -212,27 +324,68 @@ export default defineComponent({
         },
 
         finish() {
+            if (this.$refs.metronomeMusicNotation) {
+                ;(this.$refs.metronomeMusicNotation as any).restart()
+            } else {
+                console.error('MetronomeMusicNotation component not available')
+            }
             console.log('Tapping session complete!')
-            this.canTap = false
             this.playing = false
             this.playButtonText = this.translator.get(
                 'general',
                 'tapAlong',
                 'play'
             )
+            this.canTap = false
             console.log('Final tap results:', this.tapResults)
+            if (this.tapResults.length == 0) {
+                this.instructionsText = this.translator.get(
+                    'general',
+                    'tapAlong',
+                    'instructions',
+                    'noTaps'
+                )
+                return
+            }
+            if (this.tapResults.length != this.rhythmTimes.length) {
+                let part_1 = this.translator.get(
+                    'general',
+                    'tapAlong',
+                    'instructions',
+                    'incomplete_part_1'
+                )
+                let part_2 = this.translator.get(
+                    'general',
+                    'tapAlong',
+                    'instructions',
+                    'incomplete_part_2'
+                )
+                let part_3 = this.translator.get(
+                    'general',
+                    'tapAlong',
+                    'instructions',
+                    'incomplete_part_3'
+                )
+                this.instructionsText =
+                    part_1 +
+                    this.tapResults.length +
+                    part_2 +
+                    this.rhythmTimes.length +
+                    part_3
+                return
+            }
             let totalCorrect = 0
             for (let i = 0; i < this.tapResults.length; i++) {
                 totalCorrect += this.tapResults[i]
             }
-            if (totalCorrect < this.tapResults.length / 2) {
+            if (totalCorrect < this.rhythmTimes.length / 2) {
                 this.instructionsText = this.translator.get(
                     'general',
                     'tapAlong',
                     'instructions',
                     'failed'
                 )
-            } else if (totalCorrect < this.tapResults.length) {
+            } else if (totalCorrect < this.rhythmTimes.length) {
                 this.instructionsText = this.translator.get(
                     'general',
                     'tapAlong',
@@ -248,73 +401,36 @@ export default defineComponent({
                 )
             }
         },
-
-        updateRhythm() {
-            const parsedRhythm = this.rhythmInput
-                .split(',')
-                .map((num) => parseFloat(num.trim()))
-                .filter((num) => !isNaN(num)) // Ensure valid numbers
-
-            let sum = 0
-            for (let i = 0; i < parsedRhythm.length; i++) {
-                sum += parsedRhythm[i]
-            }
-            if (sum != 4) {
-                this.errorMessage = this.translator.get(
-                    'general',
-                    'tapAlong',
-                    'input',
-                    'errorMessage'
-                )
-            } else {
-                this.tempRhythm = parsedRhythm
-                this.errorMessage = ''
-            }
-        },
     },
 
-    setup() {
-        const defaultMusic = {
-            title: 'Quarter Notes',
-            meter: '4/4',
-            beat: '1/4',
-            treble: ['BBBB'],
+    setup(props) {
+        if (!props.rhythm) {
+            throw new Error('rhythm prop is required')
         }
+        if (!props.rhythm.treble || props.rhythm.treble.length === 0) {
+            throw new Error('rhythm prop must contain a treble part')
+        }
+        const beatGroups = props.rhythm.treble[0].split('|').length
+        const metronomeTreble = Array(beatGroups * 4)
+            .fill('CCCC')
+            .join('|')
+
+        console.log('metronomeTreble', metronomeTreble)
         const metronome = {
             title: 'Metronome',
-            meter: '4/4',
-            beat: '1/4',
-            treble: ['EEEE|EEEE|EEEE|EEEE'],
+            meter: props.rhythm.meter,
+            tempo: props.rhythm.tempo,
+            beat: props.rhythm.beat,
+            treble: [metronomeTreble],
+            instrument: 115,
         }
-        return { defaultMusic, metronome }
+        return { metronome }
     },
 })
 </script>
 
 <template>
     <h1>{{ translator.get('general', 'tapAlong', 'title') }}</h1>
-    <div>
-        <label for="rhythmInput">
-            {{ translator.get('general', 'tapAlong', 'input', 'instructions') }}
-        </label>
-        <div class="input-wrapper">
-            <input
-                id="rhythmInput"
-                v-model="rhythmInput"
-                type="text"
-                @keydown.enter="updateRhythm"
-            />
-            <button @click="updateRhythm">
-                {{ translator.get('general', 'tapAlong', 'input', 'enter') }}
-            </button>
-        </div>
-        <p
-            v-if="errorMessage"
-            style="color: red"
-        >
-            {{ errorMessage }}
-        </p>
-    </div>
     <MusicNotation
         ref="metronomeMusicNotation"
         :music="metronome"
@@ -325,14 +441,15 @@ export default defineComponent({
     ></MusicNotation>
     <MusicNotation
         ref="rhythmMusicNotation"
-        :music="defaultMusic"
+        :music="rhythm"
         :displayMidiPlayer="false"
-        :displaySheetMusic="true"
+        displaySheetMusic
+        :cursor="rhythmCursor"
         :translator="translator"
     ></MusicNotation>
     <div class="header-container">
         <h3>{{ instructionsText }}</h3>
-        <h3>{{ countdown }}</h3>
+        <h3>{{ countdownText }}</h3>
     </div>
     <button
         type="button"
@@ -376,6 +493,3 @@ export default defineComponent({
     margin-bottom: 18px;
 }
 </style>
-
-<!-- Bugs to do
- -->

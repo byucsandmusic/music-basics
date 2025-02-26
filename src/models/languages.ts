@@ -236,6 +236,18 @@ export const languages = {
                 failed: {
                     ENG: 'Not quite, try again!',
                 },
+                noTaps: {
+                    ENG: 'No taps detected, press tap or spacebar with the rhythm!',
+                },
+                incomplete_part_1: {
+                    ENG: 'Looks like you tapped for just ',
+                },
+                incomplete_part_2: {
+                    ENG: ' notes instead of all ',
+                },
+                incomplete_part_3: {
+                    ENG: ' notes. Try again!',
+                },
             },
             input: {
                 instructions: {

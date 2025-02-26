@@ -86,6 +86,14 @@ export default defineComponent({
             type: Translator,
             required: true,
         },
+        correctColor: {
+            type: String,
+            default: '#00ff00',
+        },
+        incorrectColor: {
+            type: String,
+            default: '#ff0000',
+        },
     },
     data() {
         return {
@@ -175,6 +183,15 @@ export default defineComponent({
                 await this.synthControl.play()
             }
             await this.synthControl.restart()
+            document
+                .querySelectorAll('.abcjs-note_played, .abcjs-note_selected')
+                .forEach((el: SVGElement) => {
+                    el.classList.remove(
+                        'abcjs-note_played',
+                        'abcjs-note_selected'
+                    )
+                    el.removeAttribute('fill')
+                })
         },
     },
     mounted() {
@@ -255,4 +272,10 @@ export default defineComponent({
     align-items: center
     height: 100%
     margin-bottom: 0
+
+.abcjs-note_correct
+    fill: v-bind(correctColor)
+
+.abcjs-note_incorrect
+    fill: v-bind(incorrectColor)
 </style>

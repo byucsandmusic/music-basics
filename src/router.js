@@ -31,6 +31,16 @@ const routes = [
             {
                 path: 'tap-along',
                 component: TapAlong2,
+                props: {
+                    rhythm: {
+                        title: 'Mixed Rhythm',
+                        meter: '4/4',
+                        tempo: '100',
+                        beat: '1/4',
+                        treble: ['BB/B/BB'],
+                        instrument: 36,
+                    },
+                },
             },
             {
                 path: 'drag-and-drop',
