@@ -2,7 +2,7 @@
 import { defineComponent, PropType } from 'vue'
 import { BoundingRect } from '../../models/types'
 import CloseIcon from '../CloseIcon.vue'
-import { InteractiveItem } from '../../models/interactiveItem'
+import { ExplorationItem } from '../../models/explorationItem'
 
 export default defineComponent({
     name: 'Tooltip',
@@ -14,7 +14,7 @@ export default defineComponent({
             required: true,
         },
         item: {
-            type: Object as PropType<InteractiveItem>,
+            type: Object as PropType<ExplorationItem>,
             required: true,
         },
     },

@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './pages/Home.vue'
 import Demo from './pages/demo/Demo.vue'
-import Interactive from './pages/Interactive.vue'
+import Exploration from './pages/Exploration.vue'
 import ModuleHome from './pages/ModuleHome.vue'
 import SingAlong from './components/SingAlong.vue'
 import NotFound from './pages/NotFound.vue'
@@ -19,7 +19,7 @@ const routes = [
         children: [
             { path: '', redirect: '/demo/home' },
             { path: 'home', component: ModuleHome },
-            { path: 'interact', component: Interactive },
+            { path: 'explore', component: Exploration },
             {
                 path: 'sing-along',
                 component: SingAlong,

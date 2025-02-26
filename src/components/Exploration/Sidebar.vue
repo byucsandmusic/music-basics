@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { InteractiveItem } from '../../models/interactiveItem'
+import { ExplorationItem } from '../../models/explorationItem'
 import CloseIcon from '../CloseIcon.vue'
 
 export default defineComponent({
@@ -9,7 +9,7 @@ export default defineComponent({
     emits: ['toggle'],
     props: {
         item: {
-            type: Object as PropType<InteractiveItem>,
+            type: Object as PropType<ExplorationItem>,
             required: true,
         },
     },

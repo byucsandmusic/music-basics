@@ -12,9 +12,9 @@ export const languages = {
         title: {
             ENG: 'Basics',
         },
-        interactive: {
+        explore: {
             title: {
-                ENG: 'Interactive Page',
+                ENG: 'Exploration Page',
             },
             tooltips: {
                 list: {

@@ -2,12 +2,12 @@
 import { defineComponent } from 'vue'
 import Translator from '../models/translator'
 import { BoundingRect } from '../models/types'
-import ClickableArea from '../components/Interactive/ClickableArea.vue'
+import ClickableArea from '../components/Exploration/ClickableArea.vue'
 
-const args = ['module1', 'interactive', 'tooltips']
+const args = ['module1', 'explore', 'tooltips']
 
 export default defineComponent({
-    name: 'Interactive',
+    name: 'Exploration',
     components: { ClickableArea },
     props: {
         translator: {

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { type BoundingRect } from '../../models/types'
-import { InteractiveItem } from '../../models/interactiveItem'
+import { ExplorationItem } from '../../models/explorationItem'
 import Sidebar from './Sidebar.vue'
 import Tooltip from './Tooltip.vue'
 
@@ -15,7 +15,7 @@ export default defineComponent({
             required: true,
         },
         item: {
-            type: Object as PropType<InteractiveItem>,
+            type: Object as PropType<ExplorationItem>,
             required: true,
         },
     },

@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import ClickableArea from '../../../src/components/Interactive/ClickableArea.vue'
+import ClickableArea from '../../../src/components/Exploration/ClickableArea.vue'
 import { expect } from 'vitest'
 
 let wrapper

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Tooltip from '../../../src/components/Interactive/Tooltip.vue'
+import Tooltip from '../../../src/components/Exploration/Tooltip.vue'
 import { expect } from 'vitest'
 
 let wrapper
