@@ -27,4 +27,12 @@ export default defineConfig({
             '.jsx',
         ],
     },
+    css: {
+        preprocessorOptions: {
+            sass: {
+                // a newline character is required because sass doesn't use ; 😼
+                additionalData: `@use "/src/style/variables.sass" as *\n`,
+            },
+        },
+    },
 })
