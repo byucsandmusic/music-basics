@@ -1,7 +1,4 @@
 // The language codes in this file have been defined by this resource: https://iso639-3.sil.org/code_tables/639/data
-import { defineComponent } from 'vue'
-import App from '../App.vue'
-
 export const languages = {
     home: {
         title: {
