@@ -60,6 +60,7 @@ export default defineComponent({
     },
     data() {
         return {
+            isTest: false,
             playing: false,
             playButtonText: this.translator.get('general', 'tapAlong', 'play'),
             instructionsText: this.translator.get(
@@ -270,10 +271,9 @@ export default defineComponent({
             this.clearRhythmFill()
         },
 
-        tap() {
+        tap(currentTapTime = Date.now() - this.startTime) {
             if (!this.canTap || !this.playing) return
 
-            const currentTapTime = Date.now() - this.startTime
             const expectedTime = this.rhythmTimes[this.currentNoteIndex]
             const difference = Math.abs(currentTapTime - expectedTime)
             console.log('Difference:', difference)
@@ -298,7 +298,10 @@ export default defineComponent({
 
             // Check if there are more notes to tap for
             console.log(this.rhythmTimes.length)
-            if (this.currentNoteIndex >= this.rhythmTimes.length) {
+            if (
+                this.currentNoteIndex >= this.rhythmTimes.length &&
+                !this.isTest
+            ) {
                 this.finish()
             }
         },
