@@ -2,6 +2,38 @@ import Translator from './models/translator'
 
 export default function useNestedMenuItems(translator: Translator) {
     return {
+        basics: [
+            {
+                id: '/basics/home',
+                href: '/basics/home',
+                title: translator.get('general', 'home'),
+            },
+            {
+                id: '/basics/welcome',
+                href: '/basics/welcome',
+                title: translator.get('basics', 'welcome', 'title'),
+            },
+            {
+                id: '/basics/overview',
+                href: '/basics/overview',
+                title: translator.get('basics', 'overview', 'title'),
+            },
+            {
+                id: '/basics/doctrine',
+                href: '/basics/doctrine',
+                title: translator.get('basics', 'doctrine', 'title'),
+            },
+            {
+                id: '/basics/sing-along',
+                href: '/basics/sing-along',
+                title: translator.get('general', 'singAlong', 'title'),
+            },
+            {
+                id: '/basics/explore',
+                href: '/basics/explore',
+                title: translator.get('basics', 'explore', 'title'),
+            },
+        ],
         demo: [
             {
                 id: '/demo/home',
@@ -11,7 +43,7 @@ export default function useNestedMenuItems(translator: Translator) {
             {
                 id: '/demo/explore',
                 href: '/demo/explore',
-                title: translator.get('module1', 'explore', 'title'),
+                title: translator.get('basics', 'explore', 'title'),
             },
             {
                 id: '/demo/sing-along',

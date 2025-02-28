@@ -5,13 +5,13 @@ export const languages = {
             ENG: 'Music App',
         },
     },
-    module1: {
+    basics: {
         title: {
             ENG: 'Basics',
         },
         explore: {
             title: {
-                ENG: 'Exploration Page',
+                ENG: 'Hymn Exploration',
             },
             tooltips: {
                 list: {
@@ -145,6 +145,21 @@ export const languages = {
                 },
             },
         },
+        welcome: {
+            title: {
+                ENG: 'Welcome',
+            },
+        },
+        overview: {
+            title: {
+                ENG: 'Basic Purpose and Overview',
+            },
+        },
+        doctrine: {
+            title: {
+                ENG: 'The Doctrine',
+            },
+        },
     },
     module2: {
         title: {
@@ -164,6 +179,14 @@ export const languages = {
     general: {
         home: {
             ENG: 'Home',
+        },
+        buttonBar: {
+            previous: {
+                ENG: '< previous',
+            },
+            next: {
+                ENG: 'next >',
+            },
         },
         dragAndDrop: {
             title: {

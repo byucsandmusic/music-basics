@@ -38,9 +38,10 @@ export default defineComponent({
                     }}</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/">{{
-                        translator.get('module1', 'title')
-                    }}</RouterLink>
+                    <RouterDropdown
+                        :links="nestedMenuItems.basics"
+                        :title="translator.get('basics', 'title')"
+                    />
                 </li>
                 <li>
                     <RouterLink to="/">{{

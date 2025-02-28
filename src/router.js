@@ -1,21 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './pages/Home.vue'
-import Demo from './pages/demo/Demo.vue'
-import Exploration from './pages/Exploration.vue'
+import BasePage from './pages/BasePage.vue'
+import Exploration from './pages/basic/Exploration.vue'
 import ModuleHome from './pages/ModuleHome.vue'
 import SingAlong from './components/SingAlong.vue'
 import NotFound from './pages/NotFound.vue'
 import DragAndDropDemo from './pages/demo/DragAndDropDemo.vue'
 import TapAlong from './components/TapAlong.vue'
 import { songs } from './models/songs.ts'
+import Video from './components/Video.vue'
 
 const routes = [
     { path: '/:pathMatch(.*)*', component: NotFound },
     { path: '/', component: Home, alias: '/home' },
     {
         path: '/demo',
-        component: Demo,
+        component: BasePage,
+        props: { translatorPath: 'demo/title' },
         children: [
             { path: '', redirect: '/demo/home' },
             { path: 'home', component: ModuleHome },
@@ -45,6 +47,38 @@ const routes = [
                 path: 'drag-and-drop',
                 component: DragAndDropDemo,
             },
+        ],
+    },
+    {
+        path: '/basics',
+        component: BasePage,
+        props: { translatorPath: 'basics/title' },
+        children: [
+            { path: '', redirect: '/basics/home' },
+            { path: 'home', component: ModuleHome },
+            {
+                path: 'welcome',
+                component: Video,
+                props: { srcName: 'singers' },
+            },
+            {
+                path: 'overview',
+                component: Video,
+                props: { srcName: 'organist' },
+            },
+            {
+                path: 'doctrine',
+                component: Video,
+                props: { srcName: 'temple' },
+            },
+            {
+                path: 'sing-along',
+                component: SingAlong,
+                props: {
+                    music: songs.i_am_a_child_of_god,
+                },
+            },
+            { path: 'explore', component: Exploration },
         ],
     },
 ]

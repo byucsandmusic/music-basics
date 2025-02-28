@@ -1,3 +1,29 @@
 body, html
     overflow-x: hidden
     height: 100%
+    background: $primary-background
+    color: $primary-text
+
+button
+    background: $accent-color
+
+button:hover
+    background: #0383ad
+
+.flex-col
+    display: flex
+    flex-direction: column
+
+.flex-row
+    display: flex
+    flex-direction: row
+
+@media (prefers-color-scheme: dark)
+    button
+        background: $accent-color-dark
+    button:hover
+        background: #09c5e1
+
+    body, html
+        background: $primary-background-dark
+        color: $secondary-text
