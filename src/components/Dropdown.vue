@@ -28,13 +28,17 @@ export default defineComponent({
     methods: {
         toggleSelected(title: string) {
             this.displayTitle = title
+            this.$refs.details.removeAttribute('open')
         },
     },
 })
 </script>
 
 <template>
-    <details class="dropdown">
+    <details
+        class="dropdown"
+        ref="details"
+    >
         <summary>{{ title || displayTitle }}</summary>
         <ul>
             <li
