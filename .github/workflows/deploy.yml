@@ -16,12 +16,10 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Configure Git User
-              run: |
-                  git config --global user.email "github-actions@github.com"
-                  git config --global user.name "github-actions"
+            - name: Build Project
+              run: npm run build
 
             - name: Deploy to GitHub Pages
-              run: npm run deploy
+              run: gh-pages -d dist --repo https://x-access-token:${GITHUB_TOKEN}@github.com/Speakman610/byu-cs-music-capstone.git
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
