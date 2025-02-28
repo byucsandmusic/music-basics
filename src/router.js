@@ -56,21 +56,9 @@ const routes = [
         children: [
             { path: '', redirect: '/basics/home' },
             { path: 'home', component: ModuleHome },
-            {
-                path: 'welcome',
-                component: Video,
-                props: { srcName: 'singers' },
-            },
-            {
-                path: 'overview',
-                component: Video,
-                props: { srcName: 'organist' },
-            },
-            {
-                path: 'doctrine',
-                component: Video,
-                props: { srcName: 'temple' },
-            },
+            { path: 'welcome', component: Video },
+            { path: 'overview', component: Video },
+            { path: 'doctrine', component: Video },
             {
                 path: 'sing-along',
                 component: SingAlong,

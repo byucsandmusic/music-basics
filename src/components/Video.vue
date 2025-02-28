@@ -12,7 +12,7 @@ export default defineComponent({
         },
         srcName: {
             type: String,
-            required: true,
+            default: 'singers',
         },
     },
     setup() {
