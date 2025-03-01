@@ -21,6 +21,6 @@ jobs:
               run: npm run build
 
             - name: Deploy to GitHub Pages
-              run: gh-pages -d dist --repo https://x-access-token:${GITHUB_TOKEN}@github.com/Speakman610/byu-cs-music-capstone.git
+              run: ./node_modules/.bin/gh-pages -d dist --repo https://x-access-token:${GITHUB_TOKEN}@github.com/Speakman610/byu-cs-music-capstone.git
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
