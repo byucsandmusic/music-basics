@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 import Translator from '../../models/translator'
 import Draggable from '../../components/DragAndDrop/Draggable.vue'
 import DragTarget from '../../components/DragAndDrop/DragTarget.vue'
