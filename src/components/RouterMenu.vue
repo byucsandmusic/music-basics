@@ -21,12 +21,17 @@ export default defineComponent({
             required: true,
         },
     },
+    computed: {
+        linksInMenu() {
+            return this.links.filter(({ notInMenu }) => !notInMenu || false)
+        },
+    },
 })
 </script>
 
 <template>
     <Dropdown
-        :items="links"
+        :items="linksInMenu"
         :title="title"
     >
         <!--    This is a Scoped Slot, which means that the child component passes props back up to the parent-->

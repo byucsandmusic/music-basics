@@ -33,6 +33,11 @@ export default function useNestedMenuItems(translator: Translator) {
                 href: '/basics/explore',
                 title: translator.get('basics', 'explore', 'title'),
             },
+            {
+                id: 'end',
+                href: '/basics/end',
+                notInMenu: true,
+            },
         ],
         demo: [
             {

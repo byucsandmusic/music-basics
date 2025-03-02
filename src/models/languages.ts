@@ -9,6 +9,12 @@ export const languages = {
         title: {
             ENG: 'Basics',
         },
+        ending: {
+            ENG:
+                "Now you know the basics of reading a hymn. You're definitely ready " +
+                'to sing in sacrament meeting now. Keep going to learn more about ' +
+                'rhythms in music!',
+        },
         explore: {
             title: {
                 ENG: 'Hymn Exploration',
@@ -195,6 +201,9 @@ export const languages = {
             title: {
                 ENG: 'Drag and Drop',
             },
+        },
+        ending: {
+            ENG: "Congratulations, you've finished the / module!",
         },
         loremIpsum: {
             ENG:
