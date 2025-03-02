@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import Translator from '../models/translator'
 import { useRoute } from 'vue-router'
 

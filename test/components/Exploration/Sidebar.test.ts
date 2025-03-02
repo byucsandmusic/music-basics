@@ -1,5 +1,4 @@
 import { shallowMount } from '@vue/test-utils'
-import ClickableArea from '../../../src/components/Exploration/ClickableArea.vue'
 import Sidebar from '../../../src/components/Exploration/Sidebar.vue'
 import { expect } from 'vitest'
 
