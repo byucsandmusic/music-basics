@@ -34,6 +34,7 @@ export default defineComponent({
     <div>
         <h3>{{ headerStart + translator.get(module, 'title') + headerEnd }}</h3>
         <p>{{ translator.get(module, 'ending') }}</p>
+        <<<<<<< HEAD
         <Confetti
             :options="{
                 startVelocity: 60,
@@ -44,6 +45,7 @@ export default defineComponent({
                 angle: -90,
             }"
         />
+        ======= >>>>>>> 762e92d (feat: add module ending page)
     </div>
 </template>
 
