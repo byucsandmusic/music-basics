@@ -10,6 +10,7 @@ import DragAndDropDemo from './pages/demo/DragAndDropDemo.vue'
 import TapAlong from './components/TapAlong.vue'
 import { songs } from './models/songs.ts'
 import Video from './components/Video.vue'
+import ModuleEnd from './pages/ModuleEnd.vue'
 
 const routes = [
     { path: '/:pathMatch(.*)*', component: NotFound },
@@ -67,6 +68,7 @@ const routes = [
                 },
             },
             { path: 'explore', component: Exploration },
+            { path: 'end', component: ModuleEnd, props: { module: 'basics' } },
         ],
     },
 ]

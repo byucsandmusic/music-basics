@@ -1,10 +1,11 @@
 export interface DropdownItem {
     id: string | number
-    title: string
+    title?: string
 }
 
 export interface LinkItem extends DropdownItem {
     href: string
+    notInMenu?: boolean
 }
 
 export type Cursor = {
