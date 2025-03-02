@@ -203,7 +203,7 @@ export const languages = {
             },
         },
         ending: {
-            ENG: "Congratulations, you've finished the / module!",
+            ENG: "Congratulations! You've finished the / module",
         },
         loremIpsum: {
             ENG:
