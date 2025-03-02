@@ -34,3 +34,30 @@ export type Music = {
     bass?: string[]
     verses?: string[][]
 }
+
+export enum ConfettiShapes {
+    circle = 'circle',
+    square = 'square',
+    star = 'star',
+}
+
+export type ConfettiOptions = {
+    particleCount?: number
+    angle?: number
+    spread?: number
+    startVelocity?: number
+    decay?: number
+    gravity?: number
+    drift?: number
+    flat?: boolean
+    ticks?: number
+    origin?: {
+        x?: number
+        y?: number
+    }
+    colors?: string[]
+    shapes?: ConfettiShapes[]
+    scalar?: number
+    zIndex?: number
+    disableForReducedMotion?: boolean
+}

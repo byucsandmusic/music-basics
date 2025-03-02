@@ -1,9 +1,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Translator from '../models/translator'
+import Confetti from '../components/Confetti.vue'
 
 export default defineComponent({
     name: 'ModuleEnd',
+    components: { Confetti },
     props: {
         translator: {
             type: Translator,
@@ -32,6 +34,16 @@ export default defineComponent({
     <div>
         <h3>{{ headerStart + translator.get(module, 'title') + headerEnd }}</h3>
         <p>{{ translator.get(module, 'ending') }}</p>
+        <Confetti
+            :options="{
+                startVelocity: 60,
+                particleCount: 150,
+                gravity: 0.8,
+                origin: { y: -0.3 },
+                spread: 180,
+                angle: -90,
+            }"
+        />
     </div>
 </template>
 
