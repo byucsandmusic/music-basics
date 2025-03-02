@@ -187,6 +187,9 @@ export const languages = {
             next: {
                 ENG: 'next >',
             },
+            skip: {
+                ENG: 'skip >',
+            },
         },
         dragAndDrop: {
             title: {
