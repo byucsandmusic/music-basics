@@ -18,7 +18,9 @@ jobs:
               run: npm install
 
             - name: Build Project
-              run: npm run build
+              run: |
+                  npm run build
+                  cp dist/index.html dist/404.html
 
             - name: Deploy to GitHub Pages
               run: ./node_modules/.bin/gh-pages -d dist --repo https://x-access-token:${GITHUB_TOKEN}@github.com/Speakman610/byu-cs-music-capstone.git
