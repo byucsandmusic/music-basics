@@ -18,11 +18,14 @@ jobs:
               run: npm install
 
             - name: Build Project
-              run: |
-                  npm run build
-                  cp dist/index.html dist/404.html
+              run: npm run build
 
+            - name: Configure git
+              run: |
+                  git config --global user.name "${GITHUB_ACTOR}"
+                  git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+                  
             - name: Deploy to GitHub Pages
-              run: ./node_modules/.bin/gh-pages -d dist --repo https://x-access-token:${GITHUB_TOKEN}@github.com/Speakman610/byu-cs-music-capstone.git
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+                  npm run deploy
