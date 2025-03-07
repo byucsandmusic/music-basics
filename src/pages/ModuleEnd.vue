@@ -45,7 +45,6 @@ export default defineComponent({
                 angle: -90,
             }"
         />
-        ======= >>>>>>> 762e92d (feat: add module ending page)
     </div>
 </template>
 
