@@ -34,7 +34,6 @@ export default defineComponent({
     <div>
         <h3>{{ headerStart + translator.get(module, 'title') + headerEnd }}</h3>
         <p>{{ translator.get(module, 'ending') }}</p>
-        <<<<<<< HEAD
         <Confetti
             :options="{
                 startVelocity: 60,
