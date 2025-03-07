@@ -18,7 +18,6 @@ const routes = [
     {
         path: '/demo',
         component: BasePage,
-        props: { translatorPath: 'demo/title' },
         children: [
             { path: '', redirect: '/demo/home' },
             { path: 'home', component: ModuleHome },
@@ -57,7 +56,6 @@ const routes = [
     {
         path: '/basics',
         component: BasePage,
-        props: { translatorPath: 'basics/title' },
         children: [
             { path: '', redirect: '/basics/home' },
             { path: 'home', component: ModuleHome },

@@ -83,6 +83,7 @@ export default defineComponent({
         >
             {{ translator.get('general', 'buttonBar', 'previous') }}
         </button>
+        <div class="title">{{ translator.get(module, 'title') }}</div>
         <button
             :disabled="nextDisabled"
             @click="goTo(false)"
@@ -101,5 +102,16 @@ export default defineComponent({
 <style scoped lang="sass">
 .button-bar
     justify-content: space-between
+    align-items: center
     padding: 10px
+
+.title
+    font-size: larger
+    font-weight: bold
+    padding: 0
+    margin: 0
+    place-self: center
+
+button
+    min-width: 134px
 </style>

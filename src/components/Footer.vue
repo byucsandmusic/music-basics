@@ -7,9 +7,6 @@ import { useCurrentPage } from '../utils/currentPage'
 export default defineComponent({
     name: 'Footer',
     components: { ButtonBar },
-    setup({ translator }) {
-        return useCurrentPage(translator)
-    },
     props: {
         translator: {
             type: Translator,
@@ -19,6 +16,9 @@ export default defineComponent({
             type: String,
             required: true,
         },
+    },
+    setup({ translator }) {
+        return useCurrentPage(translator)
     },
     data() {
         return {

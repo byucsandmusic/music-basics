@@ -11,10 +11,6 @@ export default defineComponent({
             type: Translator,
             required: true,
         },
-        translatorPath: {
-            type: String,
-            default: '',
-        },
     },
     data() {
         return {
@@ -26,7 +22,6 @@ export default defineComponent({
 
 <template>
     <div>
-        <h1>{{ translator.get(...translatorPath.split('/')) }}</h1>
         <div class="page-content">
             <RouterView #="{ Component }">
                 <component
