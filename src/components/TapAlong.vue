@@ -4,6 +4,7 @@ import Translator from '../models/translator'
 import MusicNotation from './MusicNotation.vue'
 import { Cursor } from '../models/types'
 import { Music } from '../models/types'
+import { progress } from '../models/progress'
 
 /**
  * usage:
@@ -402,11 +403,20 @@ export default defineComponent({
                     'instructions',
                     'succeeded'
                 )
+                this.saveProgress(true)
+                this.isDone = this.getProgress()
             }
         },
     },
 
     setup(props) {
+        // Set up progress logic
+        const { saveProgress, getProgress, isPageDone } = progress(
+            'Demo',
+            'tapAlong'
+        )
+        const isDone = isPageDone()
+        // Set up Metronome
         if (!props.rhythm) {
             throw new Error('rhythm prop is required')
         }
@@ -427,7 +437,7 @@ export default defineComponent({
             treble: [metronomeTreble],
             instrument: 115,
         }
-        return { metronome }
+        return { metronome, saveProgress, getProgress, isDone }
     },
 })
 </script>
@@ -467,6 +477,7 @@ export default defineComponent({
     >
         Tap
     </button>
+    <p>{{ isDone ? 'Done, nice work!' : 'You got this!' }}</p>
 </template>
 
 <style scoped>
