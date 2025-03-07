@@ -4,7 +4,7 @@ import Translator from '../models/translator'
 import MusicNotation from './MusicNotation.vue'
 import { Cursor } from '../models/types'
 import { Music } from '../models/types'
-import { progress } from '../models/progress'
+import { progress, ProgressInfo } from '../models/progress'
 
 /**
  * usage:
@@ -53,6 +53,10 @@ export default defineComponent({
         },
         rhythm: {
             type: Object as PropType<Music>,
+            required: true,
+        },
+        progressKeys: {
+            type: Object as PropType<ProgressInfo>,
             required: true,
         },
     },
@@ -414,8 +418,7 @@ export default defineComponent({
     setup(props) {
         // Set up progress logic
         const { saveProgress, getProgress, isComponentDone } = progress(
-            'Demo',
-            'tapAlong'
+            props.progressKeys
         )
         const isDone = isComponentDone()
         // Set up Metronome

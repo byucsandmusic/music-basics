@@ -42,6 +42,10 @@ const routes = [
                         treble: ['BB/B/BB'],
                         instrument: 36,
                     },
+                    progressKeys: {
+                        moduleName: 'demo',
+                        id: 'tap-along',
+                    },
                 },
             },
             {
