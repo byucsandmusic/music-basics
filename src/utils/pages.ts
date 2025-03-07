@@ -1,6 +1,6 @@
-import Translator from './models/translator'
+import Translator from '../models/translator'
 
-export default function useNestedMenuItems(translator: Translator) {
+export default function usePages(translator: Translator) {
     return {
         basics: [
             {

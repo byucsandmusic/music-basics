@@ -11,7 +11,7 @@ export default defineConfig({
             clientFiles: [
                 './src/App.vue',
                 './src/models/translator.ts',
-                './src/nestedMenuItems.ts',
+                './src/pages.ts',
             ],
         },
     },

@@ -2,14 +2,14 @@
 import Home from './pages/Home.vue'
 import Translator from './models/translator'
 import RouterMenu from './components/RouterMenu.vue'
-import useNestedMenuItems from './nestedMenuItems'
+import usePages from './utils/pages'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
     name: 'App',
     setup() {
         const translator = new Translator()
-        const nestedMenuItems = useNestedMenuItems(translator)
+        const nestedMenuItems = usePages(translator)
 
         return { translator, nestedMenuItems }
     },
