@@ -9,10 +9,5 @@ export function progress(moduleName: string, page: string) {
         return JSON.parse(localStorage.getItem(moduleName) || '{}')
     }
 
-    const isPageDone = () => {
-        const progress = getProgress()
-        return progress[page] || false
-    }
-
-    return { saveProgress, getProgress, isPageDone }
+    return { saveProgress, getProgress }
 }

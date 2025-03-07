@@ -411,11 +411,8 @@ export default defineComponent({
 
     setup(props) {
         // Set up progress logic
-        const { saveProgress, getProgress, isPageDone } = progress(
-            'Demo',
-            'tapAlong'
-        )
-        const isDone = isPageDone()
+        const { saveProgress, getProgress } = progress('Demo', 'tapAlong')
+        const isDone = getProgress()
         // Set up Metronome
         if (!props.rhythm) {
             throw new Error('rhythm prop is required')
