@@ -54,4 +54,8 @@ export default defineComponent({
     </div>
 </template>
 
-<style scoped lang="sass"></style>
+<style scoped lang="sass">
+
+video
+    max-height: calc( 100vh -  $button-bar-height )
+</style>

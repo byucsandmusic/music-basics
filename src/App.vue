@@ -30,7 +30,12 @@ export default defineComponent({
 <template>
     <title>{{ translator.get('home', 'title') }}</title>
     <main class="container">
-        <nav class="grid">
+        <nav class="navBar">
+            <img
+                class="logo"
+                role="presentation"
+                src="https://www.churchofjesuschrist.org/imgs/c730fd12d24c640f7649912008ddf828afd93403/full/60%2C/0/default.png"
+            />
             <ul>
                 <li>
                     <RouterLink to="/">{{
@@ -70,4 +75,14 @@ export default defineComponent({
     </main>
 </template>
 
-<style scoped></style>
+<style scoped lang="sass">
+.navBar
+    display: flex
+    flex-flow: row nowrap
+    justify-content: flex-start
+
+.logo
+    height: 3em
+    margin: 1em
+    margin-left: 0
+</style>

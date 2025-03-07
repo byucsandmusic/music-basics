@@ -131,7 +131,9 @@ export default defineComponent({
     background: $secondary-background
 
 .page-content
-    margin-bottom: 80px
+    > *
+        margin-left: auto
+        margin-right: auto
 
 @media (prefers-color-scheme: dark)
     .button-bar
