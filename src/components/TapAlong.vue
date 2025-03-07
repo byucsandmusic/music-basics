@@ -270,6 +270,8 @@ export default defineComponent({
                 console.error('RhythmMusicNotation component not available')
             }
             this.clearRhythmFill()
+            this.saveProgress(false)
+            this.isDone = this.isComponentDone()
         },
 
         tap(currentTapTime = Date.now() - this.startTime) {
@@ -477,7 +479,6 @@ export default defineComponent({
     >
         Tap
     </button>
-    <p>{{ isDone ? 'Done, nice work!' : 'You got this!' }}</p>
 </template>
 
 <style scoped>
