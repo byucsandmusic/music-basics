@@ -404,15 +404,18 @@ export default defineComponent({
                     'succeeded'
                 )
                 this.saveProgress(true)
-                this.isDone = this.getProgress()
+                this.isDone = this.isComponentDone()
             }
         },
     },
 
     setup(props) {
         // Set up progress logic
-        const { saveProgress, getProgress } = progress('Demo', 'tapAlong')
-        const isDone = getProgress()
+        const { saveProgress, getProgress, isComponentDone } = progress(
+            'Demo',
+            'tapAlong'
+        )
+        const isDone = isComponentDone()
         // Set up Metronome
         if (!props.rhythm) {
             throw new Error('rhythm prop is required')

@@ -1,7 +1,17 @@
-export function progress(moduleName: string, page: string) {
+/**
+ * Call the function with "<moduleName>" and "<desiredComponentName>"
+ * and it will return functions to get and update that boolean locally.
+ * ex: const { saveProgress, getProgress, isComponentDone } = progress('Rhythms', 'tapAlongQuarterNotes')
+ *
+ * @param moduleName name of the module the component is in
+ * @param component desired name of the component
+ * @returns
+ */
+
+export function progress(moduleName: string, component: string) {
     const saveProgress = (done: boolean) => {
         const progress = JSON.parse(localStorage.getItem(moduleName) || '{}')
-        progress[page] = done
+        progress[component] = done
         localStorage.setItem(moduleName, JSON.stringify(progress))
     }
 
@@ -9,5 +19,10 @@ export function progress(moduleName: string, page: string) {
         return JSON.parse(localStorage.getItem(moduleName) || '{}')
     }
 
-    return { saveProgress, getProgress }
+    const isComponentDone = () => {
+        const progress = getProgress()
+        return progress[component] || false
+    }
+
+    return { saveProgress, getProgress, isComponentDone }
 }
