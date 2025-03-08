@@ -24,46 +24,30 @@ export default defineComponent({
          */
         cursor: {
             type: Object as PropType<Cursor>,
-            default: {
-                onStart: () => {
-                    console.log('Playback started')
-                },
-                onEvent: (event: any) => {
-                    console.log(event)
-                    if (event && event.elements) {
-                        // Remove previous highlights
-                        document
-                            .querySelectorAll(
-                                '.abcjs-note_played, .abcjs-note_selected'
-                            )
-                            .forEach((el: SVGElement) => {
-                                el.classList.remove(
-                                    'abcjs-note_played',
-                                    'abcjs-note_selected'
+            default: () => {
+                return {
+                    onEvent: (event: any) => {
+                        if (event && event.elements) {
+                            // Remove previous highlights
+                            document
+                                .querySelectorAll(
+                                    '.abcjs-note_played, .abcjs-note_selected'
                                 )
-                                el.removeAttribute('fill')
-                            })
+                                .forEach((el: SVGElement) => {
+                                    el.classList.remove(
+                                        'abcjs-note_played',
+                                        'abcjs-note_selected'
+                                    )
+                                    el.removeAttribute('fill')
+                                })
 
-                        // Apply highlight to current note
-                        event.elements.forEach((el: SVGElement) => {
-                            el[0].classList.add('abcjs-note_played')
-                        })
-                    }
-                },
-                onFinished: () => {
-                    console.log('Playback finished')
-                    document
-                        .querySelectorAll(
-                            '.abcjs-note_played, .abcjs-note_selected'
-                        )
-                        .forEach((el: SVGElement) => {
-                            el.classList.remove(
-                                'abcjs-note_played',
-                                'abcjs-note_selected'
-                            )
-                            el.removeAttribute('fill')
-                        })
-                },
+                            // Apply highlight to current note
+                            event.elements.forEach((el: SVGElement) => {
+                                el[0].classList.add('abcjs-note_played')
+                            })
+                        }
+                    },
+                }
             },
         },
         displaySheetMusic: {
@@ -99,6 +83,7 @@ export default defineComponent({
         return {
             midiBuffer: undefined as abcjs.MidiBuffer | undefined,
             synthControl: undefined as abcjs.SynthObjectController | undefined,
+            isPlaying: false,
         }
     },
     methods: {
@@ -152,7 +137,6 @@ export default defineComponent({
             return notation
         },
         clickListener(abcElem) {
-            console.log(typeof abcElem)
             if (this.midiBuffer && this.synthControl) {
                 this.midiBuffer.seek(abcElem?.currentTrackMilliseconds)
 
@@ -177,6 +161,7 @@ export default defineComponent({
         },
         async playPause() {
             await this.synthControl.play()
+            this.isPlaying = this.synthControl.isStarted
         },
         async restart() {
             if (this.synthControl.isStarted) {
@@ -192,9 +177,69 @@ export default defineComponent({
                     )
                     el.removeAttribute('fill')
                 })
+            if (this.cursor.verse !== undefined) {
+                this.cursor.verse = 0
+                const lyrics = document.querySelectorAll('.abcjs-lyric')
+                lyrics.forEach((lyric) => {
+                    for (let i = 0; i < lyric.children.length; i++) {
+                        lyric.children[i].setAttribute('opacity', '1')
+                    }
+                })
+            }
+            this.isPlaying = false
         },
     },
     mounted() {
+        if (
+            this.cursor.onStart === undefined &&
+            this.cursor.onFinished === undefined
+        ) {
+            this.cursor.verse = 0
+            this.cursor.onStart = () => {
+                console.log(`Starting verse ${this.cursor.verse + 1}`)
+                const lyrics = document.querySelectorAll('.abcjs-lyric')
+                lyrics.forEach((lyric) => {
+                    for (let i = 0; i < lyric.children.length; i++) {
+                        if (
+                            i !== this.cursor.verse &&
+                            lyric.children.length - 1 > this.cursor.verse // This is to make sure that if we are on the chorus it is still highlighted
+                        ) {
+                            lyric.children[i].setAttribute('opacity', '0.25')
+                        } else {
+                            lyric.children[i].setAttribute('opacity', '1')
+                        }
+                    }
+                })
+            }
+            this.cursor.onFinished = async () => {
+                console.log(`Finished verse ${this.cursor.verse + 1}`)
+                document
+                    .querySelectorAll(
+                        '.abcjs-note_played, .abcjs-note_selected'
+                    )
+                    .forEach((el: SVGElement) => {
+                        el.classList.remove(
+                            'abcjs-note_played',
+                            'abcjs-note_selected'
+                        )
+                        el.removeAttribute('fill')
+                    })
+
+                this.cursor.verse++
+                const lyrics = document.querySelectorAll('.abcjs-lyric')
+                if (this.cursor.verse === lyrics[0].children.length - 1) {
+                    lyrics.forEach((lyric) => {
+                        for (let i = 0; i < lyric.children.length; i++) {
+                            lyric.children[i].setAttribute('opacity', '1')
+                        }
+                    })
+                    this.cursor.verse = 0
+                } else {
+                    await this.synthControl.restart()
+                    await this.synthControl.play()
+                }
+            }
+        }
         try {
             const tuneArray: abcjs.TuneObjectArray = abcjs.renderAbc(
                 this.$refs.notationContainer,
@@ -212,9 +257,9 @@ export default defineComponent({
                 this.synthControl = new abcjs.synth.SynthController()
 
                 this.synthControl.load('#midi-player', this.cursor, {
-                    displayLoop: true,
-                    displayRestart: true,
-                    displayPlay: true,
+                    displayLoop: false,
+                    displayRestart: false,
+                    displayPlay: false,
                     displayProgress: true,
                 })
                 this.midiBuffer = new abcjs.synth.CreateSynth()
@@ -244,9 +289,25 @@ export default defineComponent({
         <div
             v-if="midiOnTop"
             :hidden="!displayMidiPlayer"
-            ref="midiPlayer"
-            id="midi-player"
-        ></div>
+            id="midi-container"
+        >
+            <button
+                @click="playPause"
+                id="play-btn"
+            >
+                {{ isPlaying ? 'Pause' : 'Play' }}
+            </button>
+            <button
+                @click="restart"
+                id="reset-btn"
+            >
+                Restart Song
+            </button>
+            <div
+                ref="midiPlayer"
+                id="midi-player"
+            ></div>
+        </div>
         <div
             :hidden="!displaySheetMusic"
             ref="notationContainer"
@@ -254,9 +315,25 @@ export default defineComponent({
         <div
             v-if="!midiOnTop"
             :hidden="!displayMidiPlayer"
-            ref="midiPlayer"
-            id="midi-player"
-        ></div>
+            id="midi-container"
+        >
+            <button
+                @click="playPause"
+                id="play-btn"
+            >
+                {{ isPlaying ? 'Pause' : 'Play' }}
+            </button>
+            <button
+                @click="restart"
+                id="reset-btn"
+            >
+                Restart Song
+            </button>
+            <div
+                ref="midiPlayer"
+                id="midi-player"
+            ></div>
+        </div>
     </div>
 </template>
 
@@ -278,4 +355,20 @@ export default defineComponent({
 
 .abcjs-note_incorrect
     fill: v-bind(incorrectColor)
+
+#midi-container
+    display: flex
+
+    #play-btn
+        min-height: 100%
+        flex: 1
+
+    #reset-btn
+        min-height: 100%
+        flex: 1
+
+#midi-player
+    width: 100%
+    height: auto
+    flex: 8
 </style>
