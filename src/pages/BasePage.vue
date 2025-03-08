@@ -131,6 +131,7 @@ export default defineComponent({
     background: $secondary-background
 
 .page-content
+    margin-bottom: $button-bar-height
     > *
         margin-left: auto
         margin-right: auto
