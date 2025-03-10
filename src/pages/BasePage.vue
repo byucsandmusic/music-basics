@@ -30,16 +30,13 @@ export default defineComponent({
                 />
             </RouterView>
         </div>
-        <Footer
-            :translator="translator"
-            :footerHeight="footerHeight"
-        />
+        <Footer :translator="translator" />
     </div>
 </template>
 
 <style scoped lang="sass">
 .page-content
-    margin-bottom: $button-bar-height
+    margin-bottom: $footer-height
     > *
         margin-left: auto
         margin-right: auto

@@ -12,10 +12,6 @@ export default defineComponent({
             type: Translator,
             required: true,
         },
-        footerHeight: {
-            type: String,
-            required: true,
-        },
     },
     setup({ translator }) {
         return useCurrentPage(translator)
@@ -61,7 +57,7 @@ export default defineComponent({
     bottom: 0
     left: 0
     right: 0
-    height: v-bind(footerHeight)
+    height: $footer-height
     background: $secondary-background
 
 .progress-container,
