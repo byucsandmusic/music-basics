@@ -59,6 +59,10 @@ export default defineComponent({
             type: Object as PropType<ProgressInfo>,
             required: true,
         },
+        description: {
+            type: String,
+            default: '',
+        },
     },
     components: {
         MusicNotation,
@@ -442,46 +446,53 @@ export default defineComponent({
             treble: [metronomeTreble],
             instrument: 115,
         }
-        return { metronome, saveProgress, getProgress, isDone }
+        return { metronome, saveProgress, getProgress, isComponentDone }
     },
 })
 </script>
 
 <template>
     <h1>{{ translator.get('general', 'tapAlong', 'title') }}</h1>
-    <MusicNotation
-        ref="metronomeMusicNotation"
-        :music="metronome"
-        :displayMidiPlayer="false"
-        :displaySheetMusic="false"
-        :cursor="metronomeCursor"
-        :translator="translator"
-    ></MusicNotation>
-    <MusicNotation
-        ref="rhythmMusicNotation"
-        :music="rhythm"
-        :displayMidiPlayer="false"
-        displaySheetMusic
-        :cursor="rhythmCursor"
-        :translator="translator"
-    ></MusicNotation>
-    <div class="header-container">
-        <h3>{{ instructionsText }}</h3>
-        <h3>{{ countdownText }}</h3>
+    <p>{{ description }}</p>
+    <div>
+        <div class="music-notation-container">
+            <MusicNotation
+                ref="metronomeMusicNotation"
+                :music="metronome"
+                :displayMidiPlayer="false"
+                :displaySheetMusic="false"
+                :cursor="metronomeCursor"
+                :translator="translator"
+            ></MusicNotation>
+            <MusicNotation
+                ref="rhythmMusicNotation"
+                :music="rhythm"
+                :displayMidiPlayer="false"
+                displaySheetMusic
+                :cursor="rhythmCursor"
+                :translator="translator"
+            ></MusicNotation>
+        </div>
+        <div class="header-container">
+            <h3>{{ instructionsText }}</h3>
+            <h3>{{ countdownText }}</h3>
+        </div>
+        <div class="button-container">
+            <button
+                type="button"
+                @click="playing ? reset() : play()"
+            >
+                {{ playButtonText }}
+            </button>
+            <button
+                type="button"
+                @click="tap()"
+                :disabled="!playing"
+            >
+                Tap
+            </button>
+        </div>
     </div>
-    <button
-        type="button"
-        @click="playing ? reset() : play()"
-    >
-        {{ playButtonText }}
-    </button>
-    <button
-        type="button"
-        @click="tap()"
-        :disabled="!playing"
-    >
-        Tap
-    </button>
 </template>
 
 <style scoped>
@@ -491,23 +502,41 @@ export default defineComponent({
     align-items: center;
 }
 
-.input-wrapper {
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.music-notation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.button-container {
     display: flex;
     gap: 10px;
-    align-items: center;
+    width: 100%;
+    justify-content: left;
 }
 
-.input-wrapper input {
-    height: 40px;
-    padding: 5px;
-    font-size: 16px;
-}
-
-.input-wrapper button {
-    height: 40px;
-    padding: 5px 10px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-bottom: 18px;
+button {
+    flex: 1;
+    font-size: 20px;
+    padding: 16px;
+    height: 60px;
+    border-radius: 8px;
+    border: none;
+    transition: background-color 0.2s ease-in-out;
+    max-width: 200px;
 }
 </style>

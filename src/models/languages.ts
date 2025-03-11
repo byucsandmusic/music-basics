@@ -238,7 +238,7 @@ export const languages = {
         },
         tapAlong: {
             title: {
-                ENG: 'Tap Along',
+                ENG: 'Tap Along Activity',
             },
             play: {
                 ENG: 'Play',

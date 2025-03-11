@@ -34,7 +34,6 @@ const routes = [
                 component: TapAlong,
                 props: {
                     rhythm: {
-                        title: 'Mixed Rhythm',
                         meter: '4/4',
                         tempo: '100',
                         beat: '1/4',
@@ -45,6 +44,7 @@ const routes = [
                         moduleName: 'demo',
                         id: 'tap-along',
                     },
+                    description: "Here's a mixed rhythm to try:",
                 },
             },
             {
