@@ -5,7 +5,118 @@ export const languages = {
             ENG: 'Music App',
         },
     },
-    basics: {
+    module0: {
+        title: {
+            ENG: 'Crash Course',
+        },
+        ending: {
+            ENG:
+                "You've completed the crash course! Now you have a solid foundation in " +
+                'the basics of rhythm, pitch, and hymn reading. Keep practicing to ' +
+                'sharpen your skills and explore more musical concepts!',
+        },
+        intro: {
+            title: {
+                ENG: 'Introduction',
+            },
+        },
+        readingVersesInfo: {
+            title: {
+                ENG: 'Reading Verses',
+            },
+        },
+        readingVersesSingAlong: {
+            title: {
+                ENG: 'Reading Verses Sing-Along',
+            },
+        },
+        rhythmInfo: {
+            title: {
+                ENG: 'Rhythm Basics',
+            },
+        },
+        rhythmMatchingNames: {
+            title: {
+                ENG: 'Rhythm Matching - Note Names',
+            },
+        },
+        rhythmMatchingTiming: {
+            title: {
+                ENG: 'Rhythm Matching - Timing',
+            },
+        },
+        rhythmTapAlongQuarterNotes: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Quarter Notes',
+            },
+        },
+        rhythmTapAlongHalfNotes: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Half Notes',
+            },
+        },
+        rhythmTapAlongEighthNotes: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Eighth Notes',
+            },
+        },
+        rhythmTapAlongMixed1: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Mixed Rhythms 1',
+            },
+        },
+        rhythmTapAlongMixed2: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Mixed Rhythms 2',
+            },
+        },
+        rhythmSingAlongCommon: {
+            title: {
+                ENG: 'Rhythm Sing-Along - Common Hymn',
+            },
+        },
+        rhythmSingAlongNew: {
+            title: {
+                ENG: 'Rhythm Sing-Along - New Hymn',
+            },
+        },
+        pitchInfo: {
+            title: {
+                ENG: 'Pitch Basics',
+            },
+        },
+        pitchMatchingTunesCommon: {
+            title: {
+                ENG: 'Pitch Matching - Common Hymn',
+            },
+        },
+        pitchMatchingTunesNew: {
+            title: {
+                ENG: 'Pitch Matching - New Hymn',
+            },
+        },
+        pitchSingAlongCommon: {
+            title: {
+                ENG: 'Pitch Sing-Along - Common Hymn',
+            },
+        },
+        pitchSingAlongNew: {
+            title: {
+                ENG: 'Pitch Sing-Along - New Hymn',
+            },
+        },
+        pitchMelodyLineInfo: {
+            title: {
+                ENG: 'Pitch Melody Line Information',
+            },
+        },
+        exploration: {
+            title: {
+                ENG: 'Exploration',
+            },
+        },
+    },
+    module1: {
         title: {
             ENG: 'Basics',
         },

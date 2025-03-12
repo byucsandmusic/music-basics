@@ -44,8 +44,14 @@ export default defineComponent({
                 </li>
                 <li>
                     <RouterDropdown
-                        :links="nestedMenuItems.basics"
-                        :title="translator.get('basics', 'title')"
+                        :links="nestedMenuItems.module0"
+                        :title="translator.get('module0', 'title')"
+                    />
+                </li>
+                <li>
+                    <RouterDropdown
+                        :links="nestedMenuItems.module1"
+                        :title="translator.get('module1', 'title')"
                     />
                 </li>
                 <li>
