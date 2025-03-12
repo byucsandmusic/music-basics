@@ -16,9 +16,12 @@ export default defineComponent({
             type: Translator,
             required: true,
         },
-        music: {
-            type: Object as PropType<Music>,
+        sheets: {
+            type: Object as PropType<Music[]>,
             required: true,
+            validator: function (value: Music[]) {
+                return value.length > 0
+            },
         },
     },
     components: {
@@ -29,12 +32,6 @@ export default defineComponent({
     },
     data() {
         return {
-            displaySheets: [
-                subsheet(0, 1, songs.i_am_a_child_of_god),
-                subsheet(1, 1, songs.i_am_a_child_of_god),
-                subsheet(2, 1, songs.i_am_a_child_of_god),
-                subsheet(3, 1, songs.i_am_a_child_of_god),
-            ],
             buckets: new Map(),
             textIndicator: 'Place the sheet music you hear into the box above!',
         }
@@ -69,7 +66,7 @@ export default defineComponent({
 <template>
     <section>
         <MusicNotation
-            :music="music"
+            :music="sheets[0]"
             :translator="translator"
             :displaySheetMusic="false"
             display-midi-player
@@ -95,19 +92,25 @@ export default defineComponent({
             <div class="draggables">
                 <Draggable id="first">
                     <MusicNotation
-                        :music="displaySheets[0]"
+                        :music="sheets[0]"
                         :translator="translator"
                     />
                 </Draggable>
                 <Draggable id="second">
                     <MusicNotation
-                        :music="displaySheets[1]"
+                        :music="sheets[1]"
                         :translator="translator"
                     />
                 </Draggable>
                 <Draggable id="third">
                     <MusicNotation
-                        :music="displaySheets[2]"
+                        :music="sheets[2]"
+                        :translator="translator"
+                    />
+                </Draggable>
+                <Draggable id="third">
+                    <MusicNotation
+                        :music="sheets[3]"
                         :translator="translator"
                     />
                 </Draggable>

@@ -18,7 +18,12 @@ export default defineComponent({
     },
     data() {
         return {
-            song: removeVerses(subsheet(0, 1, songs.i_am_a_child_of_god)),
+            sheets: [
+                subsheet(0, 1, songs.i_am_a_child_of_god),
+                subsheet(1, 1, songs.i_am_a_child_of_god),
+                subsheet(2, 1, songs.i_am_a_child_of_god),
+                subsheet(3, 1, songs.i_am_a_child_of_god),
+            ],
             buckets: new Map(),
             textIndicator: 'Drag an image into its matching square!',
         }
@@ -30,7 +35,7 @@ export default defineComponent({
 <template>
     <section>
         <MatchTheSong
-            :music="song"
+            :sheets="sheets"
             :translator="translator"
             display-midi-player
             midi-on-top
