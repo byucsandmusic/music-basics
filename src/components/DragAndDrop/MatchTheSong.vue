@@ -40,6 +40,12 @@ export default defineComponent({
     data() {
         console.log(createRandomIndexOrder(this.sheets.length))
         return {
+            displaySheets: [
+                subsheet(0, 1, songs.i_am_a_child_of_god),
+                subsheet(1, 1, songs.i_am_a_child_of_god),
+                subsheet(2, 1, songs.i_am_a_child_of_god),
+                subsheet(3, 1, songs.i_am_a_child_of_god),
+            ],
             buckets: new Map(),
             textIndicator: 'Place your answer into the box below!',
             order: createRandomIndexOrder(this.sheets.length),
