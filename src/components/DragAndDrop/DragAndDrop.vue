@@ -40,7 +40,6 @@ interface InteractionEvent {
 export default defineComponent({
     name: 'DragAndDrop',
     props: {
-        translator: { type: Translator },
         onRelease: {
             type: Function as PropType<
                 (

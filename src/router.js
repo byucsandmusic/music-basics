@@ -7,6 +7,7 @@ import ModuleHome from './pages/ModuleHome.vue'
 import SingAlong from './components/SingAlong.vue'
 import NotFound from './pages/NotFound.vue'
 import DragAndDropDemo from './pages/demo/DragAndDropDemo.vue'
+import MatchTheSong from './pages/demo/MatchTheSongDemo.vue'
 import TapAlong from './components/TapAlong.vue'
 import { songs } from './models/songs.ts'
 import Video from './components/Video.vue'
@@ -50,6 +51,10 @@ const routes = [
             {
                 path: 'drag-and-drop',
                 component: DragAndDropDemo,
+            },
+            {
+                path: 'match-the-song',
+                component: MatchTheSong,
             },
         ],
     },

@@ -313,6 +313,11 @@ export const languages = {
                 ENG: 'Drag and Drop',
             },
         },
+        matchTheSong: {
+            title: {
+                ENG: 'Match the Song',
+            },
+        },
         ending: {
             ENG: "Congratulations! You've finished the / module",
         },

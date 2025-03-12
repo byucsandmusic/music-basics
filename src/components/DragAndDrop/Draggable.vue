@@ -6,7 +6,6 @@ import DragAndDrop from '../../components/DragAndDrop/DragAndDrop.vue'
 export default defineComponent({
     name: 'DragAndDropDemo',
     props: {
-        translator: Translator,
         id: {
             type: String,
             required: true,
