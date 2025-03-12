@@ -6,8 +6,6 @@ import DragTarget from '../../components/DragAndDrop/DragTarget.vue'
 import DragAndDrop from '../../components/DragAndDrop/DragAndDrop.vue'
 import MusicNotation from '../MusicNotation.vue'
 import { Music } from '../../models/types'
-import { subsheet } from '../../utils/musicManipulator'
-import { songs } from '../../models/songs'
 
 export default defineComponent({
     name: 'MatchTheSong',
@@ -39,22 +37,8 @@ export default defineComponent({
     methods: {
         onRelease(from, to, state) {
             this.buckets = state
-            switch (from + to) {
-                case 'eighth-draggableeighth-target':
-                case 'quarter-draggablequarter-target':
-                case 'half-draggablehalf-target':
-                case 'whole-draggablewhole-target':
-                    this.textIndicator = 'Correct!'
-                    break
 
-                default:
-                    if (to)
-                        this.textIndicator = `Sorry, this isn't a ${to.split('-')[0]} note. Try again!`
-                    else
-                        this.textIndicator =
-                            'Please drop the notes into a valid slot.'
-                    break
-            }
+            this.textIndicator = 'Sheet music dropped.'
         },
         validBucket(from, to) {
             return true
