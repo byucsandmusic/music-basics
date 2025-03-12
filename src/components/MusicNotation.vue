@@ -79,6 +79,7 @@ export default defineComponent({
             default: '#ff0000',
         },
     },
+    emits: ['lyric-clicked'],
     data() {
         return {
             midiBuffer: undefined as abcjs.MidiBuffer | undefined,
@@ -271,6 +272,18 @@ export default defineComponent({
                         if (visualObj)
                             this.synthControl.setTune(visualObj, false)
                     })
+
+                const lyrics = document.querySelectorAll('.abcjs-lyric')
+                lyrics.forEach((lyric) => {
+                    for (let i = 0; i < lyric.children.length; i++) {
+                        lyric.children[i].addEventListener('click', () => {
+                            this.$emit('lyric-clicked', {
+                                verse: i,
+                                lyric: lyric.children[i].textContent,
+                            })
+                        })
+                    }
+                })
             }
         } catch (err) {
             this.$refs.midiPlayer.innerText = this.translator.get(
