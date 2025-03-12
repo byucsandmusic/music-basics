@@ -2,15 +2,23 @@
 import { defineComponent } from 'vue'
 import Translator from '../../models/translator'
 import MatchTheSong from '../../components/DragAndDrop/MatchTheSong.vue'
+import { songs } from '../../models/songs'
+import { removeVerses, subsheet } from '../../utils/musicManipulator'
 
 export default defineComponent({
     name: 'MatchTheSongDemo',
-    props: {},
+    props: {
+        translator: {
+            type: Translator,
+            required: true,
+        },
+    },
     components: {
         MatchTheSong,
     },
     data() {
         return {
+            song: removeVerses(subsheet(0, 1, songs.i_am_a_child_of_god)),
             buckets: new Map(),
             textIndicator: 'Drag an image into its matching square!',
         }
@@ -21,7 +29,12 @@ export default defineComponent({
 
 <template>
     <section>
-        <MatchTheSong></MatchTheSong>
+        <MatchTheSong
+            :music="song"
+            :translator="translator"
+            display-midi-player
+            midi-on-top
+        />
     </section>
 </template>
 

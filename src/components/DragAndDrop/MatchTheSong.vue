@@ -6,10 +6,16 @@ import DragTarget from '../../components/DragAndDrop/DragTarget.vue'
 import DragAndDrop from '../../components/DragAndDrop/DragAndDrop.vue'
 import MusicNotation from '../MusicNotation.vue'
 import { Music } from '../../models/types'
+import { subsheet } from '../../utils/musicManipulator'
+import { songs } from '../../models/songs'
 
 export default defineComponent({
     name: 'MatchTheSong',
     props: {
+        translator: {
+            type: Translator,
+            required: true,
+        },
         music: {
             type: Object as PropType<Music>,
             required: true,
@@ -23,8 +29,14 @@ export default defineComponent({
     },
     data() {
         return {
+            displaySheets: [
+                subsheet(0, 1, songs.i_am_a_child_of_god),
+                subsheet(1, 1, songs.i_am_a_child_of_god),
+                subsheet(2, 1, songs.i_am_a_child_of_god),
+                subsheet(3, 1, songs.i_am_a_child_of_god),
+            ],
             buckets: new Map(),
-            textIndicator: 'Drag an image into its matching square!',
+            textIndicator: 'Place the sheet music you hear into the box above!',
         }
     },
     methods: {
@@ -48,7 +60,7 @@ export default defineComponent({
             }
         },
         validBucket(from, to) {
-            return to.includes(from.split('-')[0])
+            return true
         },
     },
 })
@@ -56,42 +68,51 @@ export default defineComponent({
 
 <template>
     <section>
-        <MusicNotation></MusicNotation>
+        <MusicNotation
+            :music="music"
+            :translator="translator"
+            :displaySheetMusic="false"
+            display-midi-player
+            midi-on-top
+        />
+
         <DragAndDrop
             :onRelease="onRelease"
             :validBucket="validBucket"
         >
-            Move items into the correct spots!
-            <div class="draggables">
-                <Draggable id="eighth-draggable">
-                    <img src="/src/assets/dragAndDrop/eighthNote.webp" />
-                </Draggable>
-                <Draggable id="quarter-draggable">
-                    <img src="/src/assets/dragAndDrop/quarterNote.webp" />
-                </Draggable>
-                <Draggable id="half-draggable">
-                    <img src="/src/assets/dragAndDrop/halfNote.webp" />
-                </Draggable>
-                <Draggable id="whole-draggable">
-                    <img src="/src/assets/dragAndDrop/wholeNote.webp" />
-                </Draggable>
-            </div>
-            <span style="height: 100px"></span>
+            What song do you hear?
             <div class="targets">
-                <span
-                    class="targetContainer"
-                    v-for="len in ['eighth', 'quarter', 'half', 'whole']"
-                >
+                <span class="targetContainer">
                     <span
-                        :class="{ isCorrect: buckets.get(len + '-target') }"
+                        :class="{ isCorrect: false }"
                         class="correctnessIndicator"
                     ></span>
                     <span>
-                        {{ len }}
-                        <DragTarget :id="`${len}-target`"></DragTarget>
+                        <DragTarget :id="`song-target`"></DragTarget>
                     </span>
                 </span>
             </div>
+            <div class="draggables">
+                <Draggable id="first">
+                    <MusicNotation
+                        :music="displaySheets[0]"
+                        :translator="translator"
+                    />
+                </Draggable>
+                <Draggable id="second">
+                    <MusicNotation
+                        :music="displaySheets[1]"
+                        :translator="translator"
+                    />
+                </Draggable>
+                <Draggable id="third">
+                    <MusicNotation
+                        :music="displaySheets[2]"
+                        :translator="translator"
+                    />
+                </Draggable>
+            </div>
+            <span style="height: 100px"></span>
             <span>{{ textIndicator }}</span>
         </DragAndDrop>
     </section>
@@ -127,7 +148,7 @@ section
 .correctnessIndicator
     display: block
     width: 20px
-    height: 100px
+    height: 300px
     background-color: white
     align-self: flex-end
     outline: black 1px solid
@@ -139,13 +160,13 @@ section
     padding: 10px
     outline: black 1px solid
     background-color: white
-    width: 100px
-    height: 100px
+    width: 300px
+    height: 300px
 
 .dragTarget
     display: block
-    width: 100px
-    height: 100px
+    width: 300px
+    height: 300px
     outline: 1px solid black
 
 
