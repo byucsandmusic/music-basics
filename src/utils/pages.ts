@@ -1,6 +1,9 @@
 import Translator from '../models/translator'
+import { LinkItem } from '../models/types'
 
-export default function usePages(translator: Translator) {
+export default function usePages(
+    translator: Translator
+): Record<string, LinkItem[]> {
     return {
         basics: [
             {

@@ -11,13 +11,11 @@ export const useCurrentPage = (translator: Translator) => {
     const updateModule = (path: string) => (module.value = path.split('/')[1])
 
     const pageIndex = ref(
-        menuItems[module.value].indexOf(
-            menuItems[module.value].find(({ href }) => href === route.path)
-        )
+        menuItems[module.value]?.findIndex(({ href }) => href === route.path)
     )
     const updateIndex = () =>
-        (pageIndex.value = menuItems[module.value].indexOf(
-            menuItems[module.value].find(({ href }) => href === route.path)
+        (pageIndex.value = menuItems[module.value]?.findIndex(
+            ({ href }) => href === route.path
         ))
 
     watch(
