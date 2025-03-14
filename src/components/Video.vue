@@ -57,5 +57,5 @@ export default defineComponent({
 <style scoped lang="sass">
 
 video
-    max-height: calc( 100vh -  $footer-height )
+    max-height: calc( 100vh -  $footer-height - 10em)
 </style>
