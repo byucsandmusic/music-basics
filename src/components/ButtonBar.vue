@@ -76,14 +76,14 @@ export default defineComponent({
             :disabled="prevDisabled"
             @click="goTo(true)"
         >
-            <
+            <i class="fa-solid fa-backward"></i>
         </button>
         <div class="title">{{ translator.get(module, 'title') }}</div>
         <button
             :disabled="nextDisabled"
             @click="goTo(false)"
         >
-            >
+            <i class="fa-solid fa-forward"></i>
         </button>
     </div>
 </template>

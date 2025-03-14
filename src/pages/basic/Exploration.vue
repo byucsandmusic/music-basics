@@ -4,7 +4,7 @@ import Translator from '../../models/translator'
 import { BoundingRect } from '../../models/types'
 import ClickableArea from '../../components/Exploration/ClickableArea.vue'
 
-const args = ['basics', 'explore', 'tooltips']
+const args = ['module1', 'explore', 'tooltips']
 
 export default defineComponent({
     name: 'Exploration',

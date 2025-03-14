@@ -29,7 +29,7 @@ export default defineComponent({
         @click="$emit('close')"
         class="x"
     >
-        x
+        <i class="fa-solid fa-xmark"></i>
     </div>
 </template>
 
