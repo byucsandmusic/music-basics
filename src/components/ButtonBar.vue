@@ -14,11 +14,6 @@ export default defineComponent({
             required: true,
         },
     },
-    data() {
-        return {
-            namedNext: true,
-        }
-    },
     computed: {
         otherModules() {
             return Object.keys(this.menuItems)
@@ -81,20 +76,14 @@ export default defineComponent({
             :disabled="prevDisabled"
             @click="goTo(true)"
         >
-            {{ translator.get('general', 'buttonBar', 'previous') }}
+            <
         </button>
         <div class="title">{{ translator.get(module, 'title') }}</div>
         <button
             :disabled="nextDisabled"
             @click="goTo(false)"
         >
-            {{
-                translator.get(
-                    'general',
-                    'buttonBar',
-                    namedNext ? 'next' : 'skip'
-                )
-            }}
+            >
         </button>
     </div>
 </template>
@@ -113,5 +102,5 @@ export default defineComponent({
     place-self: center
 
 button
-    min-width: 134px
+    min-width: 40px
 </style>

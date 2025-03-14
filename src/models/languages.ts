@@ -297,17 +297,6 @@ export const languages = {
         home: {
             ENG: 'Home',
         },
-        buttonBar: {
-            previous: {
-                ENG: '< previous',
-            },
-            next: {
-                ENG: 'next >',
-            },
-            skip: {
-                ENG: 'skip >',
-            },
-        },
         dragAndDrop: {
             title: {
                 ENG: 'Drag and Drop',

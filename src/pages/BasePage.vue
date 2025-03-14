@@ -12,11 +12,6 @@ export default defineComponent({
             required: true,
         },
     },
-    data() {
-        return {
-            footerHeight: '4.4rem',
-        }
-    },
 })
 </script>
 
