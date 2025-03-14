@@ -242,6 +242,11 @@ export default function usePages(
                 href: '/demo/drag-and-drop',
                 title: translator.get('general', 'dragAndDrop', 'title'),
             },
+            {
+                id: '/demo/match-the-song',
+                href: '/demo/match-the-song',
+                title: translator.get('general', 'matchTheSong', 'title'),
+            },
         ],
     }
 }
