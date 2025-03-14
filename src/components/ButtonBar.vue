@@ -91,8 +91,7 @@ export default defineComponent({
 <style scoped lang="sass">
 .button-bar
     justify-content: space-between
-    align-items: center
-    padding: 10px
+    padding: 0.6rem
 
 .title
     font-size: larger
@@ -102,5 +101,6 @@ export default defineComponent({
     place-self: center
 
 button
-    min-width: 40px
+    min-height: 2.5rem
+    min-width: 2.5rem
 </style>

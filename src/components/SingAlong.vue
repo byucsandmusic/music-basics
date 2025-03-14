@@ -35,4 +35,4 @@ export default defineComponent({
     />
 </template>
 
-<style scoped></style>
+<style scoped lang="sass"></style>

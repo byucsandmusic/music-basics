@@ -59,4 +59,4 @@ export default defineComponent({
     </details>
 </template>
 
-<style scoped></style>
+<style scoped lang="sass"></style>

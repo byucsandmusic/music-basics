@@ -495,48 +495,43 @@ export default defineComponent({
     </div>
 </template>
 
-<style scoped>
-.header-container {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
+<style scoped lang="sass">
+.header-container
+    display: flex
+    gap: 10px
+    align-items: center
 
-p {
-    margin: 0;
-    padding: 0;
-}
+p
+    margin: 0
+    padding: 0
 
-.centered-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+.centered-content
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
 
-.music-notation-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 10px;
-}
+.music-notation-container
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 10px
+    padding-bottom: 10px
 
-.button-container {
-    display: flex;
-    gap: 10px;
-    width: 100%;
-    justify-content: left;
-}
+.button-container
+    display: flex
+    gap: 10px
+    width: 100%
+    justify-content: left
 
-button {
-    flex: 1;
-    font-size: 20px;
-    padding: 16px;
-    height: 60px;
-    border-radius: 8px;
-    border: none;
-    transition: background-color 0.2s ease-in-out;
-    max-width: 200px;
-}
+button
+    flex: 1
+    font-size: 20px
+    padding: 16px
+    height: 60px
+    border-radius: 8px
+    border: none
+    transition: background 0.2s ease-in-out
+    max-width: 200px
+    background: $accent-color
 </style>

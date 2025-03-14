@@ -43,4 +43,4 @@ export default defineComponent({
     </Dropdown>
 </template>
 
-<style scoped></style>
+<style scoped lang="sass"></style>
