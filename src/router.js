@@ -12,6 +12,7 @@ import TapAlong from './components/TapAlong.vue'
 import { songs } from './models/songs.ts'
 import Video from './components/Video.vue'
 import ModuleEnd from './pages/ModuleEnd.vue'
+import TextAndImages from './components/TextAndImages.vue'
 
 const routes = [
     { path: '/:pathMatch(.*)*', component: NotFound },
@@ -65,7 +66,26 @@ const routes = [
         component: BasePage,
         children: [
             { path: '', redirect: '/module0/intro' },
-            { path: 'intro', component: Video },
+            {
+                path: 'intro',
+                component: TextAndImages,
+                props: {
+                    content: [
+                        {
+                            type: 'image',
+                            value: ['CongregationSinging.jpeg'],
+                        },
+                        {
+                            type: 'text',
+                            value: ['module0', 'intro', 'quote'],
+                        },
+                        {
+                            type: 'text',
+                            value: ['module0', 'intro', 'introParagraph'],
+                        },
+                    ],
+                },
+            },
             { path: 'reading-verses-info', component: Video },
             {
                 path: 'reading-verses-sing-along',

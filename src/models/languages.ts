@@ -19,6 +19,23 @@ export const languages = {
             title: {
                 ENG: 'Introduction',
             },
+            quote: {
+                ENG:
+                    '"We get nearer to the Lord through music than perhaps through any other ' +
+                    'thing except prayer.” - President J. Reuben Clark Jr.',
+            },
+            introParagraph: {
+                ENG:
+                    'Music is an important form of worship both at church and within the home.\n' +
+                    'Every Sunday meeting, congregations around the world join in singing three ' +
+                    'to four sacred hymns meant to inspire unity and invite the Spirit into our hearts.\n\n' +
+                    'Some may feel they can’t contribute to such worship because of a lack of musical ' +
+                    'talent or skill. You’re not alone! The purpose of this basics module is to give ' +
+                    'you a crash course on how to use the new hymn book and become more familiar with ' +
+                    'the basics of singing.\n\n' +
+                    'As you learn how to follow music from the hymn book, you will feel more prepared ' +
+                    'to sing in church and at home!',
+            },
         },
         readingVersesInfo: {
             title: {

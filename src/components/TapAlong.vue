@@ -45,7 +45,7 @@ import { progress, ProgressInfo } from '../models/progress'
  */
 
 export default defineComponent({
-    name: 'TapAlong2',
+    name: 'TapAlong',
     props: {
         translator: {
             type: Translator,
