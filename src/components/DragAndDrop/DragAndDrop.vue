@@ -250,7 +250,6 @@ function dragStart(e: InteractionEvent) {
         if (target === null) {
             //If a dragTarget was not ended on
             invalidRelease()
-            onRelease(draggedElement!.id, null, new Map(buckets))
         } else {
             if (
                 validBucket(draggedElement.id, target.id) &&

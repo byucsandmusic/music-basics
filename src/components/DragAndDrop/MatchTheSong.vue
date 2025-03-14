@@ -6,10 +6,15 @@ import DragTarget from '../../components/DragAndDrop/DragTarget.vue'
 import DragAndDrop from '../../components/DragAndDrop/DragAndDrop.vue'
 import MusicNotation from '../MusicNotation.vue'
 import { Music } from '../../models/types'
+import { createRandomIndexOrder } from '../../utils/misc'
 
 export default defineComponent({
     name: 'MatchTheSong',
     props: {
+        id: {
+            type: String,
+            required: true,
+        },
         translator: {
             type: Translator,
             required: true,
@@ -21,6 +26,10 @@ export default defineComponent({
                 return value.length > 0
             },
         },
+        onCompleted: {
+            type: Function as PropType<() => void>,
+            required: true,
+        },
     },
     components: {
         DragAndDrop,
@@ -29,19 +38,36 @@ export default defineComponent({
         MusicNotation,
     },
     data() {
+        console.log(createRandomIndexOrder(this.sheets.length))
         return {
             buckets: new Map(),
-            textIndicator: 'Place the sheet music you hear into the box above!',
+            textIndicator: 'Place your answer into the box below!',
+            order: createRandomIndexOrder(this.sheets.length),
+            correct: false,
         }
     },
     methods: {
-        onRelease(from, to, state) {
+        onRelease(
+            from: string,
+            to: string | null,
+            state: Map<string, string | null>
+        ) {
             this.buckets = state
-
-            this.textIndicator = 'Sheet music dropped.'
+            if (from === this.id + 'Option0' && to != null) {
+                this.textIndicator = 'Correct!'
+                this.correct = true
+                this.onCompleted()
+            } else if (to != null) {
+                this.textIndicator = 'Sorry, that is incorrect. Try again?'
+                this.correct = false
+            } else {
+                this.textIndicator =
+                    'Please place the sheet inside the box below'
+                this.correct = false
+            }
         },
-        validBucket(from, to) {
-            return true
+        validBucket(from: string, to: string) {
+            return from === this.id + 'Option0'
         },
     },
 })
@@ -62,10 +88,11 @@ export default defineComponent({
             :validBucket="validBucket"
         >
             What song do you hear?
+            <span>{{ textIndicator }}</span>
             <div class="targets">
                 <span class="targetContainer">
                     <span
-                        :class="{ isCorrect: false }"
+                        :class="{ isCorrect: correct }"
                         class="correctnessIndicator"
                     ></span>
                     <span>
@@ -74,33 +101,17 @@ export default defineComponent({
                 </span>
             </div>
             <div class="draggables">
-                <Draggable id="first">
+                <Draggable
+                    :id="`${id}Option${i}`"
+                    v-for="i in order"
+                >
                     <MusicNotation
-                        :music="sheets[0]"
-                        :translator="translator"
-                    />
-                </Draggable>
-                <Draggable id="second">
-                    <MusicNotation
-                        :music="sheets[1]"
-                        :translator="translator"
-                    />
-                </Draggable>
-                <Draggable id="third">
-                    <MusicNotation
-                        :music="sheets[2]"
-                        :translator="translator"
-                    />
-                </Draggable>
-                <Draggable id="third">
-                    <MusicNotation
-                        :music="sheets[3]"
+                        :music="sheets[i]"
                         :translator="translator"
                     />
                 </Draggable>
             </div>
             <span style="height: 100px"></span>
-            <span>{{ textIndicator }}</span>
         </DragAndDrop>
     </section>
 </template>

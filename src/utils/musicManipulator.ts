@@ -26,10 +26,20 @@ export function subsheet(
     }
     newMusic.treble = newLines
     return newMusic
-}
+} //todo make this handle bass
 
 export function removeVerses(music: Music) {
     const newMusic: Music = JSON.parse(JSON.stringify(music))
     newMusic.verses = undefined
     return newMusic
+}
+
+export function removeTitle(music: Music) {
+    const newMusic: Music = JSON.parse(JSON.stringify(music))
+    newMusic.title = undefined
+    return newMusic
+}
+
+export function isolateSheet(music: Music) {
+    return removeVerses(removeTitle(music))
 }
