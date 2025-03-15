@@ -214,14 +214,17 @@ export default defineComponent({
         },
         rotateIcon(icon: HTMLElement, duration: number) {
             const style = icon.getAttribute('style')
-            icon.setAttribute('style', `--fa-animation-duration: ${duration/1000}s`)
+            icon.setAttribute(
+                'style',
+                `--fa-animation-duration: ${duration / 1000}s`
+            )
             icon.classList.add('fa-spin', 'fa-spin-reverse')
             setTimeout(() => {
                 icon.classList.remove('fa-spin', 'fa-spin-reverse')
                 if (style) icon.setAttribute('style', style)
                 else icon.removeAttribute('style')
             }, duration)
-        }
+        },
     },
     mounted() {
         if (
@@ -357,7 +360,16 @@ export default defineComponent({
                 ></i>
             </button>
             <button
-                @click="restart(); rotateIcon((($event.target as Element).firstElementChild as HTMLElement) ?? ($event.target as HTMLElement), 100)"
+                @click="
+                    (event) => {
+                        restart()
+                        const icon =
+                            ((event.target as Element)
+                                .firstElementChild as HTMLElement) ??
+                            (event.target as HTMLElement)
+                        rotateIcon(icon, 100)
+                    }
+                "
                 id="reset-btn"
             >
                 <i class="fa-solid fa-rotate-left"></i>
@@ -386,10 +398,22 @@ export default defineComponent({
                 ></i>
             </button>
             <button
-                @click="restart(); rotateIcon((($event.target as Element).firstElementChild as HTMLElement) ?? ($event.target as HTMLElement), 100)"
+                @click="
+                    (event) => {
+                        restart()
+                        const icon =
+                            ((event.target as Element)
+                                .firstElementChild as HTMLElement) ??
+                            (event.target as HTMLElement)
+                        rotateIcon(icon, 100)
+                    }
+                "
                 id="reset-btn"
             >
-                <i class="fa-solid fa-rotate-left" style="--fa-animation-duration: 0.1s;"></i>
+                <i
+                    class="fa-solid fa-rotate-left"
+                    style="--fa-animation-duration: 0.1s"
+                ></i>
             </button>
             <div
                 ref="midiPlayer"
