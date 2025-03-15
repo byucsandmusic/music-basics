@@ -534,4 +534,8 @@ button
     transition: background 0.2s ease-in-out
     max-width: 200px
     background: $accent-color
+
+@media (prefers-color-scheme: dark)
+    button
+        background: $accent-color-dark
 </style>
