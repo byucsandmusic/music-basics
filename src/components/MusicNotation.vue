@@ -410,10 +410,7 @@ export default defineComponent({
                 "
                 id="reset-btn"
             >
-                <i
-                    class="fa-solid fa-rotate-left"
-                    style="--fa-animation-duration: 0.1s"
-                ></i>
+                <i class="fa-solid fa-rotate-left"></i>
             </button>
             <div
                 ref="midiPlayer"
