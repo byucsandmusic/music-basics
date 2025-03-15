@@ -26,7 +26,7 @@ export const languages = {
             },
             introParagraph: {
                 ENG:
-                    'Music is an important form of worship both at church and within the home.\n' +
+                    'Music is an important form of worship both at church and within the home. ' +
                     'Every Sunday meeting, congregations around the world join in singing three ' +
                     'to four sacred hymns meant to inspire unity and invite the Spirit into our hearts.\n\n' +
                     'Some may feel they can’t contribute to such worship because of a lack of musical ' +
@@ -46,7 +46,7 @@ export const languages = {
                     'There is so much on a page of music, it can be easy to get lost. ' +
                     'Let’s focus on the most important things first. The words of the hymn are ' +
                     'written in verse format with the number of each verse on the far left of the first line. ' +
-                    'When singing a hymn, we sing verse 1 first which is the top line of each part of the music. ',
+                    'When singing a hymn, we sing verse 1 first, which is the top line of each part of the music. ',
             },
             chorusInfo: {
                 ENG: 'Notice at the bottom, as we go to the next block of music, there are not three separate lines of text, just one:',
@@ -170,6 +170,9 @@ export const languages = {
         rhythmTapAlongMixed2: {
             title: {
                 ENG: 'Rhythm Tap-Along - Mixed Rhythms 2',
+            },
+            description: {
+                ENG: 'Here’s another rhythm to try. This one is a bit more challenging, but you can do it! ',
             },
         },
         rhythmSingAlongCommon: {

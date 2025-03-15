@@ -1,14 +1,25 @@
 <script lang="ts">
 import { defineComponent, computed, PropType } from 'vue'
 import Translator from '../models/translator'
+import MusicNotation from './MusicNotation.vue'
 
 interface ContentItem {
-    type: 'text' | 'image'
-    value: string[]
+    type: 'text' | 'image' | 'music'
+    value?: string[]
+    music?: {
+        meter: string
+        tempo: string
+        beat: string
+        treble: string[]
+        instrument: number
+    }
 }
 
 export default defineComponent({
-    name: 'TextAndImagesComponent',
+    name: 'TextImagesAndMusicComponent',
+    components: {
+        MusicNotation,
+    },
     props: {
         translator: {
             type: Translator,
@@ -52,16 +63,24 @@ export default defineComponent({
             class="content-item"
         >
             <p
-                v-if="item.type === 'text'"
+                v-if="item.type === 'text' && item.value?.[0]"
                 style="white-space: pre-line"
             >
                 {{ getTranslatedText(item.value) }}
             </p>
             <img
-                v-else-if="item.type === 'image'"
+                v-else-if="item.type === 'image' && item.value?.[0]"
                 :src="getImageSrc(item.value[0])"
                 alt="Content Image"
                 class="content-image"
+            />
+            <MusicNotation
+                class="music-notation"
+                v-else-if="item.type === 'music'"
+                v-if="item.music"
+                :music="item.music"
+                :translator="translator"
+                click-to-play
             />
         </div>
     </div>
@@ -80,6 +99,12 @@ export default defineComponent({
 .content-image
   max-width: 100%
   height: auto
+  max-width: 1000px
+
+.music-notation
+  max-width: 100%
+  height: auto
+  max-width: 1000px
 
 p
   text-align: left

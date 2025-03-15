@@ -55,6 +55,10 @@ export default defineComponent({
             type: Array as PropType<string[]>,
             required: true,
         },
+        descriptionKeys: {
+            type: Array as PropType<string[]>,
+            default: [],
+        },
         rhythm: {
             type: Object as PropType<Music>,
             required: true,
@@ -63,16 +67,13 @@ export default defineComponent({
             type: Object as PropType<ProgressInfo>,
             required: true,
         },
-        description: {
-            type: String,
-            default: '',
-        },
     },
     components: {
         MusicNotation,
     },
     data() {
         return {
+            componentKey: 0,
             isTest: false,
             playing: false,
             playButtonText: this.translator.get('general', 'tapAlong', 'play'),
@@ -102,6 +103,19 @@ export default defineComponent({
                 onFinished: this.onExampleFinished.bind(this),
             } as Cursor,
         }
+    },
+
+    watch: {
+        rhythm: {
+            handler(newRhythm, oldRhythm) {
+                if (newRhythm !== oldRhythm) {
+                    this.componentKey++
+                    console.log('Rhythm updated, resetting component state')
+                    this.reset()
+                }
+            },
+            deep: true,
+        },
     },
 
     mounted() {
@@ -453,51 +467,67 @@ export default defineComponent({
 
         const title = computed(() => props.translator.get(...props.titleKeys))
 
-        return { metronome, saveProgress, getProgress, isComponentDone, title }
+        const description = computed(() =>
+            props.translator.get(...props.descriptionKeys)
+        )
+
+        return {
+            metronome,
+            saveProgress,
+            getProgress,
+            isComponentDone,
+            title,
+            description,
+        }
     },
 })
 </script>
 
 <template>
-    <h1>{{ title }}</h1>
-    <p>{{ description }}</p>
     <div>
-        <div class="music-notation-container">
-            <MusicNotation
-                ref="metronomeMusicNotation"
-                :music="metronome"
-                :displayMidiPlayer="false"
-                :displaySheetMusic="false"
-                :cursor="metronomeCursor"
-                :translator="translator"
-            ></MusicNotation>
-            <MusicNotation
-                ref="rhythmMusicNotation"
-                :music="rhythm"
-                :displayMidiPlayer="false"
-                displaySheetMusic
-                :cursor="rhythmCursor"
-                :translator="translator"
-            ></MusicNotation>
-        </div>
-        <div class="header-container">
-            <h3>{{ instructionsText }}</h3>
-            <h3>{{ countdownText }}</h3>
-        </div>
-        <div class="button-container">
-            <button
-                type="button"
-                @click="playing ? reset() : play()"
+        <h1>{{ title }}</h1>
+        <p>{{ description }}</p>
+        <div>
+            <div
+                class="music-notation-container"
+                :key="componentKey"
             >
-                {{ playButtonText }}
-            </button>
-            <button
-                type="button"
-                @click="tap()"
-                :disabled="!playing"
-            >
-                Tap
-            </button>
+                <MusicNotation
+                    ref="metronomeMusicNotation"
+                    :music="metronome"
+                    :displayMidiPlayer="false"
+                    :displaySheetMusic="false"
+                    :cursor="metronomeCursor"
+                    :translator="translator"
+                ></MusicNotation>
+                <MusicNotation
+                    ref="rhythmMusicNotation"
+                    :music="rhythm"
+                    :displayMidiPlayer="false"
+                    displaySheetMusic
+                    :cursor="rhythmCursor"
+                    :translator="translator"
+                ></MusicNotation>
+            </div>
+            <div class="header-container">
+                <h3>{{ instructionsText }}</h3>
+                <h3>{{ countdownText }}</h3>
+            </div>
+            <div class="button-container">
+                <button
+                    type="button"
+                    @click="playing ? reset() : play()"
+                >
+                    {{ playButtonText }}
+                </button>
+                <button
+                    type="button"
+                    @click="tap()"
+                    :disabled="!playing"
+                >
+                    Tap
+                </button>
+            </div>
         </div>
     </div>
 </template>

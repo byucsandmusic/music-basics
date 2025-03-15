@@ -12,7 +12,7 @@ import TapAlong from './components/TapAlong.vue'
 import { songs } from './models/songs.ts'
 import Video from './components/Video.vue'
 import ModuleEnd from './pages/ModuleEnd.vue'
-import TextAndImages from './components/TextAndImages.vue'
+import TextImagesAndMusic from './components/TextImagesAndMusic.vue'
 
 const routes = [
     { path: '/:pathMatch(.*)*', component: NotFound },
@@ -68,7 +68,7 @@ const routes = [
             { path: '', redirect: '/module0/intro' },
             {
                 path: 'intro',
-                component: TextAndImages,
+                component: TextImagesAndMusic,
                 props: {
                     titleKeys: ['module0', 'intro', 'title'],
                     content: [
@@ -89,7 +89,7 @@ const routes = [
             },
             {
                 path: 'reading-verses-info',
-                component: TextAndImages,
+                component: TextImagesAndMusic,
                 props: {
                     titleKeys: ['module0', 'readingVersesInfo', 'title'],
                     content: [
@@ -130,7 +130,7 @@ const routes = [
             },
             {
                 path: 'rhythm-info',
-                component: TextAndImages,
+                component: TextImagesAndMusic,
                 props: {
                     titleKeys: ['module0', 'rhythmInfo', 'title'],
                     content: [
@@ -190,6 +190,11 @@ const routes = [
                         'rhythmTapAlongQuarterNotes',
                         'title',
                     ],
+                    descriptionKeys: [
+                        'module0',
+                        'rhythmTapAlongQuarterNotes',
+                        'description',
+                    ],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-quarter-notes',
@@ -209,6 +214,11 @@ const routes = [
                         instrument: 36,
                     },
                     titleKeys: ['module0', 'rhythmTapAlongHalfNotes', 'title'],
+                    descriptionKeys: [
+                        'module0',
+                        'rhythmTapAlongHalfNotes',
+                        'description',
+                    ],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-half-notes',
@@ -232,6 +242,11 @@ const routes = [
                         'rhythmTapAlongEighthNotes',
                         'title',
                     ],
+                    descriptionKeys: [
+                        'module0',
+                        'rhythmTapAlongEighthNotes',
+                        'description',
+                    ],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-8th-notes',
@@ -251,6 +266,11 @@ const routes = [
                         instrument: 36,
                     },
                     titleKeys: ['module0', 'rhythmTapAlongMixed1', 'title'],
+                    descriptionKeys: [
+                        'module0',
+                        'rhythmTapAlongMixed1',
+                        'description',
+                    ],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-mixed-1',
@@ -270,6 +290,11 @@ const routes = [
                         instrument: 36,
                     },
                     titleKeys: ['module0', 'rhythmTapAlongMixed2', 'title'],
+                    descriptionKeys: [
+                        'module0',
+                        'rhythmTapAlongMixed2',
+                        'description',
+                    ],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-mixed-2',
@@ -293,7 +318,7 @@ const routes = [
             },
             {
                 path: 'pitch-info',
-                component: TextAndImages,
+                component: TextImagesAndMusic,
                 props: {
                     titleKeys: ['module0', 'pitchInfo', 'title'],
                     content: [
@@ -310,7 +335,14 @@ const routes = [
                                 'notesOnSameLineInfo',
                             ],
                         },
-                        { type: 'image', value: ['notesOnSameLine.png'] },
+                        {
+                            type: 'music',
+                            music: {
+                                meter: '4/4',
+                                beat: '1/4',
+                                treble: ['FFFF'],
+                            },
+                        },
                         {
                             type: 'text',
                             value: [
@@ -319,7 +351,14 @@ const routes = [
                                 'ascendingNotesInfo',
                             ],
                         },
-                        { type: 'image', value: ['AscendingNotes.png'] },
+                        {
+                            type: 'music',
+                            music: {
+                                meter: '4/4',
+                                beat: '1/4',
+                                treble: ['FGAB'],
+                            },
+                        },
                         {
                             type: 'text',
                             value: [
@@ -328,7 +367,14 @@ const routes = [
                                 'descendingNotesInfo',
                             ],
                         },
-                        { type: 'image', value: ['DescendingNotes.png'] },
+                        {
+                            type: 'music',
+                            music: {
+                                meter: '4/4',
+                                beat: '1/4',
+                                treble: ['BAGF'],
+                            },
+                        },
                         {
                             type: 'text',
                             value: ['module0', 'pitchInfo', 'conlcusion'],
@@ -354,7 +400,7 @@ const routes = [
             },
             {
                 path: 'pitch-melody-line-info',
-                component: TextAndImages,
+                component: TextImagesAndMusic,
                 props: {
                     titleKeys: ['module0', 'melodyLineInfo', 'title'],
                     content: [
