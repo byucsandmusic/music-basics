@@ -15,6 +15,12 @@ export default defineComponent({
             type: Translator,
             required: true,
         },
+        title: {
+            type: Array<string>,
+        },
+        description: {
+            type: Array<string>,
+        },
     },
     components: {
         MusicNotation,
@@ -23,8 +29,8 @@ export default defineComponent({
 </script>
 
 <template>
-    <h2>{{ translator.get('general', 'singAlong', 'title') }}</h2>
-    <p>{{ translator.get('general', 'singAlong', 'description') }}</p>
+    <h2 v-if="title">{{ translator.get(...title) }}</h2>
+    <p v-if="description">{{ translator.get(...description) }}</p>
     <MusicNotation
         :music="music"
         :translator="translator"
@@ -32,6 +38,7 @@ export default defineComponent({
         click-to-play
         display-midi-player
         midi-on-top
+        fit-to-page
     />
 </template>
 

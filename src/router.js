@@ -27,6 +27,8 @@ const routes = [
                 path: 'sing-along',
                 component: SingAlong,
                 props: {
+                    title: ['general', 'singAlong', 'title'],
+                    description: ['general', 'singAlong', 'description'],
                     music: songs.i_am_a_child_of_god,
                 },
             },

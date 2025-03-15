@@ -30,7 +30,10 @@ export default defineComponent({
 <template>
     <title>{{ translator.get('home', 'title') }}</title>
     <main class="container">
-        <nav class="navBar">
+        <nav
+            class="navBar"
+            id="nav-bar"
+        >
             <img
                 class="logo"
                 role="presentation"

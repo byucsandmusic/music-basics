@@ -54,6 +54,10 @@ export default defineComponent({
             type: Boolean,
             default: true,
         },
+        fitToPage: {
+            type: Boolean,
+            default: false,
+        },
         displayMidiPlayer: {
             type: Boolean,
             default: false,
@@ -189,6 +193,35 @@ export default defineComponent({
             }
             this.isPlaying = false
         },
+        updateNotationHeight(W: number, H: number) {
+            if (this.fitToPage) {
+                const nav = document.getElementById('nav-bar')
+                const footer = document.getElementById('footer')
+                const midi = document.getElementById('midi-player')
+                const offsetHeight =
+                    (nav?.offsetHeight ?? 0) +
+                    (footer?.offsetHeight ?? 0) +
+                    (midi?.offsetHeight ?? 0)
+
+                const ratio = W / H
+
+                const h = window.innerHeight - offsetHeight
+                const w = h * ratio
+                const padding =
+                    Math.max(this.$refs.notationPadding.offsetWidth - w, 0) / 2
+                this.$refs.notationPadding.style.padding = `0 ${padding}px`
+            }
+        },
+        rotateIcon(icon: HTMLElement, duration: number) {
+            const style = icon.getAttribute('style')
+            icon.setAttribute('style', `--fa-animation-duration: ${duration/1000}s`)
+            icon.classList.add('fa-spin', 'fa-spin-reverse')
+            setTimeout(() => {
+                icon.classList.remove('fa-spin', 'fa-spin-reverse')
+                if (style) icon.setAttribute('style', style)
+                else icon.removeAttribute('style')
+            }, duration)
+        }
     },
     mounted() {
         if (
@@ -293,12 +326,22 @@ export default defineComponent({
                 'midiPlayer'
             )
         }
+
+        const W = this.$refs.notationPadding.offsetWidth
+        const H = this.$refs.notationPadding.offsetHeight
+        this.updateNotationHeight(W, H)
+        window.addEventListener('resize', () => {
+            this.updateNotationHeight(W, H)
+        })
     },
 })
 </script>
 
 <template>
-    <div class="container">
+    <div
+        class="container"
+        ref="notationPadding"
+    >
         <div
             v-if="midiOnTop"
             :hidden="!displayMidiPlayer"
@@ -308,13 +351,16 @@ export default defineComponent({
                 @click="playPause"
                 id="play-btn"
             >
-                {{ isPlaying ? 'Pause' : 'Play' }}
+                <i
+                    class="fa-solid"
+                    :class="isPlaying ? 'fa-pause' : 'fa-play'"
+                ></i>
             </button>
             <button
-                @click="restart"
+                @click="restart(); rotateIcon((($event.target as Element).firstElementChild as HTMLElement) ?? ($event.target as HTMLElement), 100)"
                 id="reset-btn"
             >
-                Restart Song
+                <i class="fa-solid fa-rotate-left"></i>
             </button>
             <div
                 ref="midiPlayer"
@@ -334,13 +380,16 @@ export default defineComponent({
                 @click="playPause"
                 id="play-btn"
             >
-                {{ isPlaying ? 'Pause' : 'Play' }}
+                <i
+                    class="fa-solid"
+                    :class="isPlaying ? 'fa-pause' : 'fa-play'"
+                ></i>
             </button>
             <button
-                @click="restart"
+                @click="restart(); rotateIcon((($event.target as Element).firstElementChild as HTMLElement) ?? ($event.target as HTMLElement), 100)"
                 id="reset-btn"
             >
-                Restart Song
+                <i class="fa-solid fa-rotate-left" style="--fa-animation-duration: 0.1s;"></i>
             </button>
             <div
                 ref="midiPlayer"
@@ -372,16 +421,14 @@ export default defineComponent({
 #midi-container
     display: flex
 
-    #play-btn
-        min-height: 100%
-        flex: 1
-
+    #play-btn,
     #reset-btn
         min-height: 100%
         flex: 1
+        margin-right: 5px
 
 #midi-player
     width: 100%
     height: auto
-    flex: 8
+    flex: 30
 </style>

@@ -25,7 +25,10 @@ export default defineComponent({
                 />
             </RouterView>
         </div>
-        <Footer :translator="translator" />
+        <Footer
+            id="footer"
+            :translator="translator"
+        />
     </div>
 </template>
 
