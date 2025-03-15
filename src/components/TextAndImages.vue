@@ -14,6 +14,10 @@ export default defineComponent({
             type: Translator,
             required: true,
         },
+        titleKeys: {
+            type: Array as PropType<string[]>,
+            required: true,
+        },
         content: {
             type: Array as PropType<ContentItem[]>,
             required: true,
@@ -32,12 +36,15 @@ export default defineComponent({
             return props.translator.get(...keys)
         }
 
-        return { getImageSrc, getTranslatedText }
+        const title = computed(() => props.translator.get(...props.titleKeys))
+
+        return { getImageSrc, getTranslatedText, title }
     },
 })
 </script>
 
 <template>
+    <h2>{{ title }}</h2>
     <div class="content-container">
         <div
             v-for="(item, index) in content"
@@ -73,4 +80,9 @@ export default defineComponent({
 .content-image
   max-width: 100%
   height: auto
+
+p
+  text-align: left
+  width: 100%
+  max-width: 1000px
 </style>

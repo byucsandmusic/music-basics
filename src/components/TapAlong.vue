@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, computed, PropType } from 'vue'
 import Translator from '../models/translator'
 import MusicNotation from './MusicNotation.vue'
 import { Cursor } from '../models/types'
@@ -49,6 +49,10 @@ export default defineComponent({
     props: {
         translator: {
             type: Translator,
+            required: true,
+        },
+        titleKeys: {
+            type: Array as PropType<string[]>,
             required: true,
         },
         rhythm: {
@@ -446,13 +450,16 @@ export default defineComponent({
             treble: [metronomeTreble],
             instrument: 115,
         }
-        return { metronome, saveProgress, getProgress, isComponentDone }
+
+        const title = computed(() => props.translator.get(...props.titleKeys))
+
+        return { metronome, saveProgress, getProgress, isComponentDone, title }
     },
 })
 </script>
 
 <template>
-    <h1>{{ translator.get('general', 'tapAlong', 'title') }}</h1>
+    <h1>{{ title }}</h1>
     <p>{{ description }}</p>
     <div>
         <div class="music-notation-container">
