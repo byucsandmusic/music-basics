@@ -16,20 +16,18 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="container">
-        <div class="page-content">
-            <RouterView #="{ Component }">
-                <component
-                    :is="Component"
-                    :translator="translator"
-                />
-            </RouterView>
-        </div>
-        <Footer
-            id="footer"
-            :translator="translator"
-        />
+    <div class="page-content container">
+        <RouterView #="{ Component }">
+            <component
+                :is="Component"
+                :translator="translator"
+            />
+        </RouterView>
     </div>
+    <Footer
+        id="footer"
+        :translator="translator"
+    />
 </template>
 
 <style scoped lang="sass">

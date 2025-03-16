@@ -60,6 +60,9 @@ export default defineComponent({
     z-index: 20
     overflow-y: auto
 
+//::-webkit-scrollbar-track
+//    margin-bottom: 0
+
 @media (prefers-color-scheme: dark)
     .body
         color: $secondary-text
