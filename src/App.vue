@@ -1,21 +1,15 @@
 <script lang="ts">
-import Home from './pages/Home.vue'
 import Translator from './models/translator'
-import RouterMenu from './components/RouterMenu.vue'
-import usePages from './utils/pages'
 import { defineComponent } from 'vue'
+import NavBar from './components/NavBar.vue'
 
 export default defineComponent({
     name: 'App',
     setup() {
-        const translator = new Translator()
-        const nestedMenuItems = usePages(translator)
-
-        return { translator, nestedMenuItems }
+        return { translator: new Translator() }
     },
     components: {
-        RouterDropdown: RouterMenu,
-        HomePage: Home,
+        NavBar,
     },
     watch: {
         '$route.query.lang'(newLanguage: string) {
@@ -29,52 +23,8 @@ export default defineComponent({
 
 <template>
     <title>{{ translator.get('home', 'title') }}</title>
-    <main class="container">
-        <nav
-            class="navBar"
-            id="nav-bar"
-        >
-            <img
-                class="logo"
-                role="presentation"
-                src="https://www.churchofjesuschrist.org/imgs/c730fd12d24c640f7649912008ddf828afd93403/full/60%2C/0/default.png"
-            />
-            <ul>
-                <li>
-                    <RouterLink to="/">{{
-                        translator.get('general', 'home')
-                    }}</RouterLink>
-                </li>
-                <li>
-                    <RouterDropdown
-                        :links="nestedMenuItems.module0"
-                        :title="translator.get('module0', 'title')"
-                    />
-                </li>
-                <li>
-                    <RouterDropdown
-                        :links="nestedMenuItems.module1"
-                        :title="translator.get('module1', 'title')"
-                    />
-                </li>
-                <li>
-                    <RouterLink to="/">{{
-                        translator.get('module2', 'title')
-                    }}</RouterLink>
-                </li>
-                <li>
-                    <RouterLink to="/">{{
-                        translator.get('module3', 'title')
-                    }}</RouterLink>
-                </li>
-                <li>
-                    <RouterDropdown
-                        :links="nestedMenuItems.demo"
-                        :title="translator.get('demo', 'title')"
-                    />
-                </li>
-            </ul>
-        </nav>
+    <main>
+        <NavBar :translator="translator" />
         <RouterView v-slot="{ Component }">
             <component
                 :is="Component"
@@ -84,14 +34,4 @@ export default defineComponent({
     </main>
 </template>
 
-<style scoped lang="sass">
-.navBar
-    display: flex
-    flex-flow: row nowrap
-    justify-content: flex-start
-
-.logo
-    height: 3em
-    margin: 1em
-    margin-left: 0
-</style>
+<style scoped lang="sass"></style>
