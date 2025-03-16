@@ -25,11 +25,8 @@ export default defineComponent({
         id="nav-bar"
     >
         <ul class="nav-items">
-            <li class="logo-container">
-                <RouterLink
-                    to="/"
-                    class="flex-row"
-                >
+            <li class="logo-container flex-row">
+                <RouterLink to="/">
                     <img
                         class="logo"
                         role="presentation"
@@ -72,9 +69,6 @@ export default defineComponent({
 
 <style scoped lang="sass">
 .navBar
-    display: flex
-    flex-flow: row nowrap
-    justify-content: flex-start
     height: $footer-height
     background: $secondary-background
     --pico-nav-link-spacing-vertical: 0.3rem
@@ -86,15 +80,15 @@ export default defineComponent({
 
 .logo
     height: 2.5rem
-    margin-top: 0.4rem
-    margin-left: 0.2rem
 
 .logo-container
     background: $accent-color
     height: $footer-height
     min-width: 3.5rem
     padding: 0
-    place-items: center
+    margin-left: 0.2rem
+    justify-content: center
+    align-items: center
 
 @media (prefers-color-scheme: dark)
     .logo-container
