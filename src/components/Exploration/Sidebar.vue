@@ -23,7 +23,7 @@ export default defineComponent({
 
 <template>
     <div class="sidebar">
-        <div class="content">
+        <div>
             <div class="header">
                 <CloseIcon @close="handleClose" />
                 <div>{{ item.title }}</div>
@@ -44,9 +44,6 @@ export default defineComponent({
     cursor: pointer
     padding-left: 1vh
 
-.content
-    max-width: min(20rem,100%)
-
 .header
     display: flex
     flex-direction: row
@@ -61,7 +58,7 @@ export default defineComponent({
     color: $primary-text
     background: $primary-background
     z-index: 20
-    overflow-y: scroll
+    overflow-y: auto
 
 @media (prefers-color-scheme: dark)
     .body

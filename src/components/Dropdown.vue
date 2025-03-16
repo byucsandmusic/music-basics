@@ -44,7 +44,7 @@ export default defineComponent({
             <li
                 v-for="item in items"
                 :key="item.id"
-                @click="toggleSelected(item.title)"
+                @click="toggleSelected(item.title!)"
             >
                 <slot
                     name="itemSlot"
@@ -59,4 +59,14 @@ export default defineComponent({
     </details>
 </template>
 
-<style scoped lang="sass"></style>
+<style scoped lang="sass">
+@media (prefers-color-scheme: dark)
+    .dropdown
+        --pico-form-element-placeholder-color: #E0E0E0
+        --pico-form-element-background-color: #3d3d3d
+        --pico-form-element-active-background-color: #3d3d3d
+        --pico-dropdown-background-color: #3d3d3d
+        --pico-dropdown-border-color: #3d3d3d
+        --pico-dropdown-hover-background-color: #5d5d5d
+        --pico-form-element-border-color: #3d3d3d
+</style>

@@ -16,7 +16,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <div>
+    <div class="container">
         <div class="page-content">
             <RouterView #="{ Component }">
                 <component
@@ -34,7 +34,7 @@ export default defineComponent({
 
 <style scoped lang="sass">
 .page-content
-    margin-bottom: $footer-height
+    margin-bottom: $footer-height + $top-bottom-margin
     > *
         margin-left: auto
         margin-right: auto

@@ -297,6 +297,9 @@ export const languages = {
         home: {
             ENG: 'Home',
         },
+        module: {
+            ENG: 'Module',
+        },
         dragAndDrop: {
             title: {
                 ENG: 'Drag and Drop',

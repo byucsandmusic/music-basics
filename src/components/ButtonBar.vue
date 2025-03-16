@@ -78,7 +78,13 @@ export default defineComponent({
         >
             <i class="fa-solid fa-backward"></i>
         </button>
-        <div class="title">{{ translator.get(module, 'title') }}</div>
+        <div class="title">
+            {{
+                translator.get(module, 'title') +
+                ' ' +
+                translator.get('general', 'module')
+            }}
+        </div>
         <button
             :disabled="nextDisabled"
             @click="goTo(false)"
@@ -90,17 +96,17 @@ export default defineComponent({
 
 <style scoped lang="sass">
 .button-bar
+    height: 100%
     justify-content: space-between
-    padding: 0.6rem
+    align-items: center
+    padding: 0.4rem 0.4rem 0.8rem
 
 .title
     font-size: larger
     font-weight: bold
     padding: 0
     margin: 0
-    place-self: center
 
 button
-    min-height: 2.5rem
-    min-width: 2.5rem
+    display: inline-flex
 </style>
