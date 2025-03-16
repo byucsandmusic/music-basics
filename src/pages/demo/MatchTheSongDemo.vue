@@ -40,11 +40,7 @@ export default defineComponent({
             id="demoMatchTheSong"
             :sheets="sheets"
             :translator="translator"
-            :onCompleted="
-                () => {
-                    console.log('completed')
-                }
-            "
+            :progress-info="{ moduleName: 'demo', id: 'match the song' }"
             display-midi-player
             midi-on-top
         />

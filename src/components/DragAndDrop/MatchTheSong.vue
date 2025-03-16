@@ -7,6 +7,7 @@ import DragAndDrop from '../../components/DragAndDrop/DragAndDrop.vue'
 import MusicNotation from '../MusicNotation.vue'
 import { Music } from '../../models/types'
 import { createRandomIndexOrder } from '../../utils/misc'
+import { progress, ProgressInfo } from '../../models/progress'
 
 export default defineComponent({
     name: 'MatchTheSong',
@@ -26,8 +27,8 @@ export default defineComponent({
                 return value.length > 0
             },
         },
-        onCompleted: {
-            type: Function as PropType<() => void>,
+        progressInfo: {
+            type: Object as PropType<ProgressInfo>,
             required: true,
         },
     },
@@ -38,7 +39,6 @@ export default defineComponent({
         MusicNotation,
     },
     data() {
-        console.log(createRandomIndexOrder(this.sheets.length))
         return {
             displaySheets: [
                 subsheet(0, 1, songs.i_am_a_child_of_god),
@@ -62,7 +62,8 @@ export default defineComponent({
             if (from === this.id + 'Option0' && to != null) {
                 this.textIndicator = 'Correct!'
                 this.correct = true
-                this.onCompleted()
+                const progressHandler = progress(this.progressInfo)
+                progressHandler.saveProgress(true)
             } else if (to != null) {
                 this.textIndicator = 'Sorry, that is incorrect. Try again?'
                 this.correct = false
