@@ -41,13 +41,7 @@ export default defineComponent({
     name: 'DragAndDrop',
     props: {
         onRelease: {
-            type: Function as PropType<
-                (
-                    from: string,
-                    to: string | null,
-                    state: Map<string, string | null>
-                ) => void
-            >,
+            type: Function as PropType<(from: string, to: string | null, state: Map<string, string | null>) => void>,
             default: () => {},
         },
         validBucket: {
@@ -68,21 +62,13 @@ export default defineComponent({
         validBucket = props.validBucket
     },
     mounted: () => {
-        addInputIndependentEventListener(
-            el.value,
-            'mousedown',
-            'touchstart',
-            dragStart
-        )
+        addInputIndependentEventListener(el.value, 'mousedown', 'touchstart', dragStart)
     },
 
     emits: ['dragReleased'],
 })
 
-function findParentWithClass(
-    element: HTMLElement,
-    goalClass: string
-): HTMLElement | null {
+function findParentWithClass(element: HTMLElement, goalClass: string): HTMLElement | null {
     if (element.parentNode === null) return null
     if (element.classList.contains(goalClass)) return element
     return findParentWithClass(element.parentNode as HTMLElement, goalClass)
@@ -151,10 +137,7 @@ function addInputIndependentEventListener(
 
 function dragStart(e: InteractionEvent) {
     //Initialize data for drag event
-    const draggedElement = findParentWithClass(
-        e.target as HTMLElement,
-        'draggable'
-    )
+    const draggedElement = findParentWithClass(e.target as HTMLElement, 'draggable')
     if (!draggedElement) return
 
     const currentTranslate = getCurrentTranslate(draggedElement)
@@ -195,42 +178,26 @@ function dragStart(e: InteractionEvent) {
         },
         { once: true, signal: controller.signal }
     )
-    document.addEventListener(
-        'mouseup',
-        (e: MouseEvent) => released(parseMouseEvent(e)),
-        { signal: controller.signal }
-    )
+    document.addEventListener('mouseup', (e: MouseEvent) => released(parseMouseEvent(e)), { signal: controller.signal })
 
     //Move the dragged element with the user's finger / cursor
     function moveWithUser(moveEvent: InteractionEvent) {
-        if (!draggedElement)
-            throw new Error('Dragged element has no draggable parent')
+        if (!draggedElement) throw new Error('Dragged element has no draggable parent')
         window.getSelection()?.removeAllRanges()
         draggedElement.style.transform = `translate(${-(initX - moveEvent.pageX)}px, ${-(initY - moveEvent.pageY)}px)`
-        const target = findParentWithClass(
-            moveEvent.target as HTMLElement,
-            'dragTarget'
-        )
-        if (target !== null)
-            draggedElement.classList.add('hovering-over-valid-target')
+        const target = findParentWithClass(moveEvent.target as HTMLElement, 'dragTarget')
+        if (target !== null) draggedElement.classList.add('hovering-over-valid-target')
         else draggedElement.classList.remove('hovering-over-valid-target')
         if (!moveEvent.isBeingHeld) released(moveEvent)
     }
 
     //Align element to its new position and trigger callbacks when it is released
     function released(releaseEvent: InteractionEvent) {
-        if (!draggedElement)
-            throw new Error('Dragged element has no draggable parent')
-        const target = findParentWithClass(
-            releaseEvent.target as HTMLElement,
-            'dragTarget'
-        )
+        if (!draggedElement) throw new Error('Dragged element has no draggable parent')
+        const target = findParentWithClass(releaseEvent.target as HTMLElement, 'dragTarget')
         controller.abort()
 
-        draggedElement.classList.remove(
-            'dragging',
-            'hovering-over-valid-target'
-        )
+        draggedElement.classList.remove('dragging', 'hovering-over-valid-target')
         function getBucket(id: string) {
             let prior: string | null = null
             for (let [key, val] of buckets.entries()) {
@@ -251,10 +218,7 @@ function dragStart(e: InteractionEvent) {
             //If a dragTarget was not ended on
             invalidRelease()
         } else {
-            if (
-                validBucket(draggedElement.id, target.id) &&
-                !buckets.get(target.id)
-            ) {
+            if (validBucket(draggedElement.id, target.id) && !buckets.get(target.id)) {
                 draggedElement.style.transform = `translate(${-(draggedElement.offsetLeft - target.offsetLeft)}px, ${-(draggedElement.offsetTop - target.offsetTop)}px)`
                 const prior = getBucket(draggedElement!.id)
                 if (prior) buckets.set(prior, null)

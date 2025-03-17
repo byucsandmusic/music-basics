@@ -57,19 +57,10 @@ export default defineComponent({
 </script>
 
 <template>
-    <div
-        ref="tooltip"
-        class="tooltip"
-    >
-        <div
-            ref="tooltip"
-            class="tooltip-body"
-        >
+    <div ref="tooltip" class="tooltip">
+        <div ref="tooltip" class="tooltip-body">
             <CloseIcon @close="handleClick" />
-            <div
-                class="tooltip-text"
-                v-html="item.title"
-            ></div>
+            <div class="tooltip-text" v-html="item.title"></div>
         </div>
 
         <div class="triangle-bottom"></div>

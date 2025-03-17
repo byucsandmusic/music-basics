@@ -10,8 +10,7 @@ const defaultProps = {
     title: '',
 }
 
-const createWrapper = (props = defaultProps) =>
-    shallowMount(Dropdown, { props })
+const createWrapper = (props = defaultProps) => shallowMount(Dropdown, { props })
 
 afterAll(() => {
     if (wrapper) {

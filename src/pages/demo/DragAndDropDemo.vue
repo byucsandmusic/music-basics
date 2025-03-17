@@ -33,11 +33,8 @@ export default defineComponent({
                     break
 
                 default:
-                    if (to)
-                        this.textIndicator = `Sorry, this isn't a ${to.split('-')[0]} note. Try again!`
-                    else
-                        this.textIndicator =
-                            'Please drop the notes into a valid slot.'
+                    if (to) this.textIndicator = `Sorry, this isn't a ${to.split('-')[0]} note. Try again!`
+                    else this.textIndicator = 'Please drop the notes into a valid slot.'
                     break
             }
         },
@@ -50,10 +47,7 @@ export default defineComponent({
 
 <template>
     <section>
-        <DragAndDrop
-            :onRelease="onRelease"
-            :validBucket="validBucket"
-        >
+        <DragAndDrop :onRelease="onRelease" :validBucket="validBucket">
             Move items into the correct spots!
             <div class="draggables">
                 <Draggable id="eighth-draggable">
@@ -71,14 +65,8 @@ export default defineComponent({
             </div>
             <span style="height: 100px"></span>
             <div class="targets">
-                <span
-                    class="targetContainer"
-                    v-for="len in ['eighth', 'quarter', 'half', 'whole']"
-                >
-                    <span
-                        :class="{ isCorrect: buckets.get(len + '-target') }"
-                        class="correctnessIndicator"
-                    ></span>
+                <span class="targetContainer" v-for="len in ['eighth', 'quarter', 'half', 'whole']">
+                    <span :class="{ isCorrect: buckets.get(len + '-target') }" class="correctnessIndicator"></span>
                     <span>
                         {{ len }}
                         <DragTarget :id="`${len}-target`"></DragTarget>

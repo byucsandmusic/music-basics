@@ -31,9 +31,7 @@ export default defineComponent({
             }
 
             if (this.pageIndex === 0) {
-                return this.menuItems[
-                    this.otherModules[this.moduleIndex - 1]
-                ].at(-1).href
+                return this.menuItems[this.otherModules[this.moduleIndex - 1]].at(-1).href
             }
 
             return this.menuItems[this.module][this.pageIndex - 1].href
@@ -48,9 +46,7 @@ export default defineComponent({
             }
 
             if (this.pageIndex === this.menuItems[this.module].length - 1) {
-                return this.menuItems[
-                    this.otherModules[this.moduleIndex + 1]
-                ].at(0).href
+                return this.menuItems[this.otherModules[this.moduleIndex + 1]].at(0).href
             }
 
             return this.menuItems[this.module][this.pageIndex + 1].href
@@ -72,23 +68,13 @@ export default defineComponent({
 
 <template>
     <div class="button-bar flex-row">
-        <button
-            :disabled="prevDisabled"
-            @click="goTo(true)"
-        >
+        <button :disabled="prevDisabled" @click="goTo(true)">
             <i class="fa-solid fa-backward"></i>
         </button>
         <div class="title">
-            {{
-                translator.get(module, 'title') +
-                ' ' +
-                translator.get('general', 'module')
-            }}
+            {{ translator.get(module, 'title') + ' ' + translator.get('general', 'module') }}
         </div>
-        <button
-            :disabled="nextDisabled"
-            @click="goTo(false)"
-        >
+        <button :disabled="nextDisabled" @click="goTo(false)">
             <i class="fa-solid fa-forward"></i>
         </button>
     </div>

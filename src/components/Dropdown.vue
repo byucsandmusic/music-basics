@@ -35,21 +35,11 @@ export default defineComponent({
 </script>
 
 <template>
-    <details
-        class="dropdown"
-        ref="details"
-    >
+    <details class="dropdown" ref="details">
         <summary>{{ title || displayTitle }}</summary>
         <ul>
-            <li
-                v-for="item in items"
-                :key="item.id"
-                @click="toggleSelected(item.title!)"
-            >
-                <slot
-                    name="itemSlot"
-                    :currentItem="item"
-                >
+            <li v-for="item in items" :key="item.id" @click="toggleSelected(item.title!)">
+                <slot name="itemSlot" :currentItem="item">
                     <!-- this link to nowhere is part of the hover styling through PicoCSS, this could be removed
               later if we change the styling architecture in this project -->
                     <a href="#">{{ item.title }}</a>

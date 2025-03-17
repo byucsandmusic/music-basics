@@ -16,8 +16,7 @@ const defaultProps = {
     },
 }
 
-const createWrapper = (props = defaultProps) =>
-    mount(Tooltip, { props, global: { stubs: { CloseIcon: true } } })
+const createWrapper = (props = defaultProps) => mount(Tooltip, { props, global: { stubs: { CloseIcon: true } } })
 
 afterEach(() => {
     if (wrapper) {
@@ -39,20 +38,18 @@ it('handleClick emits as expected', () => {
 it('calcTooltipPlacement destructures as expected', () => {
     wrapper = createWrapper()
 
-    const mock = vi
-        .spyOn(wrapper.vm.$refs.tooltip, 'getBoundingClientRect')
-        .mockImplementation(() => ({
-            top: 10,
-            bottom: 20,
-            left: 30,
-            right: 40,
-            innerWidth: 50,
-            innerHeight: 60,
-            width: 70,
-            height: 80,
-            scrollX: 90,
-            scrollY: 100,
-        }))
+    const mock = vi.spyOn(wrapper.vm.$refs.tooltip, 'getBoundingClientRect').mockImplementation(() => ({
+        top: 10,
+        bottom: 20,
+        left: 30,
+        right: 40,
+        innerWidth: 50,
+        innerHeight: 60,
+        width: 70,
+        height: 80,
+        scrollX: 90,
+        scrollY: 100,
+    }))
 
     expect(wrapper.vm.tooltipRect).toStrictEqual({
         top: 0,

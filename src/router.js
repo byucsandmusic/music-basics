@@ -96,29 +96,17 @@ const routes = [
                     content: [
                         {
                             type: 'text',
-                            value: [
-                                'module0',
-                                'readingVersesInfo',
-                                'verseInfo',
-                            ],
+                            value: ['module0', 'readingVersesInfo', 'verseInfo'],
                         },
                         { type: 'image', value: ['Verse1.jpeg'] },
                         {
                             type: 'text',
-                            value: [
-                                'module0',
-                                'readingVersesInfo',
-                                'chorusInfo',
-                            ],
+                            value: ['module0', 'readingVersesInfo', 'chorusInfo'],
                         },
                         { type: 'image', value: ['Chorus.jpeg'] },
                         {
                             type: 'text',
-                            value: [
-                                'module0',
-                                'readingVersesInfo',
-                                'nextVerseInfo',
-                            ],
+                            value: ['module0', 'readingVersesInfo', 'nextVerseInfo'],
                         },
                         { type: 'image', value: ['Verse2.jpeg'] },
                     ],
@@ -129,11 +117,7 @@ const routes = [
                 component: SingAlong,
                 props: {
                     title: ['module0', 'readingVersesSingAlong', 'title'],
-                    description: [
-                        'module0',
-                        'readingVersesSingAlong',
-                        'description',
-                    ],
+                    description: ['module0', 'readingVersesSingAlong', 'description'],
                     music: songs.i_am_a_child_of_god,
                 },
             },
@@ -194,16 +178,8 @@ const routes = [
                         treble: ['BBBB'],
                         instrument: 36,
                     },
-                    titleKeys: [
-                        'module0',
-                        'rhythmTapAlongQuarterNotes',
-                        'title',
-                    ],
-                    descriptionKeys: [
-                        'module0',
-                        'rhythmTapAlongQuarterNotes',
-                        'description',
-                    ],
+                    titleKeys: ['module0', 'rhythmTapAlongQuarterNotes', 'title'],
+                    descriptionKeys: ['module0', 'rhythmTapAlongQuarterNotes', 'description'],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-quarter-notes',
@@ -223,11 +199,7 @@ const routes = [
                         instrument: 36,
                     },
                     titleKeys: ['module0', 'rhythmTapAlongHalfNotes', 'title'],
-                    descriptionKeys: [
-                        'module0',
-                        'rhythmTapAlongHalfNotes',
-                        'description',
-                    ],
+                    descriptionKeys: ['module0', 'rhythmTapAlongHalfNotes', 'description'],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-half-notes',
@@ -246,16 +218,8 @@ const routes = [
                         treble: ['B/B/B/B/B/B/B/B/'],
                         instrument: 36,
                     },
-                    titleKeys: [
-                        'module0',
-                        'rhythmTapAlongEighthNotes',
-                        'title',
-                    ],
-                    descriptionKeys: [
-                        'module0',
-                        'rhythmTapAlongEighthNotes',
-                        'description',
-                    ],
+                    titleKeys: ['module0', 'rhythmTapAlongEighthNotes', 'title'],
+                    descriptionKeys: ['module0', 'rhythmTapAlongEighthNotes', 'description'],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-8th-notes',
@@ -275,11 +239,7 @@ const routes = [
                         instrument: 36,
                     },
                     titleKeys: ['module0', 'rhythmTapAlongMixed1', 'title'],
-                    descriptionKeys: [
-                        'module0',
-                        'rhythmTapAlongMixed1',
-                        'description',
-                    ],
+                    descriptionKeys: ['module0', 'rhythmTapAlongMixed1', 'description'],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-mixed-1',
@@ -299,11 +259,7 @@ const routes = [
                         instrument: 36,
                     },
                     titleKeys: ['module0', 'rhythmTapAlongMixed2', 'title'],
-                    descriptionKeys: [
-                        'module0',
-                        'rhythmTapAlongMixed2',
-                        'description',
-                    ],
+                    descriptionKeys: ['module0', 'rhythmTapAlongMixed2', 'description'],
                     progressKeys: {
                         moduleName: 'module0',
                         id: 'rhythm-tap-along-mixed-2',
@@ -316,11 +272,7 @@ const routes = [
                 component: SingAlong,
                 props: {
                     title: ['module0', 'rhythmSingAlongCommon', 'title'],
-                    description: [
-                        'module0',
-                        'rhythmSingAlongCommon',
-                        'description',
-                    ],
+                    description: ['module0', 'rhythmSingAlongCommon', 'description'],
                     music: songs.i_am_a_child_of_god,
                 },
             },
@@ -329,11 +281,7 @@ const routes = [
                 component: SingAlong,
                 props: {
                     title: ['module0', 'rhythmSingAlongNew', 'title'],
-                    description: [
-                        'module0',
-                        'rhythmSingAlongNew',
-                        'description',
-                    ],
+                    description: ['module0', 'rhythmSingAlongNew', 'description'],
                     music: songs.i_am_a_child_of_god,
                 },
             },
@@ -350,11 +298,7 @@ const routes = [
                         { type: 'image', value: ['PitchBasics.png'] },
                         {
                             type: 'text',
-                            value: [
-                                'module0',
-                                'pitchInfo',
-                                'notesOnSameLineInfo',
-                            ],
+                            value: ['module0', 'pitchInfo', 'notesOnSameLineInfo'],
                         },
                         {
                             type: 'music',
@@ -366,11 +310,7 @@ const routes = [
                         },
                         {
                             type: 'text',
-                            value: [
-                                'module0',
-                                'pitchInfo',
-                                'ascendingNotesInfo',
-                            ],
+                            value: ['module0', 'pitchInfo', 'ascendingNotesInfo'],
                         },
                         {
                             type: 'music',
@@ -382,11 +322,7 @@ const routes = [
                         },
                         {
                             type: 'text',
-                            value: [
-                                'module0',
-                                'pitchInfo',
-                                'descendingNotesInfo',
-                            ],
+                            value: ['module0', 'pitchInfo', 'descendingNotesInfo'],
                         },
                         {
                             type: 'music',
@@ -410,11 +346,7 @@ const routes = [
                 component: SingAlong,
                 props: {
                     title: ['module0', 'pitchSingAlongCommon', 'title'],
-                    description: [
-                        'module0',
-                        'pitchSingAlongCommon',
-                        'description',
-                    ],
+                    description: ['module0', 'pitchSingAlongCommon', 'description'],
                     music: songs.i_am_a_child_of_god,
                 },
             },
@@ -423,11 +355,7 @@ const routes = [
                 component: SingAlong,
                 props: {
                     title: ['module0', 'pitchSingAlongNew', 'title'],
-                    description: [
-                        'module0',
-                        'pitchSingAlongNew',
-                        'description',
-                    ],
+                    description: ['module0', 'pitchSingAlongNew', 'description'],
                     music: songs.i_am_a_child_of_god,
                 },
             },
@@ -439,11 +367,7 @@ const routes = [
                     content: [
                         {
                             type: 'text',
-                            value: [
-                                'module0',
-                                'melodyLineInfo',
-                                'lastThingText',
-                            ],
+                            value: ['module0', 'melodyLineInfo', 'lastThingText'],
                         },
                         {
                             type: 'image',

@@ -18,10 +18,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <span
-        class="draggable"
-        :id="id"
-    >
+    <span class="draggable" :id="id">
         <slot></slot>
     </span>
 </template>

@@ -10,13 +10,8 @@ export const useCurrentPage = (translator: Translator) => {
     const module = ref(route.path.split('/')[1])
     const updateModule = (path: string) => (module.value = path.split('/')[1])
 
-    const pageIndex = ref(
-        menuItems[module.value]?.findIndex(({ href }) => href === route.path)
-    )
-    const updateIndex = () =>
-        (pageIndex.value = menuItems[module.value]?.findIndex(
-            ({ href }) => href === route.path
-        ))
+    const pageIndex = ref(menuItems[module.value]?.findIndex(({ href }) => href === route.path))
+    const updateIndex = () => (pageIndex.value = menuItems[module.value]?.findIndex(({ href }) => href === route.path))
 
     watch(
         () => route.path,

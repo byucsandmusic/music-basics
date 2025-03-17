@@ -8,24 +8,11 @@ export default defineConfig({
     base: '/byu-cs-music-capstone/',
     server: {
         warmup: {
-            clientFiles: [
-                './src/App.vue',
-                './src/models/translator.ts',
-                './src/utils/pages.ts',
-            ],
+            clientFiles: ['./src/App.vue', './src/models/translator.ts', './src/utils/pages.ts'],
         },
     },
     resolve: {
-        extensions: [
-            '.ts',
-            '.vue',
-            '.json',
-            '.mts',
-            '.tsx',
-            '.mjs',
-            '.js',
-            '.jsx',
-        ],
+        extensions: ['.ts', '.vue', '.json', '.mts', '.tsx', '.mjs', '.js', '.jsx'],
     },
     css: {
         preprocessorOptions: {

@@ -24,26 +24,15 @@ import { onMounted, onUnmounted, ref } from 'vue'
  * anywhere in the component
  */
 export const useDarkMode = () => {
-    const isDarkMode = ref(
-        window.matchMedia &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches
-    )
+    const isDarkMode = ref(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
 
     function update(event) {
         isDarkMode.value = event.matches
     }
 
-    onMounted(() =>
-        window
-            .matchMedia('(prefers-color-scheme: dark)')
-            .addEventListener('change', update)
-    )
+    onMounted(() => window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', update))
 
-    onUnmounted(() =>
-        window
-            .matchMedia('(prefers-color-scheme: dark)')
-            .removeEventListener('change', update)
-    )
+    onUnmounted(() => window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', update))
 
     return { isDarkMode }
 }

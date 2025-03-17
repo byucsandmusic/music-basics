@@ -16,19 +16,14 @@ export default defineComponent({
     },
     computed: {
         textColor() {
-            return this.color.length
-                ? this.color
-                : `$${this.isDarkMode ? 'secondary' : 'primary'}-text`
+            return this.color.length ? this.color : `$${this.isDarkMode ? 'secondary' : 'primary'}-text`
         },
     },
 })
 </script>
 
 <template>
-    <div
-        @click="$emit('close')"
-        class="x"
-    >
+    <div @click="$emit('close')" class="x">
         <i class="fa-solid fa-xmark"></i>
     </div>
 </template>

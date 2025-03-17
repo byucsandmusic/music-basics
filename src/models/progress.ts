@@ -15,9 +15,7 @@ export interface ProgressInfo {
 
 export function progress(progressInfo: ProgressInfo) {
     const saveProgress = (done: boolean) => {
-        const progress = JSON.parse(
-            localStorage.getItem(progressInfo.moduleName) || '{}'
-        )
+        const progress = JSON.parse(localStorage.getItem(progressInfo.moduleName) || '{}')
         progress[progressInfo.id] = done
         localStorage.setItem(progressInfo.moduleName, JSON.stringify(progress))
     }

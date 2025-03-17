@@ -28,10 +28,7 @@ export default defineComponent({
                 <CloseIcon @close="handleClose" />
                 <div>{{ item.title }}</div>
             </div>
-            <div
-                class="body"
-                v-html="item.body"
-            />
+            <div class="body" v-html="item.body" />
         </div>
     </div>
 </template>

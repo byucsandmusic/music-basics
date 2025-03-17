@@ -35,9 +35,7 @@ describe('construct notation method', () => {
     it('should display all music pieces in proper order when they are part of music prop', () => {
         wrapper = createWrapper()
         const notation: string = wrapper.vm.constructNotation()
-        expect(notation).toBe(
-            'T:Test\nM:4/4\nL:1/4\nQ:95\nK:C\nV:1\nC\nw:Lyric\nV:2 clef=bass\nC\n'
-        )
+        expect(notation).toBe('T:Test\nM:4/4\nL:1/4\nQ:95\nK:C\nV:1\nC\nw:Lyric\nV:2 clef=bass\nC\n')
     })
 
     it('should put bass as V:1 if treble is not defined', () => {
@@ -68,9 +66,7 @@ describe('construct notation method', () => {
         }
         wrapper = createWrapper(musicProp)
         const notation: string = wrapper.vm.constructNotation()
-        expect(notation).toBe(
-            'V:1\nC\nV:2 clef=bass\nC\nV:1\nD\nV:2 clef=bass\nD\n'
-        )
+        expect(notation).toBe('V:1\nC\nV:2 clef=bass\nC\nV:1\nD\nV:2 clef=bass\nD\n')
     })
 
     it('should alternate treble, lyrics, and bass if there are multiple lines', () => {

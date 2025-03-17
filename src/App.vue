@@ -26,10 +26,7 @@ export default defineComponent({
     <main>
         <NavBar :translator="translator" />
         <RouterView v-slot="{ Component }">
-            <component
-                :is="Component"
-                :translator="translator"
-            />
+            <component :is="Component" :translator="translator" />
         </RouterView>
     </main>
 </template>

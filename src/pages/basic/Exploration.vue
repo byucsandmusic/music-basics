@@ -35,20 +35,16 @@ export default defineComponent({
     methods: {
         closeOtherTooltips(keyToKeep: string): void {
             Object.keys(this.$refs)
-                .filter(
-                    (key) =>
-                        key.includes('tooltip') &&
-                        key !== `${keyToKeep}_tooltip`
-                )
+                .filter((key) => key.includes('tooltip') && key !== `${keyToKeep}_tooltip`)
                 .map((key) => this.$refs[key][0].close())
         },
         getTooltipPlacement(title: string): BoundingRect {
-            const makeRect = (
-                top: number,
-                left: number,
-                width: number,
-                height: number
-            ) => ({ top, left, width, height })
+            const makeRect = (top: number, left: number, width: number, height: number) => ({
+                top,
+                left,
+                width,
+                height,
+            })
 
             switch (title) {
                 case this.translator.get(...args, 'title', 'title'):
@@ -101,10 +97,7 @@ export default defineComponent({
 
 <template>
     <h2>{{ translator.get('basics', 'explore', 'title') }}</h2>
-    <div
-        ref="img-container"
-        class="img-container"
-    >
+    <div ref="img-container" class="img-container">
         <ClickableArea
             v-for="item in clickables"
             :key="item.key"

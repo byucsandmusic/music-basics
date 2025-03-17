@@ -15,9 +15,7 @@ describe('progress function', () => {
                 mockStorage[key] = value
             }),
             clear: vi.fn(() => {
-                Object.keys(mockStorage).forEach(
-                    (key) => delete mockStorage[key]
-                )
+                Object.keys(mockStorage).forEach((key) => delete mockStorage[key])
             }),
         })
 
@@ -27,10 +25,7 @@ describe('progress function', () => {
 
     it('should save progress correctly', () => {
         progressFunctions.saveProgress(true)
-        expect(localStorage.setItem).toHaveBeenCalledWith(
-            moduleName,
-            JSON.stringify({ [id]: true })
-        )
+        expect(localStorage.setItem).toHaveBeenCalledWith(moduleName, JSON.stringify({ [id]: true }))
     })
 
     it('should retrieve progress correctly', () => {

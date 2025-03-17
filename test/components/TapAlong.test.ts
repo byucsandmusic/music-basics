@@ -17,12 +17,7 @@ const createMockElement = () => ({
     },
     addedClass: '',
 })
-const mockRhythmElements = [
-    [createMockElement()],
-    [createMockElement()],
-    [createMockElement()],
-    [createMockElement()],
-]
+const mockRhythmElements = [[createMockElement()], [createMockElement()], [createMockElement()], [createMockElement()]]
 
 // Create a wrapper for the TapAlong component
 // This function is called before each test to set up the component
@@ -94,9 +89,7 @@ describe('TapAlong component', () => {
         expect(wrapper.vm.tapResults).toEqual([0, 0, 0, 0])
 
         mockRhythmElements.forEach((element) => {
-            expect(element[0].classList.classes).toContain(
-                'abcjs-note_incorrect'
-            )
+            expect(element[0].classList.classes).toContain('abcjs-note_incorrect')
         })
     })
 })

@@ -3,11 +3,7 @@ import { defineComponent } from 'vue'
 import Translator from '../../models/translator'
 import MatchTheSong from '../../components/DragAndDrop/MatchTheSong.vue'
 import { songs } from '../../models/songs'
-import {
-    isolateSheet,
-    removeVerses,
-    subsheet,
-} from '../../utils/musicManipulator'
+import { isolateSheet, removeVerses, subsheet } from '../../utils/musicManipulator'
 
 export default defineComponent({
     name: 'MatchTheSongDemo',

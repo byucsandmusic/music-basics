@@ -18,10 +18,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <span
-        class="dragTarget"
-        :id="id"
-    ></span>
+    <span class="dragTarget" :id="id"></span>
 </template>
 
 <style lang="sass" scoped></style>

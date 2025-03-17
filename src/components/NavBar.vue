@@ -20,10 +20,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <nav
-        class="navBar flex-row"
-        id="nav-bar"
-    >
+    <nav class="navBar flex-row" id="nav-bar">
         <ul class="nav-items">
             <li class="logo-container flex-row">
                 <RouterLink to="/">
@@ -36,32 +33,19 @@ export default defineComponent({
                 </RouterLink>
             </li>
             <li>
-                <RouterDropdown
-                    :links="nestedMenuItems.module0"
-                    :title="translator.get('module0', 'title')"
-                />
+                <RouterDropdown :links="nestedMenuItems.module0" :title="translator.get('module0', 'title')" />
             </li>
             <li>
-                <RouterDropdown
-                    :links="nestedMenuItems.module1"
-                    :title="translator.get('module1', 'title')"
-                />
+                <RouterDropdown :links="nestedMenuItems.module1" :title="translator.get('module1', 'title')" />
             </li>
             <li>
-                <RouterLink to="/">{{
-                    translator.get('module2', 'title')
-                }}</RouterLink>
+                <RouterLink to="/">{{ translator.get('module2', 'title') }}</RouterLink>
             </li>
             <li>
-                <RouterLink to="/">{{
-                    translator.get('module3', 'title')
-                }}</RouterLink>
+                <RouterLink to="/">{{ translator.get('module3', 'title') }}</RouterLink>
             </li>
             <li>
-                <RouterDropdown
-                    :links="nestedMenuItems.demo"
-                    :title="translator.get('demo', 'title')"
-                />
+                <RouterDropdown :links="nestedMenuItems.demo" :title="translator.get('demo', 'title')" />
             </li>
         </ul>
     </nav>

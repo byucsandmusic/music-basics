@@ -30,10 +30,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <Dropdown
-        :items="linksInMenu"
-        :title="title"
-    >
+    <Dropdown :items="linksInMenu" :title="title">
         <!--    This is a Scoped Slot, which means that the child component passes props back up to the parent-->
         <template #itemSlot="props">
             <RouterLink :to="props.currentItem.href">

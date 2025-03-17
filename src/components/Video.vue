@@ -23,15 +23,10 @@ export default defineComponent({
             const modules = import.meta.glob('/src/assets/**/*', {
                 eager: true,
             })
-            return (
-                modules[`/src/assets/videos/${this.srcName}.mp4`]?.default ?? ''
-            )
+            return modules[`/src/assets/videos/${this.srcName}.mp4`]?.default ?? ''
         },
         title() {
-            return this.translator.get(
-                ...this.route.path.split('/').slice(1),
-                'title'
-            )
+            return this.translator.get(...this.route.path.split('/').slice(1), 'title')
         },
     },
 })
@@ -40,15 +35,8 @@ export default defineComponent({
 <template>
     <div>
         <h2>{{ title }}</h2>
-        <video
-            :key="srcName"
-            width="100%"
-            controls
-        >
-            <source
-                :src="src"
-                type="video/mp4"
-            />
+        <video :key="srcName" width="100%" controls>
+            <source :src="src" type="video/mp4" />
         </video>
         <div>{{ translator.get('general', 'loremIpsum') }}</div>
     </div>

@@ -1,9 +1,7 @@
 import Translator from '../models/translator'
 import { LinkItem } from '../models/types'
 
-export default function usePages(
-    translator: Translator
-): Record<string, LinkItem[]> {
+export default function usePages(translator: Translator): Record<string, LinkItem[]> {
     return {
         module0: [
             {
@@ -19,11 +17,7 @@ export default function usePages(
             {
                 id: '/module0/reading-verses-sing-along',
                 href: '/module0/reading-verses-sing-along',
-                title: translator.get(
-                    'module0',
-                    'readingVersesSingAlong',
-                    'title'
-                ),
+                title: translator.get('module0', 'readingVersesSingAlong', 'title'),
                 notInMenu: true,
             },
             {
@@ -54,61 +48,37 @@ export default function usePages(
             {
                 id: '/module0/rhythm-tap-along-quarter-notes',
                 href: '/module0/rhythm-tap-along-quarter-notes',
-                title: translator.get(
-                    'module0',
-                    'rhythmTapAlongQuarterNotes',
-                    'title'
-                ),
+                title: translator.get('module0', 'rhythmTapAlongQuarterNotes', 'title'),
                 notInMenu: true,
             },
             {
                 id: '/module0/rhythm-tap-along-half-notes',
                 href: '/module0/rhythm-tap-along-half-notes',
-                title: translator.get(
-                    'module0',
-                    'rhythmTapAlongHalfNotes',
-                    'title'
-                ),
+                title: translator.get('module0', 'rhythmTapAlongHalfNotes', 'title'),
                 notInMenu: true,
             },
             {
                 id: '/module0/rhythm-tap-along-8th-notes',
                 href: '/module0/rhythm-tap-along-8th-notes',
-                title: translator.get(
-                    'module0',
-                    'rhythmTapAlong8thNotes',
-                    'title'
-                ),
+                title: translator.get('module0', 'rhythmTapAlong8thNotes', 'title'),
                 notInMenu: true,
             },
             {
                 id: '/module0/rhythm-tap-along-mixed-1',
                 href: '/module0/rhythm-tap-along-mixed-1',
-                title: translator.get(
-                    'module0',
-                    'rhythmTapAlongMixed1',
-                    'title'
-                ),
+                title: translator.get('module0', 'rhythmTapAlongMixed1', 'title'),
                 notInMenu: true,
             },
             {
                 id: '/module0/rhythm-tap-along-mixed-2',
                 href: '/module0/rhythm-tap-along-mixed-2',
-                title: translator.get(
-                    'module0',
-                    'rhythmTapAlongMixed2',
-                    'title'
-                ),
+                title: translator.get('module0', 'rhythmTapAlongMixed2', 'title'),
                 notInMenu: true,
             },
             {
                 id: '/module0/rhythm-sing-along-common',
                 href: '/module0/rhythm-sing-along-common',
-                title: translator.get(
-                    'module0',
-                    'rhythmSingAlongCommon',
-                    'title'
-                ),
+                title: translator.get('module0', 'rhythmSingAlongCommon', 'title'),
                 notInMenu: true,
             },
             {
@@ -145,11 +115,7 @@ export default function usePages(
             {
                 id: '/module0/pitch-sing-along-common',
                 href: '/module0/pitch-sing-along-common',
-                title: translator.get(
-                    'module0',
-                    'pitchSingAlongCommon',
-                    'title'
-                ),
+                title: translator.get('module0', 'pitchSingAlongCommon', 'title'),
                 notInMenu: true,
             },
             {
@@ -161,11 +127,7 @@ export default function usePages(
             {
                 id: '/module0/pitch-melody-line-info',
                 href: '/module0/pitch-melody-line-info',
-                title: translator.get(
-                    'module0',
-                    'pitchMelodyLineInfo',
-                    'title'
-                ),
+                title: translator.get('module0', 'pitchMelodyLineInfo', 'title'),
                 notInMenu: true,
             },
             {

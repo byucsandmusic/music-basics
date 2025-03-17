@@ -47,11 +47,7 @@ export default defineComponent({
         }
     },
     methods: {
-        onRelease(
-            from: string,
-            to: string | null,
-            state: Map<string, string | null>
-        ) {
+        onRelease(from: string, to: string | null, state: Map<string, string | null>) {
             this.buckets = state
             if (from === this.id + 'Option0' && to != null) {
                 this.textIndicator = 'Correct!'
@@ -62,8 +58,7 @@ export default defineComponent({
                 this.textIndicator = 'Sorry, that is incorrect. Try again?'
                 this.correct = false
             } else {
-                this.textIndicator =
-                    'Please place the sheet inside the box below'
+                this.textIndicator = 'Please place the sheet inside the box below'
                 this.correct = false
             }
         },
@@ -84,32 +79,20 @@ export default defineComponent({
             midi-on-top
         />
 
-        <DragAndDrop
-            :onRelease="onRelease"
-            :validBucket="validBucket"
-        >
+        <DragAndDrop :onRelease="onRelease" :validBucket="validBucket">
             What song do you hear?
             <span>{{ textIndicator }}</span>
             <div class="targets">
                 <span class="targetContainer">
-                    <span
-                        :class="{ isCorrect: correct }"
-                        class="correctnessIndicator"
-                    ></span>
+                    <span :class="{ isCorrect: correct }" class="correctnessIndicator"></span>
                     <span>
                         <DragTarget :id="`song-target`"></DragTarget>
                     </span>
                 </span>
             </div>
             <div class="draggables">
-                <Draggable
-                    :id="`${id}Option${i}`"
-                    v-for="i in order"
-                >
-                    <MusicNotation
-                        :music="sheets[i]"
-                        :translator="translator"
-                    />
+                <Draggable :id="`${id}Option${i}`" v-for="i in order">
+                    <MusicNotation :music="sheets[i]" :translator="translator" />
                 </Draggable>
             </div>
             <span style="height: 100px"></span>

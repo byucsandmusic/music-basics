@@ -69,11 +69,7 @@ export default defineComponent({
                 @toggle="handleToggle"
             />
         </Transition>
-        <div
-            v-if="toggled"
-            :class="hasBody ? 'overlay' : 'click-away'"
-            @click="close"
-        />
+        <div v-if="toggled" :class="hasBody ? 'overlay' : 'click-away'" @click="close" />
     </div>
 </template>
 

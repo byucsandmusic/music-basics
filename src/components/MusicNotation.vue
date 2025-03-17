@@ -30,14 +30,9 @@ export default defineComponent({
                         if (event && event.elements) {
                             // Remove previous highlights
                             document
-                                .querySelectorAll(
-                                    '.abcjs-note_played, .abcjs-note_selected'
-                                )
+                                .querySelectorAll('.abcjs-note_played, .abcjs-note_selected')
                                 .forEach((el: SVGElement) => {
-                                    el.classList.remove(
-                                        'abcjs-note_played',
-                                        'abcjs-note_selected'
-                                    )
+                                    el.classList.remove('abcjs-note_played', 'abcjs-note_selected')
                                     el.removeAttribute('fill')
                                 })
 
@@ -94,8 +89,7 @@ export default defineComponent({
     methods: {
         constructNotation() {
             let notation: string = ''
-            if (this.music.instrument)
-                notation += `%%MIDI program ${this.music.instrument}\n`
+            if (this.music.instrument) notation += `%%MIDI program ${this.music.instrument}\n`
             if (this.music.title) notation += `T:${this.music.title}\n`
             if (this.music.meter) notation += `M:${this.music.meter}\n`
             if (this.music.beat) notation += `L:${this.music.beat}\n`
@@ -104,11 +98,7 @@ export default defineComponent({
             if (this.music.treble?.length || this.music.bass?.length) {
                 for (
                     let measure = 0;
-                    measure <
-                    Math.max(
-                        this.music.treble?.length || 0,
-                        this.music.bass?.length || 0
-                    );
+                    measure < Math.max(this.music.treble?.length || 0, this.music.bass?.length || 0);
                     measure++
                 ) {
                     if (this.music.treble?.length > measure) {
@@ -117,25 +107,14 @@ export default defineComponent({
                         notation += `V:1 clef=bass\n${this.music.bass[measure]}\n`
                     }
                     if (this.music.verses?.length) {
-                        for (
-                            let verse = 0;
-                            verse < this.music.verses.length;
-                            verse++
-                        ) {
+                        for (let verse = 0; verse < this.music.verses.length; verse++) {
                             if (this.music.verses[verse].length > measure) {
-                                const verseCount =
-                                    this.music.verses.length > 1 &&
-                                    measure === 0
-                                        ? `${verse + 1}.~`
-                                        : ''
+                                const verseCount = this.music.verses.length > 1 && measure === 0 ? `${verse + 1}.~` : ''
                                 notation += `w:${verseCount}${this.music.verses[verse][measure]}\n`
                             }
                         }
                     }
-                    if (
-                        this.music.treble?.length > measure &&
-                        this.music.bass?.length > measure
-                    )
+                    if (this.music.treble?.length > measure && this.music.bass?.length > measure)
                         notation += `V:2 clef=bass\n${this.music.bass[measure]}\n`
                 }
             }
@@ -173,15 +152,10 @@ export default defineComponent({
                 await this.synthControl.play()
             }
             await this.synthControl.restart()
-            document
-                .querySelectorAll('.abcjs-note_played, .abcjs-note_selected')
-                .forEach((el: SVGElement) => {
-                    el.classList.remove(
-                        'abcjs-note_played',
-                        'abcjs-note_selected'
-                    )
-                    el.removeAttribute('fill')
-                })
+            document.querySelectorAll('.abcjs-note_played, .abcjs-note_selected').forEach((el: SVGElement) => {
+                el.classList.remove('abcjs-note_played', 'abcjs-note_selected')
+                el.removeAttribute('fill')
+            })
             if (this.cursor.verse !== undefined) {
                 this.cursor.verse = 0
                 const lyrics = document.querySelectorAll('.abcjs-lyric')
@@ -198,26 +172,19 @@ export default defineComponent({
                 const nav = document.getElementById('nav-bar')
                 const footer = document.getElementById('footer')
                 const midi = document.getElementById('midi-player')
-                const offsetHeight =
-                    (nav?.offsetHeight ?? 0) +
-                    (footer?.offsetHeight ?? 0) +
-                    (midi?.offsetHeight ?? 0)
+                const offsetHeight = (nav?.offsetHeight ?? 0) + (footer?.offsetHeight ?? 0) + (midi?.offsetHeight ?? 0)
 
                 const ratio = W / H
 
                 const h = window.innerHeight - offsetHeight
                 const w = h * ratio
-                const padding =
-                    Math.max(this.$refs.notationPadding.offsetWidth - w, 0) / 2
+                const padding = Math.max(this.$refs.notationPadding.offsetWidth - w, 0) / 2
                 this.$refs.notationPadding.style.padding = `0 ${padding}px`
             }
         },
         rotateIcon(icon: HTMLElement, duration: number) {
             const style = icon.getAttribute('style')
-            icon.setAttribute(
-                'style',
-                `--fa-animation-duration: ${duration / 1000}s`
-            )
+            icon.setAttribute('style', `--fa-animation-duration: ${duration / 1000}s`)
             icon.classList.add('fa-spin', 'fa-spin-reverse')
             setTimeout(() => {
                 icon.classList.remove('fa-spin', 'fa-spin-reverse')
@@ -227,10 +194,7 @@ export default defineComponent({
         },
     },
     mounted() {
-        if (
-            this.cursor.onStart === undefined &&
-            this.cursor.onFinished === undefined
-        ) {
+        if (this.cursor.onStart === undefined && this.cursor.onFinished === undefined) {
             this.cursor.verse = 0
             this.cursor.onStart = () => {
                 console.log(`Starting verse ${this.cursor.verse + 1}`)
@@ -250,17 +214,10 @@ export default defineComponent({
             }
             this.cursor.onFinished = async () => {
                 console.log(`Finished verse ${this.cursor.verse + 1}`)
-                document
-                    .querySelectorAll(
-                        '.abcjs-note_played, .abcjs-note_selected'
-                    )
-                    .forEach((el: SVGElement) => {
-                        el.classList.remove(
-                            'abcjs-note_played',
-                            'abcjs-note_selected'
-                        )
-                        el.removeAttribute('fill')
-                    })
+                document.querySelectorAll('.abcjs-note_played, .abcjs-note_selected').forEach((el: SVGElement) => {
+                    el.classList.remove('abcjs-note_played', 'abcjs-note_selected')
+                    el.removeAttribute('fill')
+                })
 
                 this.cursor.verse++
                 const lyrics = document.querySelectorAll('.abcjs-lyric')
@@ -305,8 +262,7 @@ export default defineComponent({
                         visualObj,
                     })
                     .then(() => {
-                        if (visualObj)
-                            this.synthControl.setTune(visualObj, false)
+                        if (visualObj) this.synthControl.setTune(visualObj, false)
                     })
 
                 const lyrics = document.querySelectorAll('.abcjs-lyric')
@@ -322,12 +278,7 @@ export default defineComponent({
                 })
             }
         } catch (err) {
-            this.$refs.midiPlayer.innerText = this.translator.get(
-                'general',
-                'musicNotation',
-                'error',
-                'midiPlayer'
-            )
+            this.$refs.midiPlayer.innerText = this.translator.get('general', 'musicNotation', 'error', 'midiPlayer')
         }
 
         const W = this.$refs.notationPadding.offsetWidth
@@ -341,31 +292,17 @@ export default defineComponent({
 </script>
 
 <template>
-    <div
-        class="container"
-        ref="notationPadding"
-    >
-        <div
-            v-if="midiOnTop"
-            :hidden="!displayMidiPlayer"
-            id="midi-container"
-        >
-            <button
-                @click="playPause"
-                id="play-btn"
-            >
-                <i
-                    class="fa-solid"
-                    :class="isPlaying ? 'fa-pause' : 'fa-play'"
-                ></i>
+    <div class="container" ref="notationPadding">
+        <div v-if="midiOnTop" :hidden="!displayMidiPlayer" id="midi-container">
+            <button @click="playPause" id="play-btn">
+                <i class="fa-solid" :class="isPlaying ? 'fa-pause' : 'fa-play'"></i>
             </button>
             <button
                 @click="
                     (event) => {
                         restart()
                         const icon =
-                            ((event.target as Element)
-                                .firstElementChild as HTMLElement) ??
+                            ((event.target as Element).firstElementChild as HTMLElement) ??
                             (event.target as HTMLElement)
                         rotateIcon(icon, 100)
                     }
@@ -374,36 +311,19 @@ export default defineComponent({
             >
                 <i class="fa-solid fa-rotate-left"></i>
             </button>
-            <div
-                ref="midiPlayer"
-                id="midi-player"
-            ></div>
+            <div ref="midiPlayer" id="midi-player"></div>
         </div>
-        <div
-            :hidden="!displaySheetMusic"
-            ref="notationContainer"
-        ></div>
-        <div
-            v-if="!midiOnTop"
-            :hidden="!displayMidiPlayer"
-            id="midi-container"
-        >
-            <button
-                @click="playPause"
-                id="play-btn"
-            >
-                <i
-                    class="fa-solid"
-                    :class="isPlaying ? 'fa-pause' : 'fa-play'"
-                ></i>
+        <div :hidden="!displaySheetMusic" ref="notationContainer"></div>
+        <div v-if="!midiOnTop" :hidden="!displayMidiPlayer" id="midi-container">
+            <button @click="playPause" id="play-btn">
+                <i class="fa-solid" :class="isPlaying ? 'fa-pause' : 'fa-play'"></i>
             </button>
             <button
                 @click="
                     (event) => {
                         restart()
                         const icon =
-                            ((event.target as Element)
-                                .firstElementChild as HTMLElement) ??
+                            ((event.target as Element).firstElementChild as HTMLElement) ??
                             (event.target as HTMLElement)
                         rotateIcon(icon, 100)
                     }
@@ -412,10 +332,7 @@ export default defineComponent({
             >
                 <i class="fa-solid fa-rotate-left"></i>
             </button>
-            <div
-                ref="midiPlayer"
-                id="midi-player"
-            ></div>
+            <div ref="midiPlayer" id="midi-player"></div>
         </div>
     </div>
 </template>

@@ -18,8 +18,7 @@ const defaultProps = {
 
 const getDefaultProps = () => structuredClone(defaultProps)
 
-const createWrapper = (props = defaultProps) =>
-    shallowMount(ClickableArea, { props })
+const createWrapper = (props = defaultProps) => shallowMount(ClickableArea, { props })
 
 afterEach(() => {
     if (wrapper) {

@@ -57,15 +57,8 @@ export default defineComponent({
 <template>
     <h2>{{ title }}</h2>
     <div class="content-container">
-        <div
-            v-for="(item, index) in content"
-            :key="index"
-            class="content-item"
-        >
-            <p
-                v-if="item.type === 'text' && item.value?.[0]"
-                style="white-space: pre-line"
-            >
+        <div v-for="(item, index) in content" :key="index" class="content-item">
+            <p v-if="item.type === 'text' && item.value?.[0]" style="white-space: pre-line">
                 {{ getTranslatedText(item.value) }}
             </p>
             <img
