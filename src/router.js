@@ -44,6 +44,7 @@ const routes = [
                         treble: ['BB/B/BB'],
                         instrument: 36,
                     },
+                    titleKeys: ['demo', 'tapAlong', 'title'],
                     progressKeys: {
                         moduleName: 'demo',
                         id: 'tap-along',
@@ -126,7 +127,15 @@ const routes = [
             {
                 path: 'reading-verses-sing-along',
                 component: SingAlong,
-                props: { music: songs.i_am_a_child_of_god },
+                props: {
+                    title: ['module0', 'readingVersesSingAlong', 'title'],
+                    description: [
+                        'module0',
+                        'readingVersesSingAlong',
+                        'description',
+                    ],
+                    music: songs.i_am_a_child_of_god,
+                },
             },
             {
                 path: 'rhythm-info',
@@ -306,6 +315,12 @@ const routes = [
                 path: 'rhythm-sing-along-common',
                 component: SingAlong,
                 props: {
+                    title: ['module0', 'rhythmSingAlongCommon', 'title'],
+                    description: [
+                        'module0',
+                        'rhythmSingAlongCommon',
+                        'description',
+                    ],
                     music: songs.i_am_a_child_of_god,
                 },
             },
@@ -313,6 +328,12 @@ const routes = [
                 path: 'rhythm-sing-along-new',
                 component: SingAlong,
                 props: {
+                    title: ['module0', 'rhythmSingAlongNew', 'title'],
+                    description: [
+                        'module0',
+                        'rhythmSingAlongNew',
+                        'description',
+                    ],
                     music: songs.i_am_a_child_of_god,
                 },
             },
@@ -388,6 +409,12 @@ const routes = [
                 path: 'pitch-sing-along-common',
                 component: SingAlong,
                 props: {
+                    title: ['module0', 'pitchSingAlongCommon', 'title'],
+                    description: [
+                        'module0',
+                        'pitchSingAlongCommon',
+                        'description',
+                    ],
                     music: songs.i_am_a_child_of_god,
                 },
             },
@@ -395,6 +422,12 @@ const routes = [
                 path: 'pitch-sing-along-new',
                 component: SingAlong,
                 props: {
+                    title: ['module0', 'pitchSingAlongNew', 'title'],
+                    description: [
+                        'module0',
+                        'pitchSingAlongNew',
+                        'description',
+                    ],
                     music: songs.i_am_a_child_of_god,
                 },
             },

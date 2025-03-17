@@ -1,3 +1,5 @@
+import TapAlong from '../components/TapAlong.vue'
+
 // The language codes in this file have been defined by this resource: https://iso639-3.sil.org/code_tables/639/data
 export const languages = {
     home: {
@@ -470,6 +472,11 @@ export const languages = {
     demo: {
         title: {
             ENG: 'Demo',
+        },
+        tapAlong: {
+            title: {
+                ENG: 'Tap Along Demo',
+            },
         },
     },
     general: {
