@@ -39,6 +39,8 @@ const createWrapper = () => {
                 treble: ['BB/B/BB'],
                 instrument: 36,
             },
+            titleKeys: [],
+            descriptionKeys: [],
             progressKeys: {
                 moduleName: 'Test',
                 id: 'tapAlongTest',
