@@ -51,7 +51,7 @@ export const languages = {
                     'When singing a hymn, we sing verse 1 first, which is the top line of each part of the music. ',
             },
             chorusInfo: {
-                ENG: 'Notice at the bottom, as we go to the next block of music, there are not three separate lines of text, just one:',
+                ENG: 'Notice in the next part of the song, as we go to the next block of music, there are not three separate lines of text, just one:',
             },
             nextVerseInfo: {
                 ENG:
