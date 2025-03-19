@@ -106,7 +106,7 @@ export default defineComponent({
     z-index: 10
     filter: drop-shadow(1px 2px 6px #a9a9a9)
 
-@media (prefers-color-scheme: dark)
+.dark-mode
     .tooltip-body
         background: $accent-color-dark
         color: $primary-text

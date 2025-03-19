@@ -50,7 +50,17 @@ export default defineComponent({
 </template>
 
 <style scoped lang="sass">
-@media (prefers-color-scheme: dark)
+.dropdown
+    --pico-form-element-placeholder-color: #212225
+    --pico-form-element-background-color: #dedddd
+    --pico-form-element-active-background-color: #c2c1c1
+    --pico-dropdown-background-color: #d5d5d5
+    --pico-dropdown-border-color: #c4c4c4
+    --pico-dropdown-hover-background-color: #c2c1c1
+    --pico-form-element-border-color: #c4c4c4
+    --pico-dropdown-color: #212225
+
+.dark-mode
     .dropdown
         --pico-form-element-placeholder-color: #E0E0E0
         --pico-form-element-background-color: #3d3d3d
@@ -59,4 +69,5 @@ export default defineComponent({
         --pico-dropdown-border-color: #3d3d3d
         --pico-dropdown-hover-background-color: #5d5d5d
         --pico-form-element-border-color: #3d3d3d
+        --pico-dropdown-color: #E0E0E0
 </style>

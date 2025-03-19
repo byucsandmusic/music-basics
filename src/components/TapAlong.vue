@@ -452,7 +452,7 @@ button
     max-width: 200px
     background: $accent-color
 
-@media (prefers-color-scheme: dark)
+.dark-mode
     button
         background: $accent-color-dark
 </style>

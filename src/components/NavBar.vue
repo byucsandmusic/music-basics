@@ -3,10 +3,13 @@ import { defineComponent } from 'vue'
 import RouterDropdown from './RouterMenu.vue'
 import Translator from '../models/translator'
 import usePages from '../utils/pages'
+import { useDarkMode } from '../utils/darkMode'
+import { progress } from '../models/progress'
+import ThemeToggle from './ThemeToggle.vue'
 
 export default defineComponent({
     name: 'NavBar',
-    components: { RouterDropdown },
+    components: { ThemeToggle, RouterDropdown },
     props: {
         translator: {
             type: Translator,
@@ -48,6 +51,7 @@ export default defineComponent({
                 <RouterDropdown :links="nestedMenuItems.demo" :title="translator.get('demo', 'title')" />
             </li>
         </ul>
+        <ThemeToggle />
     </nav>
 </template>
 
@@ -58,6 +62,10 @@ export default defineComponent({
     --pico-nav-link-spacing-vertical: 0.3rem
     --pico-nav-element-spacing-vertical: 0.3rem
     margin-bottom: $top-bottom-margin
+    justify-content: space-between
+    align-items: baseline
+    padding-left: 0.3rem
+    padding-right: 1rem
 
 .nav-items
     height: 100%
@@ -70,11 +78,10 @@ export default defineComponent({
     height: $footer-height
     min-width: 3.5rem
     padding: 0
-    margin-left: 0.2rem
     justify-content: center
     align-items: center
 
-@media (prefers-color-scheme: dark)
+.dark-mode
     .logo-container
         background: $accent-color-dark
     .navBar

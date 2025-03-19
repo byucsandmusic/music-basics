@@ -75,7 +75,7 @@ export default defineComponent({
     animation: progress 0.5s ease-in-out
     animation-fill-mode: both
 
-@media (prefers-color-scheme: dark)
+.dark-mode
     .footer
         background: $secondary-background-dark
     .progress-bar

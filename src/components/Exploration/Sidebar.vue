@@ -60,7 +60,7 @@ export default defineComponent({
 ::-webkit-scrollbar-track
     margin-bottom: 0
 
-@media (prefers-color-scheme: dark)
+.dark-mode
     .body
         color: $secondary-text
     .header

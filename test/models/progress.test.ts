@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { progress } from '../../src/models//progress'
+import { progress } from '../../src/models/progress'
 
 describe('progress function', () => {
     const moduleName = 'Rhythms'

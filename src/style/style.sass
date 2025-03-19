@@ -3,7 +3,8 @@ body, html
     height: 100%
     background: $primary-background
     color: $primary-text
-
+p, h1, h2, h3, h4, h5
+    color: $primary-text
 button
     background: $accent-color
 
@@ -46,22 +47,22 @@ button:hover
 ::-webkit-scrollbar-thumb:hover
     background: #555
 
-@media (prefers-color-scheme: dark)
+.dark-mode::-webkit-scrollbar-track
+    background: $secondary-background-dark
+
+.dark-mode::-webkit-scrollbar-thumb
+    background: #696767
+
+.dark-mode::-webkit-scrollbar-thumb:hover
+    background: #4d4d4d
+
+.dark-mode
+    background: $primary-background-dark
+    color: $secondary-text
+
+    p, h1, h2, h3, h4, h5
+        color: $secondary-text
     button
         background: $accent-color-dark
     button:hover
         background: #09c5e1
-
-    body, html
-        background: $primary-background-dark
-        color: $secondary-text
-
-    ::-webkit-scrollbar-track
-        background: $secondary-background-dark
-
-    ::-webkit-scrollbar-thumb
-        border-radius: 0.6rem
-        background: #696767
-
-    ::-webkit-scrollbar-thumb:hover
-        background: #4d4d4d
