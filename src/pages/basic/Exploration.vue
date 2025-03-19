@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import Translator from '../../models/translator'
 import { BoundingRect } from '../../models/types'
 import ClickableArea from '../../components/Exploration/ClickableArea.vue'
@@ -12,6 +12,10 @@ export default defineComponent({
     props: {
         translator: {
             type: Translator,
+            required: true,
+        },
+        descriptionPath: {
+            type: Array as PropType<string[]>,
             required: true,
         },
     },
@@ -96,7 +100,8 @@ export default defineComponent({
 </script>
 
 <template>
-    <h2>{{ translator.get('basics', 'explore', 'title') }}</h2>
+    <h2>{{ translator.get('module1', 'explore', 'title') }}</h2>
+    <p class="content-item">{{ translator.get(...descriptionPath) }}</p>
     <div ref="img-container" class="img-container">
         <ClickableArea
             v-for="item in clickables"
@@ -115,6 +120,8 @@ export default defineComponent({
 </template>
 
 <style scoped lang="sass">
+.content-item
+    max-width: 1000px
 .img-container
     position: relative
     width: min(980px, 100%)

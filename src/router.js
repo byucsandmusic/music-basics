@@ -23,7 +23,11 @@ const routes = [
         children: [
             { path: '', redirect: '/demo/home' },
             { path: 'home', component: ModuleHome },
-            { path: 'explore', component: Exploration },
+            {
+                path: 'explore',
+                component: Exploration,
+                props: { descriptionPath: ['module0', 'exploration', 'description'] },
+            },
             {
                 path: 'sing-along',
                 component: SingAlong,
@@ -385,7 +389,11 @@ const routes = [
                     ],
                 },
             },
-            { path: 'exploration', component: Exploration },
+            {
+                path: 'exploration',
+                component: Exploration,
+                props: { descriptionPath: ['module0', 'exploration', 'description'] },
+            },
             {
                 path: 'end',
                 component: ModuleEnd,
@@ -409,7 +417,11 @@ const routes = [
                     music: songs.i_am_a_child_of_god,
                 },
             },
-            { path: 'explore', component: Exploration },
+            {
+                path: 'explore',
+                component: Exploration,
+                props: { descriptionPath: ['module0', 'exploration', 'description'] },
+            },
             { path: 'end', component: ModuleEnd, props: { module: 'module1' } },
         ],
     },

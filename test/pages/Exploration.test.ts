@@ -6,6 +6,7 @@ import ClickableArea from '../../src/components/Exploration/ClickableArea.vue'
 let wrapper
 const defaultProps = {
     translator: new Translator(),
+    descriptionPath: [''],
 }
 
 const createWrapper = (props = defaultProps) =>

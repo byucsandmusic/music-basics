@@ -80,23 +80,7 @@ export default defineComponent({
 </template>
 
 <style scoped lang="sass">
-.content-container
-  display: flex
-  flex-direction: column
-  gap: 10px
-
-.content-item
-  display: flex
-  justify-content: center
-
-.content-image
-  max-width: 100%
-  height: auto
-  max-width: 1000px
-  padding-bottom: 20px
-
 .music-notation
-  max-width: 100%
   height: auto
   max-width: 1000px
 
