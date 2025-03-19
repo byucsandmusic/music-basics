@@ -228,6 +228,7 @@ export default defineComponent({
                         }
                     })
                     this.cursor.verse = 0
+                    this.isPlaying = false
                 } else {
                     await this.synthControl.restart()
                     await this.synthControl.play()
