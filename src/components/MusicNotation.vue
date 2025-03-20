@@ -289,6 +289,9 @@ export default defineComponent({
             this.updateNotationHeight(W, H)
         })
     },
+    unmounted() {
+        this.restart()
+    },
 })
 </script>
 
