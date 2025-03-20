@@ -32,6 +32,7 @@ export default defineComponent({
     <h2 v-if="title">{{ translator.get(...title) }}</h2>
     <p v-if="description">{{ translator.get(...description) }}</p>
     <MusicNotation
+        :key="JSON.stringify(music)"
         :music="music"
         :translator="translator"
         highlightColor="#ff9d00"
