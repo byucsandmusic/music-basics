@@ -25,9 +25,11 @@ export default defineComponent({
     <title>{{ translator.get('home', 'title') }}</title>
     <main>
         <NavBar :translator="translator" />
-        <RouterView v-slot="{ Component }">
-            <component :is="Component" :translator="translator" />
-        </RouterView>
+        <div class="content-wrapper">
+            <RouterView v-slot="{ Component }">
+                <component :is="Component" :translator="translator" />
+            </RouterView>
+        </div>
     </main>
 </template>
 
