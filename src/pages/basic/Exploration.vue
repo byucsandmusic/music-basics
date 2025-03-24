@@ -53,12 +53,12 @@ export default defineComponent({
             switch (title) {
                 case this.translator.get(...args, 'title', 'title'):
                     return makeRect(3.5, 21.5, 56, 2.8)
-                case this.translator.get(...args, 'luke', 'title'):
-                    return makeRect(6.6, 41, 9, 1)
-                case this.translator.get(...args, 'isaiah', 'title'):
-                    return makeRect(6.6, 50.5, 7.3, 1)
+                case this.translator.get(...args, 'scriptures', 'title'):
+                    return makeRect(6.6, 41, 16.75, 1.2)
                 case this.translator.get(...args, 'tempo', 'title'):
-                    return makeRect(7.6, 11, 16, 1.5)
+                    return makeRect(7.6, 11, 6.5, 1.5)
+                case this.translator.get(...args, 'conductorNotes', 'title'):
+                    return makeRect(7.6, 18, 9, 1.5)
                 case this.translator.get(...args, 'guitar', 'title'):
                     return makeRect(9, 74, 2.75, 2)
                 case this.translator.get(...args, 'introStart', 'title'):

@@ -314,7 +314,7 @@ export const languages = {
             tooltips: {
                 list: {
                     ENG:
-                        'title/tempo/guitar/isaiah/luke/introStart/introEnd/timeSig/key/' +
+                        'title/tempo/conductorNotes/guitar/scriptures/introStart/introEnd/timeSig/key/' +
                         'verseInfo/perform/text/music/copyright/tune/fermata/toRefrain/' +
                         'slur/treble/bass',
                 },
@@ -322,10 +322,40 @@ export const languages = {
                     title: {
                         ENG: 'Title',
                     },
+                    body: {
+                        ENG: 'Title of the Hymn.<br/><span style="font-size: smaller;">You can search hymns by title in the back of the hymnal or online <a href="https://www.churchofjesuschrist.org/media/music?lang=eng">here</a>.</span>',
+                    },
                 },
                 tempo: {
                     title: {
                         ENG: 'Tempo range',
+                    },
+                    body: {
+                        ENG:
+                            'The tempo marking shows how fast or slow a hymn should go. First, it shows the kind of note that gets the' +
+                            ' main beat, the thing you tap your toe to or that the music leader conducts. And the numbers next to it ' +
+                            'show how many beats per minute. This specific song says that the main beat is a half note and should be between ' +
+                            '60-69 beats per minute. This is about one beat per second. He is Born, the Divine Christ Child. See how the text ' +
+                            'fits to the beat of the song? And that there are two darker notes in the space of the beat? ' +
+                            'The interactive digital tools page of the hymnbook has an embedded metronome ' +
+                            'where you can check how fast or slow the beat is. Access the digital tools for this hymn ' +
+                            '<a href="' +
+                            'https://www.churchofjesuschrist.org/media/music/songs/he-is-born-the-divine-christ-child?crumbs=hymns-for-home-and-church&lang=eng' +
+                            '">here</a>.',
+                    },
+                },
+                conductorNotes: {
+                    title: {
+                        ENG: 'Conductor notes',
+                    },
+                    body: {
+                        ENG:
+                            'Tips for the music leader will go here. This hymn can look like it has four beats, but because ' +
+                            'it is a quick tempo, this note advises the conductor to conduct a basic two pattern with two quarter ' +
+                            'notes in each beat. You can learn how to conduct different patterns ' +
+                            "<a href='" +
+                            'https://www.churchofjesuschrist.org/bc/content/shared/english/pdf/callings/music/conducting-course/ConductPatterns.pdf' +
+                            "'>here</a>.",
                     },
                 },
                 guitar: {
@@ -333,43 +363,29 @@ export const languages = {
                         ENG: 'Guitar chords',
                     },
                 },
-                isaiah: {
+                scriptures: {
                     title: {
-                        ENG: 'Isaiah 9:6',
+                        ENG: 'Scriptures',
                     },
                     body: {
                         ENG:
-                            '<a ' +
-                            'href="https://www.churchofjesuschrist.org/study/scriptures/ot/isa/9?lang=eng&id=p6#p6"' +
-                            '>Isaiah 9:6</a><br/>' +
-                            '6 For unto us a child is born, unto us a son is given: and the government shall ' +
-                            'be upon his shoulder: and his name shall be called Wonderful, Counsellor, ' +
-                            'The mighty God, The everlasting Father, The Prince of Peace.',
-                    },
-                },
-                luke: {
-                    title: {
-                        ENG: 'Luke 2:6-14',
-                    },
-                    body: {
-                        ENG:
-                            '<a ' +
-                            'href="https://www.churchofjesuschrist.org/study/scriptures/nt/luke/2?lang=eng&id=p6-p14#p6"' +
-                            '>Luke 2:6-14</a><br/>' +
-                            '6 And so it was, that, while they were there, the days were accomplished ' +
-                            'that she should be delivered.<br/><br/>7 And she brought forth her firstborn son, ' +
-                            'and wrapped him in swaddling clothes, and laid him in a manger; because ' +
-                            'there was no room for them in the inn.<br/><br/>8 And there were in the same ' +
-                            'country shepherds abiding in the field, keeping watch over their flock ' +
-                            'by night.<br/><br/>9 And, lo, the angel of the Lord came upon them, and the ' +
-                            'glory of the Lord shone round about them: and they were sore afraid.<br/><br/>' +
-                            '10 And the angel said unto them, Fear not: for, behold, I bring you good ' +
-                            'tidings of great joy, which shall be to all people.<br/><br/>11 For unto you is ' +
-                            'born this day in the city of David a Saviour, which is Christ the Lord.<br/><br/>' +
-                            '12 And this shall be a sign unto you; Ye shall find the babe wrapped in ' +
-                            'swaddling clothes, lying in a manger.<br/><br/>13 And suddenly there was with ' +
-                            'the angel a multitude of the heavenly host praising God, and saying,<br/><br/>' +
-                            '14 Glory to God in the highest, and on earth peace, good will toward men.',
+                            '<a href="' +
+                            'https://www.churchofjesuschrist.org/study/scriptures/nt/luke/2?lang=eng&id=p6-p14#p6' +
+                            '">Luke 2:6-14</a>, ' +
+                            '<a href="' +
+                            'https://www.churchofjesuschrist.org/study/scriptures/ot/isa/9?lang=eng&id=p6#p6' +
+                            '">Isaiah 9:6</a><br/>' +
+                            'Hymns teach the doctrines of the gospel. Each hymn has scriptures that can teach us more about ' +
+                            'the topic of the hymn. In the first presidency preface to the 1985 hymnbook, they wrote: “Hymns ' +
+                            'can lift our spirits, give us courage, and move us to righteous action. They can fill our souls ' +
+                            'with heavenly thoughts and bring us a spirit of peace. Hymns can also help us withstand the ' +
+                            'temptations of the adversary. We encourage you to memorize your favorite hymns and study the ' +
+                            'scriptures that relate to them. Then, if unworthy thoughts enter your mind, sing a hymn to yourself, ' +
+                            'crowding out the evil with the good. Brothers and sisters, let us use the hymns to invite the Spirit ' +
+                            'of the Lord into our congregations, our homes, and our personal lives. Let us memorize and ponder ' +
+                            'them, recite and sing them, and partake of their spiritual nourishment. Know that the song of the ' +
+                            'righteous is a prayer unto our Father in Heaven, “and it shall be answered with a blessing upon ' +
+                            '[your] heads.”',
                     },
                 },
                 introStart: {
@@ -386,10 +402,27 @@ export const languages = {
                     title: {
                         ENG: 'Time signature',
                     },
+                    body: {
+                        ENG:
+                            'The time signature gives information about how many beats are in a measure and how you ' +
+                            'might conduct the piece if you are the music leader. The top number usually tells us how ' +
+                            'many beats are in the measure. The bottom number usually tells us what kind of note gets ' +
+                            'the beat. This song is unique in that it is in 2/2 which means there are two beats in each ' +
+                            'measure and the half note gets the beat. That is why it also tells the leader to conduct in 2. ' +
+                            "<a href='#'>Learn more about time signatures.</a>",
+                    },
                 },
                 key: {
                     title: {
                         ENG: 'Key signature',
+                    },
+                    body: {
+                        ENG:
+                            'The key signature gives information about what notes are on the white and black keys of ' +
+                            'the piano or organ. It also can tell you where the home note of the song is. This song has ' +
+                            'one flat, which means that all the B’s are flat or to be played on the black note to the ' +
+                            'left of B. It also tells us that we are in F major, so F is the home note of the song. ' +
+                            '<a href="#">Learn more about key signatures.</a>',
                     },
                 },
                 verseInfo: {
@@ -437,9 +470,21 @@ export const languages = {
                 },
                 treble: {
                     title: { ENG: 'Treble clef' },
+                    body: {
+                        ENG:
+                            ' A treble clef indicates that the notes are on the right half of the keyboard and are ' +
+                            'usually above middle C. The soprano and alto notes of the hymn are usually written in ' +
+                            "the treble clef. <a href='#'>Learn more about treble clef notes.</a>",
+                    },
                 },
                 bass: {
                     title: { ENG: 'Bass clef' },
+                    body: {
+                        ENG:
+                            'A bass clef indicates that the notes are on the left half of the keyboard and are ' +
+                            'usually below middle C. The tenor and bass notes of the hymn are usually written in the ' +
+                            "bass clef. <a href='#'>Learn more about bass clef notes.</a>",
+                    },
                 },
             },
         },
