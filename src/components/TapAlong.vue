@@ -396,6 +396,7 @@ export default defineComponent({
                     displaySheetMusic
                     :cursor="rhythmCursor"
                     :translator="translator"
+                    :staff-width="450"
                 ></MusicNotation>
             </div>
             <div class="header-container">

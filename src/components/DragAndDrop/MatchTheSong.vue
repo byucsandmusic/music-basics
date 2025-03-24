@@ -92,7 +92,7 @@ export default defineComponent({
             </div>
             <div class="draggables">
                 <Draggable :id="`${id}Option${i}`" v-for="i in order">
-                    <MusicNotation :music="sheets[i]" :translator="translator" />
+                    <MusicNotation :music="sheets[i]" :translator="translator" :staff-width="200" />
                 </Draggable>
             </div>
             <span style="height: 100px"></span>

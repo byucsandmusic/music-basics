@@ -9,13 +9,13 @@ import { Cursor } from '../models/types'
 export default defineComponent({
     name: 'MusicNotation',
     props: {
-        music: {
-            type: Object as PropType<Music>,
-            required: true,
-        },
         clickToPlay: {
             type: Boolean,
             default: false,
+        },
+        correctColor: {
+            type: String,
+            default: '#00ff00',
         },
         /**
          * @description A cursor object based on https://paulrosen.github.io/abcjs/audio/synthesized-sound.html#cursorcontrol-object
@@ -45,6 +45,10 @@ export default defineComponent({
                 }
             },
         },
+        displayMidiPlayer: {
+            type: Boolean,
+            default: false,
+        },
         displaySheetMusic: {
             type: Boolean,
             default: true,
@@ -53,29 +57,29 @@ export default defineComponent({
             type: Boolean,
             default: false,
         },
-        displayMidiPlayer: {
-            type: Boolean,
-            default: false,
+        highlightColor: {
+            type: String,
+            default: '#ff9d00',
+        },
+        incorrectColor: {
+            type: String,
+            default: '#ff0000',
         },
         midiOnTop: {
             type: Boolean,
             default: false,
         },
-        highlightColor: {
-            type: String,
-            default: '#ff9d00',
+        music: {
+            type: Object as PropType<Music>,
+            required: true,
+        },
+        staffWidth: {
+            type: Number,
+            default: 740,
         },
         translator: {
             type: Translator,
             required: true,
-        },
-        correctColor: {
-            type: String,
-            default: '#00ff00',
-        },
-        incorrectColor: {
-            type: String,
-            default: '#ff0000',
         },
     },
     emits: ['lyric-clicked'],
@@ -87,6 +91,29 @@ export default defineComponent({
         }
     },
     methods: {
+        clickListener(abcElem) {
+            if (this.midiBuffer && this.synthControl) {
+                this.midiBuffer.seek(abcElem?.currentTrackMilliseconds)
+
+                if (this.clickToPlay) {
+                    const lastClicked = abcElem.midiPitches
+                    if (!lastClicked) return
+
+                    abcjs.synth
+                        .playEvent(
+                            lastClicked,
+                            abcElem.midiGraceNotePitches,
+                            this.synthControl.visualObj.millisecondsPerMeasure()
+                        )
+                        .then(function (response) {
+                            console.log('note played')
+                        })
+                        .catch(function (error) {
+                            console.log('error playing note', error)
+                        })
+                }
+            }
+        },
         constructNotation() {
             let notation: string = ''
             if (this.music.instrument) notation += `%%MIDI program ${this.music.instrument}\n`
@@ -120,32 +147,59 @@ export default defineComponent({
             }
             return notation
         },
-        clickListener(abcElem) {
-            if (this.midiBuffer && this.synthControl) {
-                this.midiBuffer.seek(abcElem?.currentTrackMilliseconds)
-
-                if (this.clickToPlay) {
-                    const lastClicked = abcElem.midiPitches
-                    if (!lastClicked) return
-
-                    abcjs.synth
-                        .playEvent(
-                            lastClicked,
-                            abcElem.midiGraceNotePitches,
-                            this.synthControl.visualObj.millisecondsPerMeasure()
-                        )
-                        .then(function (response) {
-                            console.log('note played')
-                        })
-                        .catch(function (error) {
-                            console.log('error playing note', error)
-                        })
-                }
-            }
-        },
         async playPause() {
             await this.synthControl.play()
             this.isPlaying = this.synthControl.isStarted
+        },
+        renderVisualObject(staffwidth: number) {
+            try {
+                const tuneArray: abcjs.TuneObjectArray = abcjs.renderAbc(
+                    this.$refs.notationContainer,
+                    this.constructNotation(),
+                    {
+                        selectionColor: this.highlightColor,
+                        responsive: 'resize',
+                        add_classes: true,
+                        clickListener: this.clickListener,
+                        staffwidth,
+                        expandToWidest: true,
+                    }
+                )
+
+                if (tuneArray.length > 0) {
+                    const visualObj: abcjs.TuneObject = tuneArray[0]
+                    this.synthControl = new abcjs.synth.SynthController()
+
+                    this.synthControl.load('#midi-player', this.cursor, {
+                        displayLoop: false,
+                        displayRestart: false,
+                        displayPlay: false,
+                        displayProgress: true,
+                    })
+                    this.midiBuffer = new abcjs.synth.CreateSynth()
+                    this.midiBuffer
+                        .init({
+                            visualObj,
+                        })
+                        .then(() => {
+                            if (visualObj) this.synthControl.setTune(visualObj, false)
+                        })
+
+                    const lyrics = document.querySelectorAll('.abcjs-lyric')
+                    lyrics.forEach((lyric) => {
+                        for (let i = 0; i < lyric.children.length; i++) {
+                            lyric.children[i].addEventListener('click', () => {
+                                this.$emit('lyric-clicked', {
+                                    verse: i,
+                                    lyric: lyric.children[i].textContent,
+                                })
+                            })
+                        }
+                    })
+                }
+            } catch (err) {
+                this.$refs.midiPlayer.innerText = this.translator.get('general', 'musicNotation', 'error', 'midiPlayer')
+            }
         },
         async restart() {
             if (this.synthControl.isStarted) {
@@ -167,6 +221,16 @@ export default defineComponent({
             }
             this.isPlaying = false
         },
+        rotateIcon(icon: HTMLElement, duration: number) {
+            const style = icon.getAttribute('style')
+            icon.setAttribute('style', `--fa-animation-duration: ${duration / 1000}s`)
+            icon.classList.add('fa-spin', 'fa-spin-reverse')
+            setTimeout(() => {
+                icon.classList.remove('fa-spin', 'fa-spin-reverse')
+                if (style) icon.setAttribute('style', style)
+                else icon.removeAttribute('style')
+            }, duration)
+        },
         updateNotationHeight(W: number, H: number) {
             if (this.fitToPage) {
                 const nav = document.getElementById('nav-bar')
@@ -182,18 +246,10 @@ export default defineComponent({
                 this.$refs.notationPadding.style.padding = `0 ${padding}px`
             }
         },
-        rotateIcon(icon: HTMLElement, duration: number) {
-            const style = icon.getAttribute('style')
-            icon.setAttribute('style', `--fa-animation-duration: ${duration / 1000}s`)
-            icon.classList.add('fa-spin', 'fa-spin-reverse')
-            setTimeout(() => {
-                icon.classList.remove('fa-spin', 'fa-spin-reverse')
-                if (style) icon.setAttribute('style', style)
-                else icon.removeAttribute('style')
-            }, duration)
-        },
     },
     mounted() {
+        this.renderVisualObject(this.staffWidth)
+
         if (this.cursor.onStart === undefined && this.cursor.onFinished === undefined) {
             this.cursor.verse = 0
             this.cursor.onStart = () => {
@@ -221,7 +277,7 @@ export default defineComponent({
 
                 this.cursor.verse++
                 const lyrics = document.querySelectorAll('.abcjs-lyric')
-                if (this.cursor.verse === lyrics[0].children.length - 1) {
+                if (lyrics.length === 0 || this.cursor.verse === lyrics[0]?.children?.length - 1) {
                     lyrics.forEach((lyric) => {
                         for (let i = 0; i < lyric.children.length; i++) {
                             lyric.children[i].setAttribute('opacity', '1')
@@ -234,52 +290,6 @@ export default defineComponent({
                     await this.synthControl.play()
                 }
             }
-        }
-        try {
-            const tuneArray: abcjs.TuneObjectArray = abcjs.renderAbc(
-                this.$refs.notationContainer,
-                this.constructNotation(),
-                {
-                    selectionColor: this.highlightColor,
-                    responsive: 'resize',
-                    add_classes: true,
-                    clickListener: this.clickListener,
-                }
-            )
-
-            if (tuneArray.length > 0) {
-                const visualObj: abcjs.TuneObject = tuneArray[0]
-                this.synthControl = new abcjs.synth.SynthController()
-
-                this.synthControl.load('#midi-player', this.cursor, {
-                    displayLoop: false,
-                    displayRestart: false,
-                    displayPlay: false,
-                    displayProgress: true,
-                })
-                this.midiBuffer = new abcjs.synth.CreateSynth()
-                this.midiBuffer
-                    .init({
-                        visualObj,
-                    })
-                    .then(() => {
-                        if (visualObj) this.synthControl.setTune(visualObj, false)
-                    })
-
-                const lyrics = document.querySelectorAll('.abcjs-lyric')
-                lyrics.forEach((lyric) => {
-                    for (let i = 0; i < lyric.children.length; i++) {
-                        lyric.children[i].addEventListener('click', () => {
-                            this.$emit('lyric-clicked', {
-                                verse: i,
-                                lyric: lyric.children[i].textContent,
-                            })
-                        })
-                    }
-                })
-            }
-        } catch (err) {
-            this.$refs.midiPlayer.innerText = this.translator.get('general', 'musicNotation', 'error', 'midiPlayer')
         }
 
         const W = this.$refs.notationPadding.offsetWidth
