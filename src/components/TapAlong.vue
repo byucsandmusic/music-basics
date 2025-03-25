@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, computed, PropType } from 'vue'
+import { defineComponent, computed, PropType, ref, watch } from 'vue'
 import Translator from '../models/translator'
 import MusicNotation from './MusicNotation.vue'
 import { Cursor } from '../models/types'
@@ -243,8 +243,6 @@ export default defineComponent({
                 console.error('RhythmMusicNotation component not available')
             }
             this.clearRhythmFill()
-            this.saveProgress(false)
-            this.isDone = this.isComponentDone()
         },
 
         tap(currentTapTime = Date.now() - this.startTime) {
@@ -327,16 +325,36 @@ export default defineComponent({
                 this.instructionsText = this.translator.get('general', 'tapAlong', 'instructions', 'almost')
             } else {
                 this.instructionsText = this.translator.get('general', 'tapAlong', 'instructions', 'succeeded')
+                console.log('Saving progress')
                 this.saveProgress(true)
-                this.isDone = this.isComponentDone()
             }
         },
     },
 
     setup(props) {
-        // Set up progress logic
-        const { saveProgress, getProgress, isComponentDone } = progress(props.progressKeys)
-        const isDone = isComponentDone()
+        // Initialize with the function from progress
+        const saveProgress = ref<(done: boolean) => void>(() => {})
+        const getProgress = ref<() => Record<string, boolean>>(() => ({}))
+
+        // Set initial functions from progress
+        const { saveProgress: initialSaveProgress, getProgress: initialGetProgress } = progress(props.progressKeys)
+
+        // Assign the initial functions to refs
+        saveProgress.value = initialSaveProgress
+        getProgress.value = initialGetProgress
+
+        // Watch for changes in progressKeys to recreate the functions
+        watch(
+            () => props.progressKeys,
+            (newProgressKeys) => {
+                console.log('Progress keys changed:', newProgressKeys)
+                const { saveProgress: newSaveProgress, getProgress: newGetProgress } = progress(newProgressKeys)
+                saveProgress.value = newSaveProgress
+                getProgress.value = newGetProgress
+            },
+            { immediate: true }
+        )
+
         // Set up Metronome
         if (!props.rhythm) {
             throw new Error('rhythm prop is required')
@@ -367,7 +385,6 @@ export default defineComponent({
             metronome,
             saveProgress,
             getProgress,
-            isComponentDone,
             title,
             description,
         }

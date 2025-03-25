@@ -2,10 +2,11 @@
 import { defineComponent } from 'vue'
 import Translator from '../models/translator'
 import Confetti from '../components/Confetti.vue'
+import ProgressReport from '../components/ProgressReport.vue'
 
 export default defineComponent({
     name: 'ModuleEnd',
-    components: { Confetti },
+    components: { Confetti, ProgressReport },
     props: {
         translator: {
             type: Translator,
@@ -45,6 +46,7 @@ export default defineComponent({
             }"
         />
     </div>
+    <ProgressReport :moduleName="module" :translator="translator" />
 </template>
 
 <style scoped lang="sass"></style>

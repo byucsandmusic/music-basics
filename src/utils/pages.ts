@@ -58,9 +58,9 @@ export default function usePages(translator: Translator): Record<string, LinkIte
                 notInMenu: true,
             },
             {
-                id: '/module0/rhythm-tap-along-8th-notes',
-                href: '/module0/rhythm-tap-along-8th-notes',
-                title: translator.get('module0', 'rhythmTapAlong8thNotes', 'title'),
+                id: '/module0/rhythm-tap-along-eighth-notes',
+                href: '/module0/rhythm-tap-along-eighth-notes',
+                title: translator.get('module0', 'rhythmTapAlongEighthNotes', 'title'),
                 notInMenu: true,
             },
             {

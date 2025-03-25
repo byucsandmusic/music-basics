@@ -212,7 +212,7 @@ const routes = [
                 },
             },
             {
-                path: 'rhythm-tap-along-8th-notes',
+                path: 'rhythm-tap-along-eighth-notes',
                 component: TapAlong,
                 props: {
                     rhythm: {
@@ -226,7 +226,7 @@ const routes = [
                     descriptionKeys: ['module0', 'rhythmTapAlongEighthNotes', 'description'],
                     progressKeys: {
                         moduleName: 'module0',
-                        id: 'rhythm-tap-along-8th-notes',
+                        id: 'rhythm-tap-along-eighth-notes',
                     },
                     description: 'Placeholder',
                 },
