@@ -129,9 +129,9 @@ export default defineComponent({
                     measure++
                 ) {
                     if (this.music.treble?.length > measure) {
-                        notation += `V:1\n${this.music.treble[measure]}\n`
+                        notation += `V:Treble\n${this.music.treble[measure]}\n`
                     } else if (this.music.bass?.length > measure) {
-                        notation += `V:1 clef=bass\n${this.music.bass[measure]}\n`
+                        notation += `V:Bass clef=bass middle=D\n${this.music.bass[measure]}\n`
                     }
                     if (this.music.verses?.length) {
                         for (let verse = 0; verse < this.music.verses.length; verse++) {
@@ -142,7 +142,7 @@ export default defineComponent({
                         }
                     }
                     if (this.music.treble?.length > measure && this.music.bass?.length > measure)
-                        notation += `V:2 clef=bass\n${this.music.bass[measure]}\n`
+                        notation += `V:Bass clef=bass middle=D\n${this.music.bass[measure]}\n`
                 }
             }
             return notation

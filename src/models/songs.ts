@@ -4,12 +4,12 @@ export const songs = Object.freeze({
         meter: '4/4',
         beat: '1/4',
         tempo: '95',
-        key: 'C',
+        key: 'D',
         treble: [
-            'EE/E/FG|E3G|c3/c/BA|G3',
-            'G|GEEG|GFF3/E/|EDBA|G3z|',
-            'EGEG|GFDF|BBA3/A/|G3z|',
-            'EGEG|cAF3/D/|FFED|C3z|]',
+            "FF/F/GA|F3A|D'3/2D'/C'B|A3",
+            "A|AFFA|AGG3/2F/|FEC'B|A3z|",
+            "FAFA|AGEG|C'C'B3/2B/|A3z|",
+            "FAFA|D'BG3/2E/|GGFE|D3z|",
         ],
         verses: [
             [
