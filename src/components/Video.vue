@@ -14,6 +14,10 @@ export default defineComponent({
             type: String,
             default: 'singers',
         },
+        startTime: {
+            type: Number,
+            default: 0,
+        },
     },
     setup() {
         return { route: useRoute() }
@@ -35,8 +39,8 @@ export default defineComponent({
 <template>
     <div>
         <h2>{{ title }}</h2>
-        <video :key="srcName" width="100%" controls>
-            <source :src="src" type="video/mp4" />
+        <video :key="srcName" width="100%" loop controls>
+            <source :src="src + '#t=' + startTime" type="video/mp4" />
         </video>
         <div>{{ translator.get('general', 'loremIpsum') }}</div>
     </div>
