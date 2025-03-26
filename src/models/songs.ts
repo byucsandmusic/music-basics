@@ -1,4 +1,4 @@
-export const songs = {
+export const songs = Object.freeze({
     i_am_a_child_of_god: {
         title: 'I Am a Child of God',
         meter: '4/4',
@@ -28,4 +28,4 @@ export const songs = {
             ],
         ],
     },
-}
+})
