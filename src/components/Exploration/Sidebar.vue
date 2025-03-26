@@ -51,7 +51,7 @@ export default defineComponent({
     position: fixed
     height: 100%
     top: 0
-    left: 70%
+    left: 75%
     color: $primary-text
     background: $primary-background
     z-index: 20

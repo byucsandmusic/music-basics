@@ -69,10 +69,14 @@ export default defineComponent({
                     return makeRect(11.7, 8.7, 1.7, 2.7)
                 case this.translator.get(...args, 'timeSig', 'title'):
                     return makeRect(11.7, 11.2, 2, 2.7)
+                case this.translator.get(...args, 'barLines', 'title'):
+                    return makeRect(11.7, 33.5, 1.3, 2.7)
                 case this.translator.get(...args, 'verseInfo', 'title'):
                     return makeRect(15.1, 8.4, 5, 1)
                 case this.translator.get(...args, 'bass', 'title'):
                     return makeRect(22, 5.4, 3, 2.7)
+                case this.translator.get(...args, 'measure', 'title'):
+                    return makeRect(22.2, 34, 16.6, 2.7)
                 case this.translator.get(...args, 'introEnd', 'title'):
                     return makeRect(29, 91.5, 2.2, 1.3)
                 case this.translator.get(...args, 'slur', 'title'):

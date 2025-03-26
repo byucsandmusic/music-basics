@@ -316,7 +316,7 @@ export const languages = Object.freeze({
                     ENG:
                         'title/tempo/conductorNotes/guitar/scriptures/introStart/introEnd/timeSig/key/' +
                         'verseInfo/perform/text/music/copyright/tune/fermata/toRefrain/' +
-                        'slur/treble/bass',
+                        'slur/treble/bass/barLines/measure',
                 },
                 title: {
                     title: {
@@ -362,6 +362,12 @@ export const languages = Object.freeze({
                     title: {
                         ENG: 'Guitar chords',
                     },
+                    body: {
+                        ENG:
+                            'Guitar Chords are given above the staff for those who are accompanying the congregation ' +
+                            'on a guitar or other stringed instrument. <a href="#">Learn how to accompany the congregation on ' +
+                            'guitar.</a>',
+                    },
                 },
                 scriptures: {
                     title: {
@@ -391,6 +397,9 @@ export const languages = Object.freeze({
                 introStart: {
                     title: {
                         ENG: 'Introduction brackets (start)',
+                    },
+                    body: {
+                        ENG: 'These brackets mark an introduction that the organist can play to prepare the congregation to sing the hymn.',
                     },
                 },
                 introEnd: {
@@ -427,22 +436,43 @@ export const languages = Object.freeze({
                 },
                 verseInfo: {
                     title: {
-                        ENG: 'Verse or refrain information',
+                        ENG: 'Refrain marking',
+                    },
+                    body: {
+                        ENG: 'Refrain is another word for chorus and it means that you will sing this each time after the verse.',
                     },
                 },
                 perform: {
                     title: {
-                        ENG: 'Performance notes',
+                        ENG: 'Musical instructions',
+                    },
+                    body: {
+                        ENG:
+                            'Below the hymn are included useful tips for singing the hymn. For this specific hymn, it ' +
+                            'is reminding congregants to sing the refrain after each verse.',
                     },
                 },
                 text: {
                     title: {
                         ENG: 'Text credits',
                     },
+                    body: {
+                        ENG:
+                            'Text attribution. This will include who wrote the words of the hymn, or in this case what ' +
+                            'collection the text comes from if the author is not known.',
+                    },
                 },
                 music: {
                     title: {
                         ENG: 'Music credits',
+                    },
+                    body: {
+                        ENG:
+                            'Music attribution. This will include the composer or arranger of the hymn, or in this ' +
+                            'case the tune name if its composer is not known. Be sure to check out the ' +
+                            '<a href="' +
+                            'https://www.churchofjesuschrist.org/study/manual/sacred-music-gospel-study-resource-pilot?lang=eng' +
+                            '">About the Hymns</a>to learn more about the origins of the individual hymns.',
                     },
                 },
                 copyright: {
@@ -459,14 +489,27 @@ export const languages = Object.freeze({
                     title: {
                         ENG: 'Fermata',
                     },
+                    body: {
+                        ENG: 'This means to hold this note longer than it is written. Watch your music director for cues about how long to hold the note.',
+                    },
                 },
                 toRefrain: {
                     title: {
-                        ENG: 'To refrain',
+                        ENG: 'To refrain marking',
+                    },
+                    body: {
+                        ENG:
+                            'This is a reminder to go back to the top of the page to sing the refrain again after ' +
+                            'the verse. Even after the final verse, the congregation will sing the refrain one last time.',
                     },
                 },
                 slur: {
                     title: { ENG: 'Slur' },
+                    body: {
+                        ENG:
+                            'Slur or legato marking. This line is a reminder to sing these notes on the same syllable ' +
+                            'in a smooth and connected way.',
+                    },
                 },
                 treble: {
                     title: { ENG: 'Treble clef' },
@@ -484,6 +527,22 @@ export const languages = Object.freeze({
                             'A bass clef indicates that the notes are on the left half of the keyboard and are ' +
                             'usually below middle C. The tenor and bass notes of the hymn are usually written in the ' +
                             "bass clef. <a href='#'>Learn more about bass clef notes.</a>",
+                    },
+                },
+                barLines: {
+                    title: {
+                        ENG: 'Bar lines',
+                    },
+                    body: {
+                        ENG: 'Bar lines divide the notated score into measures for easier reading and to organize the hymn in a clear meter.',
+                    },
+                },
+                measure: {
+                    title: {
+                        ENG: 'Measure',
+                    },
+                    body: {
+                        ENG: 'A measure is what is between bar lines.',
                     },
                 },
             },
