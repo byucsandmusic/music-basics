@@ -53,6 +53,10 @@ export default defineComponent({
             type: Boolean,
             default: true,
         },
+        displayTempo: {
+            type: Boolean,
+            default: true,
+        },
         fitToPage: {
             type: Boolean,
             default: false,
@@ -196,6 +200,12 @@ export default defineComponent({
                             })
                         }
                     })
+                    if (!this.displayTempo) {
+                        const tempos = document.querySelectorAll('.abcjs-tempo')
+                        tempos.forEach((tempo) => {
+                            tempo.toggleAttribute('hidden')
+                        })
+                    }
                 }
             } catch (err) {
                 this.$refs.midiPlayer.innerText = this.translator.get('general', 'musicNotation', 'error', 'midiPlayer')

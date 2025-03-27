@@ -14,6 +14,10 @@ import Video from './components/Video.vue'
 import ModuleEnd from './pages/ModuleEnd.vue'
 import TextImagesAndMusic from './components/TextImagesAndMusic.vue'
 
+const U = '↗️'
+const D = '↘️'
+const N = '➡️'
+
 const routes = [
     { path: '/:pathMatch(.*)*', component: NotFound },
     { path: '/', component: Home, alias: '/home' },
@@ -309,7 +313,7 @@ const routes = [
                             music: {
                                 meter: '4/4',
                                 beat: '1/4',
-                                treble: ['FFFF'],
+                                treble: [`"${N}"F"${N}"F"${N}"F"${N}"F`],
                             },
                         },
                         {
@@ -321,7 +325,7 @@ const routes = [
                             music: {
                                 meter: '4/4',
                                 beat: '1/4',
-                                treble: ['FGAB'],
+                                treble: [`"${N}"F"${U}"G"${U}"A"${U}"B`],
                             },
                         },
                         {
@@ -333,7 +337,7 @@ const routes = [
                             music: {
                                 meter: '4/4',
                                 beat: '1/4',
-                                treble: ['BAGF'],
+                                treble: [`"${N}"B"${D}"A"${D}"G"${D}"F`],
                             },
                         },
                         {
