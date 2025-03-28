@@ -13,6 +13,7 @@ interface ContentItem {
         treble: string[]
         instrument: number
     }
+    displayMidiPlayer?: boolean
 }
 
 export default defineComponent({
@@ -73,6 +74,8 @@ export default defineComponent({
                 v-if="item.music"
                 :music="item.music"
                 :translator="translator"
+                :displayMidiPlayer="item.displayMidiPlayer ?? false"
+                :midiOnTop="item.displayMidiPlayer ?? false"
                 click-to-play
             />
         </div>

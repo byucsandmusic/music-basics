@@ -86,6 +86,9 @@ export const languages = Object.freeze({
                     '"1, 2, 3, 4" over and over, each set of four counts is a measure. ' +
                     'If you look at the music again, you’ll also notice that some notes look similar or different from each other:',
             },
+            durration: {
+                ENG: 'How the note looks tells you how much of the measure the note takes up. Feel free to press the play button and hear how long each of these notes takes up:',
+            },
             wholeNoteInfo: {
                 ENG:
                     'How the note looks tells you how much of the measure the note takes up. ' +
@@ -211,7 +214,7 @@ export const languages = Object.freeze({
                     'Try clicking on the notes to hear their pitch:',
             },
             ascendingNotesInfo: {
-                ENG: 'If it’s higher, then the note before, then the next note will be sung a bit higher:',
+                ENG: 'If it’s higher then the note before, then the next note will be sung a bit higher:',
             },
             descendingNotesInfo: {
                 ENG: 'As you probably guessed, if the note “goes down” on the lines it goes in pitch as well:',
@@ -250,8 +253,8 @@ export const languages = Object.freeze({
             },
             description: {
                 ENG:
-                    'Now that we’ve done a little practice, let’s try singing along with <common hymn> again. ' +
-                    'This time, focus on how the notes go up and down along with the words!',
+                    'Now Let’s try singing along with "I am a Child of God"! ' +
+                    "Try noticing how the notes look different and go up and down. That's your pitch and rhythm!",
             },
         },
         pitchSingAlongNew: {

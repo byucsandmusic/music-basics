@@ -147,152 +147,163 @@ const routes = [
                         { type: 'image', value: ['mixedNotes.jpg'] },
                         {
                             type: 'text',
-                            value: ['module0', 'rhythmInfo', 'wholeNoteInfo'],
+                            value: ['module0', 'rhythmInfo', 'durration'],
                         },
-                        { type: 'image', value: ['wholeNote.webp'] },
                         {
-                            type: 'text',
-                            value: ['module0', 'rhythmInfo', 'halfNoteInfo'],
+                            type: 'music',
+                            music: {
+                                meter: '4/4',
+                                beat: '1/4',
+                                tempo: '95',
+                                key: 'D',
+                                treble: ['c4|c2c2|cccc|c/c/c/c/c/c/c/c/'],
+                            },
+                            displayMidiPlayer: true,
                         },
-                        { type: 'image', value: ['halfNote.webp'] },
-                        {
-                            type: 'text',
-                            value: ['module0', 'rhythmInfo', 'quarterNoteInfo'],
-                        },
-                        { type: 'image', value: ['quarterNote.webp'] },
-                        {
-                            type: 'text',
-                            value: ['module0', 'rhythmInfo', 'eighthNoteInfo'],
-                        },
-                        { type: 'image', value: ['eighthNote.webp'] },
-                        {
-                            type: 'text',
-                            value: ['module0', 'rhythmInfo', 'dottedNotesInfo'],
-                        },
-                        { type: 'image', value: ['dottedQuarterNote.jpg'] },
+                        // { type: 'image', value: ['wholeNote.webp'] },
+                        // {
+                        //     type: 'text',
+                        //     value: ['module0', 'rhythmInfo', 'halfNoteInfo'],
+                        // },
+                        // { type: 'image', value: ['halfNote.webp'] },
+                        // {
+                        //     type: 'text',
+                        //     value: ['module0', 'rhythmInfo', 'quarterNoteInfo'],
+                        // },
+                        // { type: 'image', value: ['quarterNote.webp'] },
+                        // {
+                        //     type: 'text',
+                        //     value: ['module0', 'rhythmInfo', 'eighthNoteInfo'],
+                        // },
+                        // { type: 'image', value: ['eighthNote.webp'] },
+                        // {
+                        //     type: 'text',
+                        //     value: ['module0', 'rhythmInfo', 'dottedNotesInfo'],
+                        // },
+                        // { type: 'image', value: ['dottedQuarterNote.jpg'] },
                     ],
                 },
             },
             // { path: 'rhythm-matching-names', component: DragAndDrop },
             // { path: 'rhythm-matching-timing', component: DragAndDrop },
-            {
-                path: 'rhythm-tap-along-quarter-notes',
-                component: TapAlong,
-                props: {
-                    rhythm: {
-                        meter: '4/4',
-                        tempo: '100',
-                        beat: '1/4',
-                        treble: ['BBBB'],
-                        instrument: 36,
-                    },
-                    titleKeys: ['module0', 'rhythmTapAlongQuarterNotes', 'title'],
-                    descriptionKeys: ['module0', 'rhythmTapAlongQuarterNotes', 'description'],
-                    progressKeys: {
-                        moduleName: 'module0',
-                        id: 'rhythm-tap-along-quarter-notes',
-                    },
-                    description: 'Placeholder',
-                },
-            },
-            {
-                path: 'rhythm-tap-along-half-notes',
-                component: TapAlong,
-                props: {
-                    rhythm: {
-                        meter: '4/4',
-                        tempo: '100',
-                        beat: '1/4',
-                        treble: ['B2B2'],
-                        instrument: 36,
-                    },
-                    titleKeys: ['module0', 'rhythmTapAlongHalfNotes', 'title'],
-                    descriptionKeys: ['module0', 'rhythmTapAlongHalfNotes', 'description'],
-                    progressKeys: {
-                        moduleName: 'module0',
-                        id: 'rhythm-tap-along-half-notes',
-                    },
-                    description: 'Placeholder',
-                },
-            },
-            {
-                path: 'rhythm-tap-along-eighth-notes',
-                component: TapAlong,
-                props: {
-                    rhythm: {
-                        meter: '4/4',
-                        tempo: '100',
-                        beat: '1/4',
-                        treble: ['B/B/B/B/B/B/B/B/'],
-                        instrument: 36,
-                    },
-                    titleKeys: ['module0', 'rhythmTapAlongEighthNotes', 'title'],
-                    descriptionKeys: ['module0', 'rhythmTapAlongEighthNotes', 'description'],
-                    progressKeys: {
-                        moduleName: 'module0',
-                        id: 'rhythm-tap-along-eighth-notes',
-                    },
-                    description: 'Placeholder',
-                },
-            },
-            {
-                path: 'rhythm-tap-along-mixed-1',
-                component: TapAlong,
-                props: {
-                    rhythm: {
-                        meter: '4/4',
-                        tempo: '100',
-                        beat: '1/4',
-                        treble: ['BB/B/BB'],
-                        instrument: 36,
-                    },
-                    titleKeys: ['module0', 'rhythmTapAlongMixed1', 'title'],
-                    descriptionKeys: ['module0', 'rhythmTapAlongMixed1', 'description'],
-                    progressKeys: {
-                        moduleName: 'module0',
-                        id: 'rhythm-tap-along-mixed-1',
-                    },
-                    description: 'Placeholder',
-                },
-            },
-            {
-                path: 'rhythm-tap-along-mixed-2',
-                component: TapAlong,
-                props: {
-                    rhythm: {
-                        meter: '4/4',
-                        tempo: '100',
-                        beat: '1/4',
-                        treble: ['BBB3/B/'],
-                        instrument: 36,
-                    },
-                    titleKeys: ['module0', 'rhythmTapAlongMixed2', 'title'],
-                    descriptionKeys: ['module0', 'rhythmTapAlongMixed2', 'description'],
-                    progressKeys: {
-                        moduleName: 'module0',
-                        id: 'rhythm-tap-along-mixed-2',
-                    },
-                    description: 'Placeholder',
-                },
-            },
-            {
-                path: 'rhythm-sing-along-common',
-                component: SingAlong,
-                props: {
-                    title: ['module0', 'rhythmSingAlongCommon', 'title'],
-                    description: ['module0', 'rhythmSingAlongCommon', 'description'],
-                    music: songs.i_am_a_child_of_god,
-                },
-            },
-            {
-                path: 'rhythm-sing-along-new',
-                component: SingAlong,
-                props: {
-                    title: ['module0', 'rhythmSingAlongNew', 'title'],
-                    description: ['module0', 'rhythmSingAlongNew', 'description'],
-                    music: songs.i_am_a_child_of_god,
-                },
-            },
+            // {
+            //     path: 'rhythm-tap-along-quarter-notes',
+            //     component: TapAlong,
+            //     props: {
+            //         rhythm: {
+            //             meter: '4/4',
+            //             tempo: '100',
+            //             beat: '1/4',
+            //             treble: ['BBBB'],
+            //             instrument: 36,
+            //         },
+            //         titleKeys: ['module0', 'rhythmTapAlongQuarterNotes', 'title'],
+            //         descriptionKeys: ['module0', 'rhythmTapAlongQuarterNotes', 'description'],
+            //         progressKeys: {
+            //             moduleName: 'module0',
+            //             id: 'rhythm-tap-along-quarter-notes',
+            //         },
+            //         description: 'Placeholder',
+            //     },
+            // },
+            // {
+            //     path: 'rhythm-tap-along-half-notes',
+            //     component: TapAlong,
+            //     props: {
+            //         rhythm: {
+            //             meter: '4/4',
+            //             tempo: '100',
+            //             beat: '1/4',
+            //             treble: ['B2B2'],
+            //             instrument: 36,
+            //         },
+            //         titleKeys: ['module0', 'rhythmTapAlongHalfNotes', 'title'],
+            //         descriptionKeys: ['module0', 'rhythmTapAlongHalfNotes', 'description'],
+            //         progressKeys: {
+            //             moduleName: 'module0',
+            //             id: 'rhythm-tap-along-half-notes',
+            //         },
+            //         description: 'Placeholder',
+            //     },
+            // },
+            // {
+            //     path: 'rhythm-tap-along-eighth-notes',
+            //     component: TapAlong,
+            //     props: {
+            //         rhythm: {
+            //             meter: '4/4',
+            //             tempo: '100',
+            //             beat: '1/4',
+            //             treble: ['B/B/B/B/B/B/B/B/'],
+            //             instrument: 36,
+            //         },
+            //         titleKeys: ['module0', 'rhythmTapAlongEighthNotes', 'title'],
+            //         descriptionKeys: ['module0', 'rhythmTapAlongEighthNotes', 'description'],
+            //         progressKeys: {
+            //             moduleName: 'module0',
+            //             id: 'rhythm-tap-along-eighth-notes',
+            //         },
+            //         description: 'Placeholder',
+            //     },
+            // },
+            // {
+            //     path: 'rhythm-tap-along-mixed-1',
+            //     component: TapAlong,
+            //     props: {
+            //         rhythm: {
+            //             meter: '4/4',
+            //             tempo: '100',
+            //             beat: '1/4',
+            //             treble: ['BB/B/BB'],
+            //             instrument: 36,
+            //         },
+            //         titleKeys: ['module0', 'rhythmTapAlongMixed1', 'title'],
+            //         descriptionKeys: ['module0', 'rhythmTapAlongMixed1', 'description'],
+            //         progressKeys: {
+            //             moduleName: 'module0',
+            //             id: 'rhythm-tap-along-mixed-1',
+            //         },
+            //         description: 'Placeholder',
+            //     },
+            // },
+            // {
+            //     path: 'rhythm-tap-along-mixed-2',
+            //     component: TapAlong,
+            //     props: {
+            //         rhythm: {
+            //             meter: '4/4',
+            //             tempo: '100',
+            //             beat: '1/4',
+            //             treble: ['BBB3/B/'],
+            //             instrument: 36,
+            //         },
+            //         titleKeys: ['module0', 'rhythmTapAlongMixed2', 'title'],
+            //         descriptionKeys: ['module0', 'rhythmTapAlongMixed2', 'description'],
+            //         progressKeys: {
+            //             moduleName: 'module0',
+            //             id: 'rhythm-tap-along-mixed-2',
+            //         },
+            //         description: 'Placeholder',
+            //     },
+            // },
+            // {
+            //     path: 'rhythm-sing-along-common',
+            //     component: SingAlong,
+            //     props: {
+            //         title: ['module0', 'rhythmSingAlongCommon', 'title'],
+            //         description: ['module0', 'rhythmSingAlongCommon', 'description'],
+            //         music: songs.i_am_a_child_of_god,
+            //     },
+            // },
+            // {
+            //     path: 'rhythm-sing-along-new',
+            //     component: SingAlong,
+            //     props: {
+            //         title: ['module0', 'rhythmSingAlongNew', 'title'],
+            //         description: ['module0', 'rhythmSingAlongNew', 'description'],
+            //         music: songs.i_am_a_child_of_god,
+            //     },
+            // },
             {
                 path: 'pitch-info',
                 component: TextImagesAndMusic,
@@ -303,7 +314,18 @@ const routes = [
                             type: 'text',
                             value: ['module0', 'pitchInfo', 'basics'],
                         },
-                        { type: 'image', value: ['lineOfMusic.jpg'] },
+                        {
+                            type: 'music',
+                            music: {
+                                title: 'I Am a Child of God',
+                                meter: '4/4',
+                                beat: '1/4',
+                                tempo: '95',
+                                key: 'D',
+                                treble: ["FF/F/GA|F3A|D'3/2D'/C'B|A3"],
+                                verses: [['I am a child of God, And he has sent me here,']],
+                            },
+                        },
                         {
                             type: 'text',
                             value: ['module0', 'pitchInfo', 'notesOnSameLineInfo'],
@@ -313,7 +335,9 @@ const routes = [
                             music: {
                                 meter: '4/4',
                                 beat: '1/4',
-                                treble: [`"${N}"F"${N}"F"${N}"F"${N}"F`],
+                                key: 'D',
+                                treble: [`"${N}"F"${N}"F/"${N}"F/`],
+                                verses: [['I am a']],
                             },
                         },
                         {
@@ -322,10 +346,12 @@ const routes = [
                         },
                         {
                             type: 'music',
+                            key: 'D',
                             music: {
                                 meter: '4/4',
                                 beat: '1/4',
-                                treble: [`"${N}"F"${U}"G"${U}"A"${U}"B`],
+                                treble: [`"${U}"F/"${U}"G"${U}"A`],
+                                verses: [['a Child of']],
                             },
                         },
                         {
@@ -337,7 +363,9 @@ const routes = [
                             music: {
                                 meter: '4/4',
                                 beat: '1/4',
-                                treble: [`"${N}"B"${D}"A"${D}"G"${D}"F`],
+                                key: 'D',
+                                treble: [`"${N}"D'3/2"${D}"D'/"${D}"C'"${D}"B|"${D}"A3`],
+                                verses: [['he has sent me here']],
                             },
                         },
                         {
@@ -347,6 +375,7 @@ const routes = [
                     ],
                 },
             },
+            // TODO JOSEPH
             // { path: 'pitch-matching-tunes-common', component: DragAndDrop },
             // { path: 'pitch-matching-tunes-new', component: DragAndDrop },
             {
