@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './pages/Home.vue'
 import BasePage from './pages/BasePage.vue'
-import Exploration from './pages/basic/Exploration.vue'
+import HeIsBorn from './pages/exploration/HeIsBorn.vue'
 import ModuleHome from './pages/ModuleHome.vue'
 import SingAlong from './components/SingAlong.vue'
 import NotFound from './pages/NotFound.vue'
@@ -13,6 +13,7 @@ import { songs } from './models/songs.ts'
 import Video from './components/Video.vue'
 import ModuleEnd from './pages/ModuleEnd.vue'
 import TextImagesAndMusic from './components/TextImagesAndMusic.vue'
+import AsBreadIsBroken from './pages/exploration/AsBreadIsBroken.vue'
 import FirstMatchTheSong from './pages/crashCourse/FirstMatchTheSong.vue'
 import SecondMatchTheSong from './pages/crashCourse/SecondMatchTheSong.vue'
 
@@ -31,7 +32,7 @@ const routes = [
             { path: 'home', component: ModuleHome },
             {
                 path: 'explore',
-                component: Exploration,
+                component: HeIsBorn,
                 props: { descriptionPath: ['module0', 'exploration', 'description'] },
             },
             {
@@ -306,7 +307,7 @@ const routes = [
             },
             {
                 path: 'exploration',
-                component: Exploration,
+                component: AsBreadIsBroken,
                 props: { descriptionPath: ['module0', 'exploration', 'description'] },
             },
             {
@@ -351,7 +352,7 @@ const routes = [
             },
             {
                 path: 'explore',
-                component: Exploration,
+                component: HeIsBorn,
                 props: { descriptionPath: ['module0', 'exploration', 'description'] },
             },
             { path: 'end', component: ModuleEnd, props: { module: 'module1' } },
