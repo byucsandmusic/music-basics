@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Exploration from '../../src/pages/basic/Exploration.vue'
+import HeIsBorn from '../../src/pages/exploration/HeIsBorn.vue'
 import Translator from '../../src/models/translator'
 import ClickableArea from '../../src/components/Exploration/ClickableArea.vue'
 
@@ -10,7 +10,7 @@ const defaultProps = {
 }
 
 const createWrapper = (props = defaultProps) =>
-    mount(Exploration, {
+    mount(HeIsBorn, {
         props,
         computed: {
             clickables() {
