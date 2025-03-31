@@ -78,7 +78,7 @@ export default defineComponent({
     </section>
 </template>
 
-<style lang="sass">
+<style scoped lang="sass">
 section
     color: black
     background-color: white
@@ -97,7 +97,7 @@ section
 
 .targets
     display: flex
-    flex-flow: row
+    flex-flow: row wrap
 
 .targetContainer
     display: flex
