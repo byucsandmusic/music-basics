@@ -142,7 +142,6 @@ export default defineComponent({
 
     &:hover
         background: darkred
-        transform: scale(1.05)
 
 .dark-mode
     .progress-container
