@@ -79,7 +79,7 @@ export const languages = Object.freeze({
                     "The first we’ll go over is rhythm. The rhythm of a song is what tells you when to sing a word and change what note you're singing. " +
                     'Looking at the music below, you’ll notice that groups of notes look similar or different to eachother:',
             },
-            durration: {
+            duration: {
                 ENG: 'How the note looks tells you how much of the measure the note takes up. Feel free to press the play button and hear how long each of these notes takes up:',
             },
             diagramInfo: {
