@@ -103,7 +103,7 @@ export const languages = Object.freeze({
                     'Try clicking on the notes to hear their pitch:',
             },
             ascendingNotesInfo: {
-                ENG: 'If it’s higher then the note before, then the next note will be sung a bit higher:',
+                ENG: 'If it’s higher than the note before, then the next note will be sung a bit higher:',
             },
             descendingNotesInfo: {
                 ENG: 'As you probably guessed, if the note “goes down” on the lines it goes in pitch as well:',
