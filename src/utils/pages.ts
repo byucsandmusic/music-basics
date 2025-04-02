@@ -14,104 +14,16 @@ export default function usePages(translator: Translator): Record<string, LinkIte
                 href: '/module0/reading-verses-info',
                 title: translator.get('module0', 'readingVersesInfo', 'title'),
             },
-            // {
-            //     id: '/module0/reading-verses-sing-along',
-            //     href: '/module0/reading-verses-sing-along',
-            //     title: translator.get('module0', 'readingVersesSingAlong', 'title'),
-            //     notInMenu: true,
-            // },
             {
                 id: '/module0/rhythm-info',
                 href: '/module0/rhythm-info',
                 title: translator.get('module0', 'rhythmInfo', 'title'),
             },
-            // {
-            //     id: '/module0/rhythm-matching-names',
-            //     href: '/module0/rhythm-matching-names',
-            //     title: translator.get(
-            //         'module0',
-            //         'rhythmMatchingNames',
-            //         'title'
-            //     ),
-            //     notInMenu: true,
-            // },
-            // {
-            //     id: '/module0/rhythm-matching-timing',
-            //     href: '/module0/rhythm-matching-timing',
-            //     title: translator.get(
-            //         'module0',
-            //         'rhythmMatchingTiming',
-            //         'title'
-            //     ),
-            //     notInMenu: true,
-            // },
-            // {
-            //     id: '/module0/rhythm-tap-along-quarter-notes',
-            //     href: '/module0/rhythm-tap-along-quarter-notes',
-            //     title: translator.get('module0', 'rhythmTapAlongQuarterNotes', 'title'),
-            //     notInMenu: true,
-            // },
-            // {
-            //     id: '/module0/rhythm-tap-along-half-notes',
-            //     href: '/module0/rhythm-tap-along-half-notes',
-            //     title: translator.get('module0', 'rhythmTapAlongHalfNotes', 'title'),
-            //     notInMenu: true,
-            // },
-            // {
-            //     id: '/module0/rhythm-tap-along-eighth-notes',
-            //     href: '/module0/rhythm-tap-along-eighth-notes',
-            //     title: translator.get('module0', 'rhythmTapAlongEighthNotes', 'title'),
-            //     notInMenu: true,
-            // },
-            // {
-            //     id: '/module0/rhythm-tap-along-mixed-1',
-            //     href: '/module0/rhythm-tap-along-mixed-1',
-            //     title: translator.get('module0', 'rhythmTapAlongMixed1', 'title'),
-            //     notInMenu: true,
-            // },
-            // {
-            //     id: '/module0/rhythm-tap-along-mixed-2',
-            //     href: '/module0/rhythm-tap-along-mixed-2',
-            //     title: translator.get('module0', 'rhythmTapAlongMixed2', 'title'),
-            //     notInMenu: true,
-            // },
-            // {
-            //     id: '/module0/rhythm-sing-along-common',
-            //     href: '/module0/rhythm-sing-along-common',
-            //     title: translator.get('module0', 'rhythmSingAlongCommon', 'title'),
-            //     notInMenu: true,
-            // },
-            // {
-            //     id: '/module0/rhythm-sing-along-new',
-            //     href: '/module0/rhythm-sing-along-new',
-            //     title: translator.get('module0', 'rhythmSingAlongNew', 'title'),
-            //     notInMenu: true,
-            // },
             {
                 id: '/module0/pitch-info',
                 href: '/module0/pitch-info',
                 title: translator.get('module0', 'pitchInfo', 'title'),
             },
-            // {
-            //     id: '/module0/pitch-matching-tunes-common',
-            //     href: '/module0/pitch-matching-tunes-common',
-            //     title: translator.get(
-            //         'module0',
-            //         'pitchMatchingTunesCommon',
-            //         'title'
-            //     ),
-            //     notInMenu: true,
-            // },
-            // {
-            //     id: '/module0/pitch-matching-tunes-new',
-            //     href: '/module0/pitch-matching-tunes-new',
-            //     title: translator.get(
-            //         'module0',
-            //         'pitchMatchingTunesNew',
-            //         'title'
-            //     ),
-            //     notInMenu: true,
-            // },
             {
                 id: '/module0/pitch-sing-along-common',
                 href: '/module0/pitch-sing-along-common',
