@@ -142,7 +142,7 @@ export const languages = Object.freeze({
             },
             description: {
                 ENG:
-                    'Now Let’s try singing along with "I am a Child of God"! ' +
+                    'Now let’s try singing along with "I am a Child of God"! ' +
                     "Try noticing how the notes look different and go up and down. That's your pitch and rhythm!",
             },
         },
