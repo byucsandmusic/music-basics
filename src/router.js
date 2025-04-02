@@ -42,22 +42,41 @@ const routes = [
                 },
             },
             {
-                path: 'tap-along',
+                path: 'tap-along-easy',
                 component: TapAlong,
                 props: {
                     rhythm: {
                         meter: '4/4',
                         tempo: '100',
                         beat: '1/4',
-                        treble: ['BB/B/BB'],
+                        treble: ['BBBB'],
                         instrument: 36,
                     },
-                    titleKeys: ['demo', 'tapAlong', 'title'],
+                    titleKeys: ['demo', 'tapAlong', 'easyTitle'],
                     progressKeys: {
                         moduleName: 'demo',
-                        id: 'tap-along',
+                        id: 'tap-along-easy',
                     },
-                    description: "Here's a mixed rhythm to try:",
+                    description: "Here's an easy rhythm to try:",
+                },
+            },
+            {
+                path: 'tap-along-hard',
+                component: TapAlong,
+                props: {
+                    rhythm: {
+                        meter: '4/4',
+                        tempo: '100',
+                        beat: '1/4',
+                        treble: ['B3/2B/BB'],
+                        instrument: 36,
+                    },
+                    titleKeys: ['demo', 'tapAlong', 'hardTitle'],
+                    progressKeys: {
+                        moduleName: 'demo',
+                        id: 'tap-along-hard',
+                    },
+                    description: "Here's an hard rhythm to try:",
                 },
             },
             {

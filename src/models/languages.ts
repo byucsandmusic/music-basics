@@ -527,8 +527,11 @@ export const languages = Object.freeze({
             },
         },
         tapAlong: {
-            title: {
-                ENG: 'Tap Along Activity',
+            easyTitle: {
+                ENG: 'Easy Tap Along Activity',
+            },
+            hardTitle: {
+                ENG: 'Hard Tap Along Activity',
             },
             play: {
                 ENG: 'Play',

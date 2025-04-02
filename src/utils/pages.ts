@@ -107,9 +107,14 @@ export default function usePages(translator: Translator): Record<string, LinkIte
                 title: translator.get('general', 'singAlong', 'title'),
             },
             {
-                id: '/demo/tap-along',
-                href: '/demo/tap-along',
-                title: translator.get('general', 'tapAlong', 'title'),
+                id: '/demo/tap-along-easy',
+                href: '/demo/tap-along-easy',
+                title: translator.get('general', 'tapAlong', 'easyTitle'),
+            },
+            {
+                id: '/demo/tap-along-hard',
+                href: '/demo/tap-along-hard',
+                title: translator.get('general', 'tapAlong', 'hardTitle'),
             },
             {
                 id: '/demo/drag-and-drop',
