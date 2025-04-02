@@ -142,7 +142,7 @@ const routes = [
                         { type: 'image', value: ['mixedNotes.jpg'] },
                         {
                             type: 'text',
-                            value: ['module0', 'rhythmInfo', 'durration'],
+                            value: ['module0', 'rhythmInfo', 'duration'],
                         },
                         {
                             type: 'music',
