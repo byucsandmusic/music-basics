@@ -25,6 +25,16 @@ export default function usePages(translator: Translator): Record<string, LinkIte
                 title: translator.get('module0', 'pitchInfo', 'title'),
             },
             {
+                id: '/module0/pitch-matching-tunes-common',
+                href: '/module0/pitch-matching-tunes-common',
+                title: translator.get('module0', 'pitchMatchingTunesCommon', 'title'),
+            },
+            {
+                id: '/module0/pitch-matching-tunes-new',
+                href: '/module0/pitch-matching-tunes-new',
+                title: translator.get('module0', 'pitchMatchingTunesNew', 'title'),
+            },
+            {
                 id: '/module0/pitch-sing-along-common',
                 href: '/module0/pitch-sing-along-common',
                 title: translator.get('module0', 'pitchSingAlongCommon', 'title'),

@@ -31,6 +31,10 @@ export default defineComponent({
             type: Object as PropType<ProgressInfo>,
             required: true,
         },
+        flavorText: {
+            type: String,
+            default: '',
+        },
     },
     components: {
         DragAndDrop,
@@ -41,7 +45,7 @@ export default defineComponent({
     data() {
         return {
             buckets: new Map(),
-            textIndicator: 'Place your answer into the box below!',
+            textIndicator: this.translator.get('general', 'matchTheSong', 'textIndicatorDefault'),
             order: createRandomIndexOrder(this.sheets.length),
             correct: false,
         }
@@ -55,10 +59,10 @@ export default defineComponent({
                 const progressHandler = progress(this.progressInfo)
                 progressHandler.saveProgress(true)
             } else if (to != null) {
-                this.textIndicator = 'Sorry, that is incorrect. Try again?'
+                this.textIndicator = this.translator.get('general', 'matchTheSong', 'incorrectIndicator')
                 this.correct = false
             } else {
-                this.textIndicator = 'Please place the sheet inside the box below'
+                this.textIndicator = this.translator.get('general', 'matchTheSong', 'instructions')
                 this.correct = false
             }
         },
@@ -80,7 +84,8 @@ export default defineComponent({
         />
 
         <DragAndDrop :onRelease="onRelease" :validBucket="validBucket">
-            What song do you hear?
+            {{ flavorText }}
+            <span class="spacer" />
             <span>{{ textIndicator }}</span>
             <div class="targets">
                 <span class="targetContainer">
@@ -101,12 +106,21 @@ export default defineComponent({
 </template>
 
 <style scoped lang="sass">
+
 section
     color: black
     background-color: white
     padding: 10px
     display: flex
     flex-flow: column nowrap
+.spacer
+    display: block
+    height: 1px
+    background-color: grey
+    margin-top: 20px
+    margin-bottom: 20px
+    width: 50%
+    margin-left: 25%
 .draggables
     display: flex
     flex-flow: row wrap
@@ -120,6 +134,8 @@ section
 .targets
     display: flex
     flex-flow: row wrap
+    justify-content: center
+    margin-bottom: 20px
 
 .targetContainer
     display: flex

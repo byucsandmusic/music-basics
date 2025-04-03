@@ -124,7 +124,7 @@ export const languages = Object.freeze({
             },
             description: {
                 ENG:
-                    'Now we’ll do a little practicing. Below are some bits of sheet music from <common hymn> and their tunes. ' +
+                    'Now we’ll do a little practicing. Below are some bits of sheet music from I Am a Child of God and their tunes. ' +
                     'Listen to the tunes and from how the pitch moves, try matching them with the right sheet music. No worries if it takes a few tries!',
             },
         },
@@ -490,6 +490,15 @@ export const languages = Object.freeze({
         matchTheSong: {
             title: {
                 ENG: 'Match the Song',
+            },
+            textIndicatorDefault: {
+                ENG: 'Place your answer into the box below!',
+            },
+            incorrectIndicator: {
+                ENG: 'Sorry, that is incorrect. Try again?',
+            },
+            instructions: {
+                ENG: 'Please place the sheet inside the box below',
             },
         },
         ending: {

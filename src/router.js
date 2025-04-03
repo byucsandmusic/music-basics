@@ -13,6 +13,8 @@ import { songs } from './models/songs.ts'
 import Video from './components/Video.vue'
 import ModuleEnd from './pages/ModuleEnd.vue'
 import TextImagesAndMusic from './components/TextImagesAndMusic.vue'
+import FirstMatchTheSong from './pages/crashCourse/FirstMatchTheSong.vue'
+import SecondMatchTheSong from './pages/crashCourse/SecondMatchTheSong.vue'
 
 const U = '↗️'
 const D = '↘️'
@@ -256,9 +258,8 @@ const routes = [
                     ],
                 },
             },
-            // TODO JOSEPH
-            // { path: 'pitch-matching-tunes-common', component: MatchTheSong },
-            // { path: 'pitch-matching-tunes-new', component: MatchTheSong },
+            { path: 'pitch-matching-tunes-common', component: FirstMatchTheSong },
+            { path: 'pitch-matching-tunes-new', component: SecondMatchTheSong },
             {
                 path: 'pitch-sing-along-common',
                 component: SingAlong,
