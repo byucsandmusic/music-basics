@@ -3,8 +3,6 @@ import { defineComponent } from 'vue'
 import RouterDropdown from './RouterMenu.vue'
 import Translator from '../models/translator'
 import usePages from '../utils/pages'
-import { useDarkMode } from '../utils/darkMode'
-import { progress } from '../models/progress'
 import ThemeToggle from './ThemeToggle.vue'
 
 export default defineComponent({

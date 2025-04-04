@@ -9,23 +9,27 @@ export default defineComponent({
     },
     data() {
         return {
-            darkSelected: this.isDarkMode,
+            darkSelected: null,
         }
     },
     methods: {
-        handleInput() {
-            document.body.classList.toggle('dark-mode')
-        },
-        toggleMode() {
+        toggleTheme() {
             if (this.darkSelected) {
                 document.body.classList.add('dark-mode')
             } else {
                 document.body.classList.remove('dark-mode')
             }
+            localStorage.setItem('prefersDark', JSON.stringify(this.darkSelected))
         },
     },
     created() {
-        this.toggleMode()
+        this.darkSelected = localStorage.getItem('prefersDark')
+        if (this.darkSelected === null) {
+            this.darkSelected = this.isDarkMode
+        } else {
+            this.darkSelected = JSON.parse(this.darkSelected)
+        }
+        this.toggleTheme()
     },
 })
 </script>
@@ -33,7 +37,7 @@ export default defineComponent({
 <template>
     <div class="toggle flex-row">
         <i class="fa-solid fa-sun" style="margin-right: 0.6rem"></i>
-        <input name="theme" type="checkbox" role="switch" v-model="darkSelected" @input="handleInput" />
+        <input name="theme" type="checkbox" role="switch" v-model="darkSelected" @change="toggleTheme" />
         <i class="fa-solid fa-moon"></i>
     </div>
 </template>
