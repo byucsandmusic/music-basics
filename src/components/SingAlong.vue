@@ -7,19 +7,23 @@ import MusicNotation from './MusicNotation.vue'
 export default defineComponent({
     name: 'SingAlong',
     props: {
+        description: {
+            type: Array<string>,
+        },
         music: {
             type: Object as PropType<Music>,
             required: true,
         },
-        translator: {
-            type: Translator,
-            required: true,
+        staffWidth: {
+            type: Number,
+            default: 740,
         },
         title: {
             type: Array<string>,
         },
-        description: {
-            type: Array<string>,
+        translator: {
+            type: Translator,
+            required: true,
         },
     },
     components: {
@@ -34,6 +38,7 @@ export default defineComponent({
     <MusicNotation
         :key="JSON.stringify(music) + ` ${title ?? ''}`"
         :music="music"
+        :staff-width="staffWidth"
         :translator="translator"
         highlightColor="#ff9d00"
         click-to-play

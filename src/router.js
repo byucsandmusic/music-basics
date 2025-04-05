@@ -276,7 +276,7 @@ const routes = [
                 props: {
                     title: ['module0', 'pitchSingAlongNew', 'title'],
                     description: ['module0', 'pitchSingAlongNew', 'description'],
-                    music: songs.i_am_a_child_of_god,
+                    music: songs.as_bread_is_broken,
                 },
             },
             {
