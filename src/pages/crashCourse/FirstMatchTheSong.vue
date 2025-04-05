@@ -37,7 +37,7 @@ export default defineComponent({
             id="firstMatchTheSong"
             :sheets="sheets"
             :translator="translator"
-            :progress-info="{ moduleName: 'module0', id: 'firstMatch' }"
+            :progress-info="{ moduleName: 'module0', id: 'pitch-matching-tunes-common' }"
             :flavor-text="translator.get('module0', 'pitchMatchingTunesCommon', 'description')"
             display-midi-player
             midi-on-top

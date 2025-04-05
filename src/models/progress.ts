@@ -45,7 +45,7 @@ export function getModuleProgress(moduleName: string) {
     const progress = JSON.parse(localStorage.getItem(moduleName) || '{}')
 
     const moduleOrder: Record<string, string[]> = {
-        module0: [],
+        module0: ['pitch-matching-tunes-common', 'pitch-matching-tunes-new'],
         module1: [],
         // Add more modules as needed
     }
