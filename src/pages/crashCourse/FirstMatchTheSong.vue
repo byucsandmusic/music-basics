@@ -32,6 +32,7 @@ export default defineComponent({
 
 <template>
     <section>
+        <h2>{{ translator.get('module0', 'pitchMatchingTunesCommon', 'title') }}</h2>
         <MatchTheSong
             id="firstMatchTheSong"
             :sheets="sheets"

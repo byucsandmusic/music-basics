@@ -65,7 +65,7 @@ export const languages = Object.freeze({
             },
             description: {
                 ENG:
-                    'Go ahead and give it a try now! Press play to play “I am a Child of God.” ' +
+                    'Go ahead and give it a try now! Press play to play “I Am a Child of God.” ' +
                     'As it plays, notice which word is highlighted and follow along verse to chorus, verse to chorus.',
             },
         },
@@ -120,7 +120,7 @@ export const languages = Object.freeze({
         },
         pitchMatchingTunesCommon: {
             title: {
-                ENG: 'Pitch Matching - "I am a Child of God"',
+                ENG: 'Pitch Matching - "I Am a Child of God"',
             },
             description: {
                 ENG:
@@ -130,25 +130,25 @@ export const languages = Object.freeze({
         },
         pitchMatchingTunesNew: {
             title: {
-                ENG: 'Pitch Matching - New Hymn',
+                ENG: 'Pitch Matching - "As Bread Is Broken"',
             },
             description: {
-                ENG: "Great job! Now let's do the same thing, but on a less familiar hymn:",
+                ENG: "Great job! Now let's do the same thing, but on a less familiar hymn.",
             },
         },
         pitchSingAlongCommon: {
             title: {
-                ENG: 'Pitch Sing-Along - "I am a Child of God"',
+                ENG: 'Pitch Sing-Along - "I Am a Child of God"',
             },
             description: {
                 ENG:
-                    'Now let’s try singing along with "I am a Child of God"! ' +
+                    'Now let’s try singing along with "I Am a Child of God"! ' +
                     "Try noticing how the notes look different and go up and down. That's your pitch and rhythm!",
             },
         },
         pitchSingAlongNew: {
             title: {
-                ENG: 'Pitch Sing-Along - New Hymn',
+                ENG: 'Pitch Sing-Along - "As Bread Is Broken"',
             },
             description: {
                 ENG: 'Awesome! Let’s give it a go with a less familiar hymn:',
@@ -206,8 +206,8 @@ export const languages = Object.freeze({
             tooltips: {
                 list: {
                     ENG:
-                        'title/tempo/conductorNotes/guitar/scriptures/introStart/introEnd/timeSig/key/' +
-                        'verseInfo/perform/text/music/copyright/tune/fermata/toRefrain/' +
+                        'title/tempo/guitar/scriptures/introStart/introEnd/timeSig/' +
+                        'perform/music/copyright/tune/' +
                         'slur/treble/bass/barLines/measure',
                 },
                 title: {

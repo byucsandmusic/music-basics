@@ -115,15 +115,11 @@ section
     flex-flow: column nowrap
 .spacer
     display: block
-    height: 1px
-    background-color: grey
     margin-top: 20px
-    margin-bottom: 20px
-    width: 50%
-    margin-left: 25%
 .draggables
     display: flex
     flex-flow: row wrap
+    margin-left: 20px
 
 .dragging
     transition: opacity 0.2s !important
@@ -134,7 +130,7 @@ section
 .targets
     display: flex
     flex-flow: row wrap
-    justify-content: center
+    margin-top: 10px
     margin-bottom: 20px
 
 .targetContainer
@@ -146,7 +142,7 @@ section
 .correctnessIndicator
     display: block
     width: 20px
-    height: 300px
+    height: 20vh
     background-color: white
     align-self: flex-end
     outline: black 1px solid
@@ -156,15 +152,16 @@ section
     display: inline-block
     border-radius: 10px
     padding: 10px
-    outline: black 1px solid
+    border: black 1px solid
     background-color: white
-    width: 300px
-    height: 300px
+    width: 20vh
+    height: 20vh
+    margin-right: 10px
 
 .dragTarget
     display: block
-    width: 300px
-    height: 300px
+    width: 20vh
+    height: 20vh
     outline: 1px solid black
 
 

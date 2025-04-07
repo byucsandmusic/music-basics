@@ -19,10 +19,10 @@ export default defineComponent({
     data() {
         return {
             sheets: [
-                isolateSheet(subsheet(0, 1, songs.i_am_a_child_of_god)),
-                isolateSheet(subsheet(1, 1, songs.i_am_a_child_of_god)),
-                isolateSheet(subsheet(2, 1, songs.i_am_a_child_of_god)),
-                isolateSheet(subsheet(3, 1, songs.i_am_a_child_of_god)),
+                isolateSheet(subsheet(0, 1, songs.as_bread_is_broken)),
+                isolateSheet(subsheet(1, 1, songs.as_bread_is_broken)),
+                isolateSheet(subsheet(2, 1, songs.as_bread_is_broken)),
+                isolateSheet(subsheet(2, 1, songs.as_bread_is_broken)),
             ],
         }
     },
@@ -32,6 +32,7 @@ export default defineComponent({
 
 <template>
     <section>
+        <h2>{{ translator.get('module0', 'pitchMatchingTunesNew', 'title') }}</h2>
         <MatchTheSong
             id="secondMatchTheSong"
             :sheets="sheets"

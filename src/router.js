@@ -133,7 +133,7 @@ const routes = [
                             type: 'text',
                             value: ['module0', 'readingVersesInfo', 'chorusInfo'],
                         },
-                        { type: 'image', value: ['chorus.jpg'] },
+                        { type: 'image', value: ['chorus.png'] },
                         {
                             type: 'text',
                             value: ['module0', 'readingVersesInfo', 'nextVerseInfo'],
@@ -262,6 +262,32 @@ const routes = [
             { path: 'pitch-matching-tunes-common', component: FirstMatchTheSong },
             { path: 'pitch-matching-tunes-new', component: SecondMatchTheSong },
             {
+                path: 'pitch-melody-line-info',
+                component: TextImagesAndMusic,
+                props: {
+                    titleKeys: ['module0', 'melodyLineInfo', 'title'],
+                    content: [
+                        {
+                            type: 'text',
+                            value: ['module0', 'melodyLineInfo', 'lastThingText'],
+                        },
+                        {
+                            type: 'image',
+                            value: ['IAmAChildOfGod.png'],
+                        },
+                        {
+                            type: 'text',
+                            value: ['module0', 'melodyLineInfo', 'topLineInfo'],
+                        },
+                        { type: 'image', value: ['IAmAChildOfGod.png'] },
+                        {
+                            type: 'text',
+                            value: ['module0', 'melodyLineInfo', 'melodyInfo'],
+                        },
+                    ],
+                },
+            },
+            {
                 path: 'pitch-sing-along-common',
                 component: SingAlong,
                 props: {
@@ -277,32 +303,6 @@ const routes = [
                     title: ['module0', 'pitchSingAlongNew', 'title'],
                     description: ['module0', 'pitchSingAlongNew', 'description'],
                     music: songs.as_bread_is_broken,
-                },
-            },
-            {
-                path: 'pitch-melody-line-info',
-                component: TextImagesAndMusic,
-                props: {
-                    titleKeys: ['module0', 'melodyLineInfo', 'title'],
-                    content: [
-                        {
-                            type: 'text',
-                            value: ['module0', 'melodyLineInfo', 'lastThingText'],
-                        },
-                        {
-                            type: 'image',
-                            value: ['HeIsBornTheDivineChristChild.jpeg'],
-                        },
-                        {
-                            type: 'text',
-                            value: ['module0', 'melodyLineInfo', 'topLineInfo'],
-                        },
-                        { type: 'image', value: ['HeIsBornTheDivineChristChildHighlighted.jpg'] },
-                        {
-                            type: 'text',
-                            value: ['module0', 'melodyLineInfo', 'melodyInfo'],
-                        },
-                    ],
                 },
             },
             {

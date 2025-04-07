@@ -41,15 +41,15 @@ export default function usePages(translator: Translator): Record<string, LinkIte
                 notInMenu: true,
             },
             {
-                id: '/module0/pitch-sing-along-new',
-                href: '/module0/pitch-sing-along-new',
-                title: translator.get('module0', 'pitchSingAlongNew', 'title'),
-                notInMenu: true,
-            },
-            {
                 id: '/module0/pitch-melody-line-info',
                 href: '/module0/pitch-melody-line-info',
                 title: translator.get('module0', 'pitchMelodyLineInfo', 'title'),
+                notInMenu: true,
+            },
+            {
+                id: '/module0/pitch-sing-along-new',
+                href: '/module0/pitch-sing-along-new',
+                title: translator.get('module0', 'pitchSingAlongNew', 'title'),
                 notInMenu: true,
             },
             {
