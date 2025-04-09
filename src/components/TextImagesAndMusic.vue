@@ -69,6 +69,7 @@ export default defineComponent({
                 class="content-image"
             />
             <MusicNotation
+                :key="JSON.stringify(item.music)"
                 class="music-notation"
                 v-else-if="item.type === 'music'"
                 v-if="item.music"
