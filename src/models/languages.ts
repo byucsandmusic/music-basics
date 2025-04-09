@@ -206,8 +206,7 @@ export const languages = Object.freeze({
             tooltips: {
                 list: {
                     ENG:
-                        'title/tempo/guitar/scriptures/introStart/introEnd/timeSig/' +
-                        'perform/music/copyright/tune/' +
+                        'title/tempo/guitar/scriptures/introStart/introEnd/timeSig/perform/music/copyright/tune/' +
                         'slur/treble/bass/barLines/measure',
                 },
                 title: {
@@ -227,7 +226,7 @@ export const languages = Object.freeze({
                             'The tempo marking shows how fast or slow a hymn should go. First, it shows the kind of note that gets the' +
                             ' main beat, the thing you tap your toe to or that the music leader conducts. And the numbers next to it ' +
                             'show how many beats per minute. This specific song says that the main beat is a half note and should be between ' +
-                            '60-69 beats per minute. This is about one beat per second. He is Born, the Divine Christ Child. See how the text ' +
+                            '52-60 beats per minute. This is about one beat per second. See how the text ' +
                             'fits to the beat of the song? And that there are two darker notes in the space of the beat? ' +
                             'The interactive digital tools page of the hymnbook has an embedded metronome ' +
                             'where you can check how fast or slow the beat is. Access the digital tools for this hymn ' +
@@ -268,11 +267,11 @@ export const languages = Object.freeze({
                     body: {
                         ENG:
                             '<a href="' +
-                            'https://www.churchofjesuschrist.org/study/scriptures/nt/luke/2?lang=eng&id=p6-p14#p6' +
-                            '">Luke 2:6-14</a>, ' +
+                            'https://www.churchofjesuschrist.org/study/scriptures/nt/1-cor/11?lang=eng&id=p23-p26#p23' +
+                            '">1 Corinthians 11:23-26</a>, ' +
                             '<a href="' +
-                            'https://www.churchofjesuschrist.org/study/scriptures/ot/isa/9?lang=eng&id=p6#p6' +
-                            '">Isaiah 9:6</a><br/>' +
+                            'https://www.churchofjesuschrist.org/study/scriptures/bofm/2-ne/18?lang=eng&id=p3-p13#p3' +
+                            '">3 Nephi 18:3-13</a><br/>' +
                             'Hymns teach the doctrines of the gospel. Each hymn has scriptures that can teach us more about ' +
                             'the topic of the hymn. In the first presidency preface to the 1985 hymnbook, they wrote: “Hymns ' +
                             'can lift our spirits, give us courage, and move us to righteous action. They can fill our souls ' +
@@ -308,8 +307,8 @@ export const languages = Object.freeze({
                             'The time signature gives information about how many beats are in a measure and how you ' +
                             'might conduct the piece if you are the music leader. The top number usually tells us how ' +
                             'many beats are in the measure. The bottom number usually tells us what kind of note gets ' +
-                            'the beat. This song is unique in that it is in 2/2 which means there are two beats in each ' +
-                            'measure and the half note gets the beat. That is why it also tells the leader to conduct in 2. ' +
+                            'the beat. This song is in 3/4, which means there are three beats in each ' +
+                            'measure and the quarter note gets the beat.' +
                             "<a href='#'>Learn more about time signatures.</a>",
                     },
                 },
@@ -349,9 +348,7 @@ export const languages = Object.freeze({
                         ENG: 'Text credits',
                     },
                     body: {
-                        ENG:
-                            'Text attribution. This will include who wrote the words of the hymn, or in this case what ' +
-                            'collection the text comes from if the author is not known.',
+                        ENG: 'Text attribution. This will include who wrote the words of the hymn.',
                     },
                 },
                 music: {
@@ -407,7 +404,7 @@ export const languages = Object.freeze({
                     title: { ENG: 'Treble clef' },
                     body: {
                         ENG:
-                            ' A treble clef indicates that the notes are on the right half of the keyboard and are ' +
+                            'A treble clef indicates that the notes are on the right half of the keyboard and are ' +
                             'usually above middle C. The soprano and alto notes of the hymn are usually written in ' +
                             "the treble clef. <a href='#'>Learn more about treble clef notes.</a>",
                     },
