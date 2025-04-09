@@ -273,13 +273,13 @@ const routes = [
                         },
                         {
                             type: 'image',
-                            value: ['IAmAChildOfGod.png'],
+                            value: ['AsBreadIsBroken.png'],
                         },
                         {
                             type: 'text',
                             value: ['module0', 'melodyLineInfo', 'topLineInfo'],
                         },
-                        { type: 'image', value: ['IAmAChildOfGod.png'] },
+                        { type: 'image', value: ['AsBreadIsBroken.png'] },
                         {
                             type: 'text',
                             value: ['module0', 'melodyLineInfo', 'melodyInfo'],
