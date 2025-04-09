@@ -279,7 +279,7 @@ const routes = [
                             type: 'text',
                             value: ['module0', 'melodyLineInfo', 'topLineInfo'],
                         },
-                        { type: 'image', value: ['AsBreadIsBroken.png'] },
+                        { type: 'image', value: ['AsBreadIsBroken_Highlighted.png'] },
                         {
                             type: 'text',
                             value: ['module0', 'melodyLineInfo', 'melodyInfo'],
