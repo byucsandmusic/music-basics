@@ -2,7 +2,7 @@
 import Translator from '../../models/translator'
 import { defineComponent, useTemplateRef, PropType } from 'vue'
 let el, onRelease, validBucket
-const buckets = new Map<string, string | null>()
+let buckets = new Map<string, string | null>()
 
 export interface DragReleaseEvent {
     source: string
@@ -62,6 +62,7 @@ export default defineComponent({
         validBucket = props.validBucket
     },
     mounted: () => {
+        buckets = new Map<string, string | null>()
         addInputIndependentEventListener(el.value, 'mousedown', 'touchstart', dragStart)
     },
 
@@ -218,7 +219,7 @@ function dragStart(e: InteractionEvent) {
             //If a dragTarget was not ended on
             invalidRelease()
         } else {
-            if (validBucket(draggedElement.id, target.id) && !buckets.get(target.id)) {
+            if (validBucket(draggedElement.id, target.id)) {
                 draggedElement.style.transform = `translate(${-(draggedElement.offsetLeft - target.offsetLeft)}px, ${-(draggedElement.offsetTop - target.offsetTop)}px)`
                 const prior = getBucket(draggedElement!.id)
                 if (prior) buckets.set(prior, null)

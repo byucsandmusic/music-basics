@@ -22,7 +22,7 @@ export default defineComponent({
                 isolateSheet(subsheet(0, 1, songs.as_bread_is_broken)),
                 isolateSheet(subsheet(1, 1, songs.as_bread_is_broken)),
                 isolateSheet(subsheet(2, 1, songs.as_bread_is_broken)),
-                isolateSheet(subsheet(2, 1, songs.as_bread_is_broken)),
+                isolateSheet(subsheet(4, 1, songs.as_bread_is_broken)),
             ],
         }
     },

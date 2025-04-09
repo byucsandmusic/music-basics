@@ -53,17 +53,15 @@ export default defineComponent({
     methods: {
         onRelease(from: string, to: string | null, state: Map<string, string | null>) {
             this.buckets = state
+            this.correct = !!state.get('song-target')
             if (from === this.id + 'Option0' && to != null) {
                 this.textIndicator = 'Correct!'
-                this.correct = true
                 const progressHandler = progress(this.progressInfo)
                 progressHandler.saveProgress(true)
             } else if (to != null) {
                 this.textIndicator = this.translator.get('general', 'matchTheSong', 'incorrectIndicator')
-                this.correct = false
             } else {
                 this.textIndicator = this.translator.get('general', 'matchTheSong', 'instructions')
-                this.correct = false
             }
         },
         validBucket(from: string, to: string) {
@@ -160,6 +158,7 @@ section
 
 .dragTarget
     display: block
+    border-radius: 10px
     width: 20vh
     height: 20vh
     outline: 1px solid black
