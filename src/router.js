@@ -358,6 +358,158 @@ const routes = [
             { path: 'end', component: ModuleEnd, props: { module: 'module1' } },
         ],
     },
+    {
+        path: '/module2',
+        component: BasePage,
+        children: [
+            { path: '', redirect: '/module2/home' },
+            { path: 'home', component: ModuleHome },
+            {
+                path: 'rhythm-info',
+                component: TextImagesAndMusic,
+                props: {
+                    titleKeys: ['module0', 'rhythmInfo', 'title'],
+                    content: [
+                        {
+                            type: 'text',
+                            value: ['module0', 'rhythmInfo', 'basics'],
+                        },
+                        { type: 'image', value: ['measures.jpg'] },
+                        {
+                            type: 'text',
+                            value: ['module0', 'rhythmInfo', 'measureInfo'],
+                        },
+                        { type: 'image', value: ['mixedNotes.jpg'] },
+                        {
+                            type: 'text',
+                            value: ['module0', 'rhythmInfo', 'wholeNoteInfo'],
+                        },
+                        { type: 'image', value: ['wholeNote.webp'] },
+                        {
+                            type: 'text',
+                            value: ['module0', 'rhythmInfo', 'halfNoteInfo'],
+                        },
+                        { type: 'image', value: ['halfNote.webp'] },
+                        {
+                            type: 'text',
+                            value: ['module0', 'rhythmInfo', 'quarterNoteInfo'],
+                        },
+                        { type: 'image', value: ['quarterNote.webp'] },
+                        {
+                            type: 'text',
+                            value: ['module0', 'rhythmInfo', 'eighthNoteInfo'],
+                        },
+                        { type: 'image', value: ['eighthNote.webp'] },
+                        {
+                            type: 'text',
+                            value: ['module0', 'rhythmInfo', 'dottedNotesInfo'],
+                        },
+                        { type: 'image', value: ['dottedQuarterNote.jpg'] },
+                    ],
+                },
+            },
+            {
+                path: 'rhythm-tap-along-quarter-notes',
+                component: TapAlong,
+                props: {
+                    rhythm: {
+                        meter: '4/4',
+                        tempo: '100',
+                        beat: '1/4',
+                        treble: ['BBBB'],
+                        instrument: 36,
+                    },
+                    titleKeys: ['module0', 'rhythmTapAlongQuarterNotes', 'title'],
+                    descriptionKeys: ['module0', 'rhythmTapAlongQuarterNotes', 'description'],
+                    progressKeys: {
+                        moduleName: 'module0',
+                        id: 'rhythm-tap-along-quarter-notes',
+                    },
+                    description: 'Placeholder',
+                },
+            },
+            {
+                path: 'rhythm-tap-along-half-notes',
+                component: TapAlong,
+                props: {
+                    rhythm: {
+                        meter: '4/4',
+                        tempo: '100',
+                        beat: '1/4',
+                        treble: ['B2B2'],
+                        instrument: 36,
+                    },
+                    titleKeys: ['module0', 'rhythmTapAlongHalfNotes', 'title'],
+                    descriptionKeys: ['module0', 'rhythmTapAlongHalfNotes', 'description'],
+                    progressKeys: {
+                        moduleName: 'module0',
+                        id: 'rhythm-tap-along-half-notes',
+                    },
+                    description: 'Placeholder',
+                },
+            },
+            {
+                path: 'rhythm-tap-along-eighth-notes',
+                component: TapAlong,
+                props: {
+                    rhythm: {
+                        meter: '4/4',
+                        tempo: '100',
+                        beat: '1/4',
+                        treble: ['B/B/B/B/B/B/B/B/'],
+                        instrument: 36,
+                    },
+                    titleKeys: ['module0', 'rhythmTapAlongEighthNotes', 'title'],
+                    descriptionKeys: ['module0', 'rhythmTapAlongEighthNotes', 'description'],
+                    progressKeys: {
+                        moduleName: 'module0',
+                        id: 'rhythm-tap-along-eighth-notes',
+                    },
+                    description: 'Placeholder',
+                },
+            },
+            {
+                path: 'rhythm-tap-along-mixed-1',
+                component: TapAlong,
+                props: {
+                    rhythm: {
+                        meter: '4/4',
+                        tempo: '100',
+                        beat: '1/4',
+                        treble: ['BB/B/BB'],
+                        instrument: 36,
+                    },
+                    titleKeys: ['module0', 'rhythmTapAlongMixed1', 'title'],
+                    descriptionKeys: ['module0', 'rhythmTapAlongMixed1', 'description'],
+                    progressKeys: {
+                        moduleName: 'module0',
+                        id: 'rhythm-tap-along-mixed-1',
+                    },
+                    description: 'Placeholder',
+                },
+            },
+            {
+                path: 'rhythm-tap-along-mixed-2',
+                component: TapAlong,
+                props: {
+                    rhythm: {
+                        meter: '4/4',
+                        tempo: '100',
+                        beat: '1/4',
+                        treble: ['BBB3/B/'],
+                        instrument: 36,
+                    },
+                    titleKeys: ['module0', 'rhythmTapAlongMixed2', 'title'],
+                    descriptionKeys: ['module0', 'rhythmTapAlongMixed2', 'description'],
+                    progressKeys: {
+                        moduleName: 'module0',
+                        id: 'rhythm-tap-along-mixed-2',
+                    },
+                    description: 'Placeholder',
+                },
+            },
+        ],
+    },
 ]
 
 const router = createRouter({
