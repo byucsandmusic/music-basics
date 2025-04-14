@@ -32,7 +32,7 @@ const routes = [
             {
                 path: 'explore',
                 component: HeIsBorn,
-                props: { descriptionPath: ['module0', 'exploration', 'description'] },
+                props: { descriptionPath: ['module1', 'exploration', 'description'] },
             },
             {
                 path: 'sing-along',
@@ -352,7 +352,7 @@ const routes = [
             {
                 path: 'explore',
                 component: HeIsBorn,
-                props: { descriptionPath: ['module0', 'exploration', 'description'] },
+                props: { descriptionPath: ['module1', 'exploration', 'description'] },
             },
             { path: 'end', component: ModuleEnd, props: { module: 'module1' } },
         ],
