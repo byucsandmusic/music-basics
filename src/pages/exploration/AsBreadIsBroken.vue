@@ -4,7 +4,7 @@ import Translator from '../../models/translator'
 import { BoundingRect } from '../../models/types'
 import ClickableArea from '../../components/Exploration/ClickableArea.vue'
 
-const args = ['module1', 'explore', 'tooltips']
+const args = ['module0', 'exploration', 'tooltips']
 
 export default defineComponent({
     name: 'Exploration',
@@ -92,7 +92,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <h2>{{ translator.get('module1', 'explore', 'title') }}</h2>
+    <h2>{{ translator.get('module1', 'exploration', 'title') }}</h2>
     <p class="content-item">{{ translator.get(...descriptionPath) }}</p>
     <div ref="img-container" class="img-container">
         <ClickableArea
