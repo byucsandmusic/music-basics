@@ -456,6 +456,104 @@ export const languages = Object.freeze({
         title: {
             ENG: 'Rhythm',
         },
+        rhythmInfo: {
+            title: {
+                ENG: 'Rhythm Basics',
+            },
+            basics: {
+                ENG:
+                    'Beyond the words we sing, there are two other things to know in order to begin reading music. ' +
+                    "The first we’ll go over is rhythm. The rhythm of a song is what tells you when to sing a word and change what note you're singing. " +
+                    'Looking at the music below, you’ll notice that groups of notes are separated by vertical lines:',
+            },
+            measureInfo: {
+                ENG:
+                    'Those bars each mark the beginning of a measure. A measure is like a small, organized "chunk" of music that helps keep everything in time. ' +
+                    "Imagine you're clapping along to a song—if you clap " +
+                    '"1, 2, 3, 4" over and over, each set of four counts is a measure. ' +
+                    'If you look at the music again, you’ll also notice that some notes look similar or different from each other:',
+            },
+            wholeNoteInfo: {
+                ENG:
+                    'How the note looks tells you how much of the measure the note takes up. ' +
+                    'For example, the whole note takes up the whole measure so that one note would take up all four claps:',
+            },
+            halfNoteInfo: {
+                ENG:
+                    'The next note is the half note which means it takes up half of the measure. ' +
+                    'This means each of these notes is worth two claps:',
+            },
+            quarterNoteInfo: {
+                ENG: 'Just like we cut the whole note into two half notes, we can split those two notes into four quarter notes, each taking up one claps:',
+            },
+            eighthNoteInfo: {
+                ENG:
+                    'The last kind of note we’ll cover is the 8th note. These are each half of a quarter note or half a clap each. ' +
+                    'You’ll notice there’s two variations of this one. It looks like the one on the right when there are multiple next to each other:',
+            },
+            dottedNotesInfo: {
+                ENG:
+                    'Last thing and then we’ll have you try some rhythms yourself. Some notes, most commonly the half note, have a dot next to them. ' +
+                    'This means they are worth one and a half of themselves. So a half note with a dot is 3 claps and a quarter note is worth 1 and a half claps.',
+            },
+        },
+        rhythmTapAlongQuarterNotes: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Quarter Notes',
+            },
+            description: {
+                ENG:
+                    'Now we’ll try using what we’ve learned. Each activity will have a rhythm for you to tap along with. ' +
+                    'We’ll start simple with four quarter notes. When you press play, it will play the beat, ' +
+                    'which is like the clapping that fills the measure, then it will play the rhythm for you to listen to. ' +
+                    'After another 4 beats plays, it will be your turn to tap the rhythm instead of it playing the rhythm. ' +
+                    'You can press tap or your spacebar along with what the rhythm should be. Give it a try!',
+            },
+        },
+        rhythmTapAlongHalfNotes: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Half Notes',
+            },
+            description: {
+                ENG: 'Here are some half notes now. Give it a try!',
+            },
+        },
+        rhythmTapAlongEighthNotes: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Eighth Notes',
+            },
+            description: {
+                ENG:
+                    'Now we’ll try some eighth notes. Remember that these are half of a quarter note so you’ll be tapping twice as fast. ' +
+                    'Give it a try!',
+            },
+        },
+        rhythmTapAlongMixed1: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Mixed Rhythms 1',
+            },
+            description: {
+                ENG:
+                    'Great job! If you want a bit of a challenge, the next few activities will begin mixing the kinds of notes together. ' +
+                    'These rhythms are from a hymn you’ll probably recognize. We’ll have a chance to sing along to it next!',
+            },
+        },
+        rhythmTapAlongMixed2: {
+            title: {
+                ENG: 'Rhythm Tap-Along - Mixed Rhythms 2',
+            },
+            description: {
+                ENG: 'Here’s another rhythm to try. This one is a bit more challenging, but you can do it! ',
+            },
+        },
+        rhythmSingAlongCommon: {
+            title: {
+                ENG: 'Rhythm Sing-Along - Common Hymn',
+            },
+            description: {
+                ENG: 'Did you guess what it was? It’s <common hymn>! Try singing along but focus on the rhythm the notes are telling you as you do.',
+            },
+        },
     },
     module3: {
         title: {
