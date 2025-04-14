@@ -362,8 +362,7 @@ const routes = [
         path: '/module2',
         component: BasePage,
         children: [
-            { path: '', redirect: '/module2/home' },
-            { path: 'home', component: ModuleHome },
+            { path: '', redirect: '/module2/rhythm-info' },
             {
                 path: 'rhythm-info',
                 component: TextImagesAndMusic,

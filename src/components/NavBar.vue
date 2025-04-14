@@ -40,7 +40,7 @@ export default defineComponent({
                 <RouterDropdown :links="nestedMenuItems.module1" :title="translator.get('module1', 'title')" />
             </li>
             <li>
-                <RouterLink to="/">{{ translator.get('module2', 'title') }}</RouterLink>
+                <RouterDropdown :links="nestedMenuItems.module2" :title="translator.get('module2', 'title')" />
             </li>
             <li>
                 <RouterLink to="/">{{ translator.get('module3', 'title') }}</RouterLink>
