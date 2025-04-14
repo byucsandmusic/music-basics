@@ -97,12 +97,44 @@ export default function usePages(translator: Translator): Record<string, LinkIte
                 notInMenu: true,
             },
         ],
-        demo: [
+        module2: [
             {
-                id: '/demo/home',
-                href: '/demo/home',
-                title: translator.get('general', 'home'),
+                id: '/module2/rhythm-info',
+                href: '/module2/rhythm-info',
+                title: translator.get('module2', 'rhythmInfo', 'title'),
             },
+            {
+                id: '/module2/rhythm-tap-along-quarter-notes',
+                href: '/module2/rhythm-tap-along-quarter-notes',
+                title: translator.get('module2', 'rhythmTapAlongQuarterNotes', 'title'),
+            },
+            {
+                id: '/module2/rhythm-tap-along-half-notes',
+                href: '/module2/rhythm-tap-along-half-notes',
+                title: translator.get('module2', 'rhythmTapAlongHalfNotes', 'title'),
+            },
+            {
+                id: '/module2/rhythm-tap-along-eighth-notes',
+                href: '/module2/rhythm-tap-along-eighth-notes',
+                title: translator.get('module2', 'rhythmTapAlongEighthNotes', 'title'),
+            },
+            {
+                id: '/module2/rhythm-tap-along-mixed-1',
+                href: '/module2/rhythm-tap-along-mixed-1',
+                title: translator.get('module2', 'rhythmTapAlongMixed1', 'title'),
+            },
+            {
+                id: '/module2/rhythm-tap-along-mixed-2',
+                href: '/module2/rhythm-tap-along-mixed-2',
+                title: translator.get('module2', 'rhythmTapAlongMixed2', 'title'),
+            },
+            {
+                id: 'end',
+                href: '/module2/end',
+                notInMenu: true,
+            },
+        ],
+        demo: [
             {
                 id: '/demo/explore',
                 href: '/demo/explore',

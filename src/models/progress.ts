@@ -47,6 +47,13 @@ export function getModuleProgress(moduleName: string) {
     const moduleOrder: Record<string, string[]> = {
         module0: ['pitch-matching-tunes-common', 'pitch-matching-tunes-new'],
         module1: [],
+        module2: [
+            'rhythm-tap-along-quarter-notes',
+            'rhythm-tap-along-half-notes',
+            'rhythm-tap-along-eighth-notes',
+            'rhythm-tap-along-mixed-1',
+            'rhythm-tap-along-mixed-2',
+        ],
         // Add more modules as needed
     }
 
