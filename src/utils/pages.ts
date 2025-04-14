@@ -97,6 +97,38 @@ export default function usePages(translator: Translator): Record<string, LinkIte
                 notInMenu: true,
             },
         ],
+        module2: [
+            {
+                id: '/module2/rhythm-info',
+                href: '/module2/rhythm-info',
+                title: translator.get('module2', 'rhythmInfo', 'title'),
+            },
+            {
+                id: '/module2/rhythm-tap-along-quarter-notes',
+                href: '/module2/rhythm-tap-along-quarter-notes',
+                title: translator.get('module0', 'rhythmTapAlongQuarterNotes', 'title'),
+            },
+            {
+                id: '/module2/rhythm-tap-along-half-notes',
+                href: '/module2/rhythm-tap-along-half-notes',
+                title: translator.get('module0', 'rhythmTapAlongHalfNotes', 'title'),
+            },
+            {
+                id: '/module2/rhythm-tap-along-eighth-notes',
+                href: '/module2/rhythm-tap-along-eighth-notes',
+                title: translator.get('module0', 'rhythmTapAlongEighthNotes', 'title'),
+            },
+            {
+                id: '/module2/rhythm-tap-along-mixed-1',
+                href: '/module2/rhythm-tap-along-mixed-1',
+                title: translator.get('module0', 'rhythmTapAlongMixed1', 'title'),
+            },
+            {
+                id: '/module2/rhythm-tap-along-mixed-2',
+                href: '/module2/rhythm-tap-along-mixed-2',
+                title: translator.get('module0', 'rhythmTapAlongMixed2', 'title'),
+            },
+        ],
         demo: [
             {
                 id: '/demo/home',
