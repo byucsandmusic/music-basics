@@ -89,7 +89,7 @@ export default function usePages(translator: Translator): Record<string, LinkIte
             {
                 id: '/module1/explore',
                 href: '/module1/explore',
-                title: translator.get('module1', 'explore', 'title'),
+                title: translator.get('module1', 'exploration', 'title'),
             },
             {
                 id: 'end',
@@ -138,7 +138,7 @@ export default function usePages(translator: Translator): Record<string, LinkIte
             {
                 id: '/demo/explore',
                 href: '/demo/explore',
-                title: translator.get('module1', 'explore', 'title'),
+                title: translator.get('module1', 'exploration', 'title'),
             },
             {
                 id: '/demo/sing-along',

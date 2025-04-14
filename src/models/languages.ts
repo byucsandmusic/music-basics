@@ -182,27 +182,6 @@ export const languages = Object.freeze({
                     'You can tap on most parts of the sheet music, and a pop up will tell you what that part is along ' +
                     'with a link to the module that covers it more in depth.',
             },
-        },
-        finish: {
-            ENG:
-                'Well done! You reached the end of the crash course. Hopefully you feel just a bit more able to sing along with us! ' +
-                'Here’s a recap of what we did. If you see anything you missed or want to go back and try again, just click!',
-        },
-    },
-    module1: {
-        title: {
-            ENG: 'Basics',
-        },
-        ending: {
-            ENG:
-                "Now you know the basics of reading a hymn. You're definitely ready " +
-                'to sing in sacrament meeting now. Keep going to learn more about ' +
-                'rhythms in music!',
-        },
-        explore: {
-            title: {
-                ENG: 'Hymn Exploration',
-            },
             tooltips: {
                 list: {
                     ENG:
@@ -233,20 +212,6 @@ export const languages = Object.freeze({
                             '<a href="' +
                             'https://www.churchofjesuschrist.org/media/music/songs/he-is-born-the-divine-christ-child?crumbs=hymns-for-home-and-church&lang=eng' +
                             '">here</a>.',
-                    },
-                },
-                conductorNotes: {
-                    title: {
-                        ENG: 'Conductor notes',
-                    },
-                    body: {
-                        ENG:
-                            'Tips for the music leader will go here. This hymn can look like it has four beats, but because ' +
-                            'it is a quick tempo, this note advises the conductor to conduct a basic two pattern with two quarter ' +
-                            'notes in each beat. You can learn how to conduct different patterns ' +
-                            "<a href='" +
-                            'https://www.churchofjesuschrist.org/bc/content/shared/english/pdf/callings/music/conducting-course/ConductPatterns.pdf' +
-                            "'>here</a>.",
                     },
                 },
                 guitar: {
@@ -312,6 +277,222 @@ export const languages = Object.freeze({
                             "<a href='#'>Learn more about time signatures.</a>",
                     },
                 },
+                perform: {
+                    title: {
+                        ENG: 'Musical instructions',
+                    },
+                    body: {
+                        ENG:
+                            'Below the hymn are included useful tips for singing the hymn. For this specific hymn, it ' +
+                            'is reminding congregants to sing the refrain after each verse.',
+                    },
+                },
+                text: {
+                    title: {
+                        ENG: 'Text credits',
+                    },
+                    body: {
+                        ENG: '',
+                    },
+                },
+                music: {
+                    title: {
+                        ENG: 'Text and music credits',
+                    },
+                    body: {
+                        ENG:
+                            'Text attribution and music attribution. The text attribution will include who wrote the ' +
+                            'words of the hymn. The music attribution will include the composer or arranger of the ' +
+                            'hymn, or in this case the tune name if its composer is not known. Be sure to check out the ' +
+                            '<a href="' +
+                            'https://www.churchofjesuschrist.org/study/manual/sacred-music-gospel-study-resource-pilot?lang=eng' +
+                            '">About the Hymns</a>to learn more about the origins of the individual hymns.',
+                    },
+                },
+                copyright: {
+                    title: {
+                        ENG: 'Copyright information',
+                    },
+                },
+                tune: {
+                    title: {
+                        ENG: 'Tune name',
+                    },
+                },
+                slur: {
+                    title: { ENG: 'Slur' },
+                    body: {
+                        ENG:
+                            'Slur or legato marking. This line is a reminder to sing these notes on the same syllable ' +
+                            'in a smooth and connected way.',
+                    },
+                },
+                treble: {
+                    title: { ENG: 'Treble clef' },
+                    body: {
+                        ENG:
+                            'A treble clef indicates that the notes are on the right half of the keyboard and are ' +
+                            'usually above middle C. The soprano and alto notes of the hymn are usually written in ' +
+                            "the treble clef. <a href='#'>Learn more about treble clef notes.</a>",
+                    },
+                },
+                bass: {
+                    title: { ENG: 'Bass clef' },
+                    body: {
+                        ENG:
+                            'A bass clef indicates that the notes are on the left half of the keyboard and are ' +
+                            'usually below middle C. The tenor and bass notes of the hymn are usually written in the ' +
+                            "bass clef. <a href='#'>Learn more about bass clef notes.</a>",
+                    },
+                },
+                barLines: {
+                    title: {
+                        ENG: 'Bar lines',
+                    },
+                    body: {
+                        ENG: 'Bar lines divide the notated score into measures for easier reading and to organize the hymn in a clear meter.',
+                    },
+                },
+                measure: {
+                    title: {
+                        ENG: 'Measure',
+                    },
+                    body: {
+                        ENG: 'A measure is what is between bar lines.',
+                    },
+                },
+            },
+        },
+        finish: {
+            ENG:
+                'Well done! You reached the end of the crash course. Hopefully you feel just a bit more able to sing along with us! ' +
+                'Here’s a recap of what we did. If you see anything you missed or want to go back and try again, just click!',
+        },
+    },
+    module1: {
+        title: {
+            ENG: 'Basics',
+        },
+        ending: {
+            ENG:
+                "Now you know the basics of reading a hymn. You're definitely ready " +
+                'to sing in sacrament meeting now. Keep going to learn more about ' +
+                'rhythms in music!',
+        },
+        exploration: {
+            title: {
+                ENG: 'Hymn Exploration',
+            },
+            tooltips: {
+                list: {
+                    ENG:
+                        'title/tempo/conductorNotes/guitar/scriptures/introStart/introEnd/timeSig/key/' +
+                        'verseInfo/perform/text/music/copyright/tune/fermata/toRefrain/' +
+                        'slur/treble/bass/barLines/measure',
+                },
+                title: {
+                    title: {
+                        ENG: 'Title',
+                    },
+                    body: {
+                        ENG: 'Title of the Hymn.<br/><span style="font-size: smaller;">You can search hymns by title in the back of the hymnal or online <a href="https://www.churchofjesuschrist.org/media/music?lang=eng">here</a>.</span>',
+                    },
+                },
+                tempo: {
+                    title: {
+                        ENG: 'Tempo range',
+                    },
+                    body: {
+                        ENG:
+                            'The tempo marking shows how fast or slow a hymn should go. First, it shows the kind of note that gets the' +
+                            ' main beat, the thing you tap your toe to or that the music leader conducts. And the numbers next to it ' +
+                            'show how many beats per minute. This specific song says that the main beat is a half note and should be between ' +
+                            '60-69 beats per minute. This is about one beat per second. He is Born, the Divine Christ Child. See how the text ' +
+                            'fits to the beat of the song? And that there are two darker notes in the space of the beat? ' +
+                            'The interactive digital tools page of the hymnbook has an embedded metronome ' +
+                            'where you can check how fast or slow the beat is. Access the digital tools for this hymn ' +
+                            '<a href="' +
+                            'https://www.churchofjesuschrist.org/media/music/songs/he-is-born-the-divine-christ-child?crumbs=hymns-for-home-and-church&lang=eng' +
+                            '">here</a>.',
+                    },
+                },
+                conductorNotes: {
+                    title: {
+                        ENG: 'Conductor notes',
+                    },
+                    body: {
+                        ENG:
+                            'Tips for the music leader will go here. This hymn can look like it has four beats, but because ' +
+                            'it is a quick tempo, this note advises the conductor to conduct a basic two pattern with two quarter ' +
+                            'notes in each beat. You can learn how to conduct different patterns ' +
+                            "<a href='" +
+                            'https://www.churchofjesuschrist.org/bc/content/shared/english/pdf/callings/music/conducting-course/ConductPatterns.pdf' +
+                            "'>here</a>.",
+                    },
+                },
+                guitar: {
+                    title: {
+                        ENG: 'Guitar chords',
+                    },
+                    body: {
+                        ENG:
+                            'Guitar Chords are given above the staff for those who are accompanying the congregation ' +
+                            'on a guitar or other stringed instrument. <a href="#">Learn how to accompany the congregation on ' +
+                            'guitar.</a>',
+                    },
+                },
+                scriptures: {
+                    title: {
+                        ENG: 'Scriptures',
+                    },
+                    body: {
+                        ENG:
+                            '<a href="' +
+                            'https://www.churchofjesuschrist.org/study/scriptures/nt/luke/2?lang=eng&id=p6-p14#p6' +
+                            '">Luke 2:6-14</a>, ' +
+                            '<a href="' +
+                            'https://www.churchofjesuschrist.org/study/scriptures/ot/isa/9?lang=eng&id=p6#p6' +
+                            '">Isaiah 9:6</a><br/>' +
+                            'Hymns teach the doctrines of the gospel. Each hymn has scriptures that can teach us more about ' +
+                            'the topic of the hymn. In the first presidency preface to the 1985 hymnbook, they wrote: “Hymns ' +
+                            'can lift our spirits, give us courage, and move us to righteous action. They can fill our souls ' +
+                            'with heavenly thoughts and bring us a spirit of peace. Hymns can also help us withstand the ' +
+                            'temptations of the adversary. We encourage you to memorize your favorite hymns and study the ' +
+                            'scriptures that relate to them. Then, if unworthy thoughts enter your mind, sing a hymn to yourself, ' +
+                            'crowding out the evil with the good. Brothers and sisters, let us use the hymns to invite the Spirit ' +
+                            'of the Lord into our congregations, our homes, and our personal lives. Let us memorize and ponder ' +
+                            'them, recite and sing them, and partake of their spiritual nourishment. Know that the song of the ' +
+                            'righteous is a prayer unto our Father in Heaven, “and it shall be answered with a blessing upon ' +
+                            '[your] heads.”',
+                    },
+                },
+                introStart: {
+                    title: {
+                        ENG: 'Introduction brackets (start)',
+                    },
+                    body: {
+                        ENG: 'These brackets mark an introduction that the organist can play to prepare the congregation to sing the hymn.',
+                    },
+                },
+                introEnd: {
+                    title: {
+                        ENG: 'Introduction brackets (end)',
+                    },
+                },
+                timeSig: {
+                    title: {
+                        ENG: 'Time signature',
+                    },
+                    body: {
+                        ENG:
+                            'The time signature gives information about how many beats are in a measure and how you ' +
+                            'might conduct the piece if you are the music leader. The top number usually tells us how ' +
+                            'many beats are in the measure. The bottom number usually tells us what kind of note gets ' +
+                            'the beat. This song is unique in that it is in 2/2 which means there are two beats in each ' +
+                            'measure and the half note gets the beat. That is why it also tells the leader to conduct in 2. ' +
+                            "<a href='#'>Learn more about time signatures.</a>",
+                    },
+                },
                 key: {
                     title: {
                         ENG: 'Key signature',
@@ -348,7 +529,9 @@ export const languages = Object.freeze({
                         ENG: 'Text credits',
                     },
                     body: {
-                        ENG: 'Text attribution. This will include who wrote the words of the hymn.',
+                        ENG:
+                            'Text attribution. This will include who wrote the words of the hymn, or in this case what ' +
+                            'collection the text comes from if the author is not known.',
                     },
                 },
                 music: {
@@ -404,7 +587,7 @@ export const languages = Object.freeze({
                     title: { ENG: 'Treble clef' },
                     body: {
                         ENG:
-                            'A treble clef indicates that the notes are on the right half of the keyboard and are ' +
+                            ' A treble clef indicates that the notes are on the right half of the keyboard and are ' +
                             'usually above middle C. The soprano and alto notes of the hymn are usually written in ' +
                             "the treble clef. <a href='#'>Learn more about treble clef notes.</a>",
                     },
