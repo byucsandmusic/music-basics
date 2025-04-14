@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 /// <reference types="vitest/config" />
 export default defineConfig({
     plugins: [vue()],
-    base: '/byu-cs-music-capstone/',
+    base: '/music-basics/',
     server: {
         warmup: {
             clientFiles: ['./src/App.vue', './src/models/translator.ts', './src/utils/pages.ts'],
