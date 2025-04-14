@@ -92,7 +92,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <h2>{{ translator.get('module1', 'explore', 'title') }}</h2>
+    <h2>{{ translator.get('module0', 'exploration', 'title') }}</h2>
     <p class="content-item">{{ translator.get(...descriptionPath) }}</p>
     <div ref="img-container" class="img-container">
         <ClickableArea

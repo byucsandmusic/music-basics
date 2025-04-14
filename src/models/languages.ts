@@ -174,7 +174,7 @@ export const languages = Object.freeze({
         },
         exploration: {
             title: {
-                ENG: 'Exploration',
+                ENG: 'Hymn Exploration',
             },
             description: {
                 ENG:
